@@ -32,6 +32,7 @@ interface IService {
     title: string;
     description: string;
     imageUrl: string;
+    direction:string
 }
 
 interface IFeature {

@@ -15,33 +15,39 @@ type Props = {
 };
 
 const ServiceCard: FunctionComponent<Props> = ({ data }: Props) => {
-    const { imageUrl, title, description } = data;
+    const { imageUrl, title, description, direction } = data;
 
     return (
-        <Center py={3}>
-            <Box
-                p={6}
-                maxW={"330px"}
-                w={"full"}
-                bg={useColorModeValue("white", "gray.900")}
-                boxShadow={"2xl"}
-                rounded={"lg"}
-            >
-                <Image
-                    rounded={"lg"}
-                    height={230}
-                    width={282}
-                    objectFit={"cover"}
-                    src={imageUrl}
-                />
-                <Stack my={6}>
-                    <Heading fontSize={"2xl"}>{title}</Heading>
-                    <Text color={"gray.500"} my={4}>
-                        {description}
-                    </Text>
-                </Stack>
-            </Box>
-        </Center>
+      <Box
+        p={6}
+        display={"flex"}
+        flexDir={direction}
+        w={"full"}
+        alignItems={"center"}
+        bg={useColorModeValue("white", "gray.900")}
+        boxShadow={"2xl"}
+        rounded={"lg"}
+      >
+        <Image
+          rounded={"lg"}
+          height={230}
+          width={282}
+          objectFit={"cover"}
+          src={imageUrl}
+          alt="Service Images"
+        />
+        <Box
+          my={6}
+          display="flex"
+          flexDirection={"column"}
+          justifyContent="space-around"
+        >
+          <Heading fontSize={"4xl"}>{title}</Heading>
+          <Text color={"gray.500"} my={8}>
+            {description}
+          </Text>
+        </Box>
+      </Box>
     );
 };
 
