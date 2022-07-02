@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
     Box,
     Button,
@@ -18,7 +18,6 @@ import {
     VStack,
 } from "@chakra-ui/react";
 import { NextPage } from "next";
-import React from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { MdChildCare, MdEmojiPeople, MdFamilyRestroom } from "react-icons/md";
 import { IFeature } from "../@types";
@@ -139,228 +138,84 @@ const TalkToExperts: NextPage = () => {
                         ))}
                     </SimpleGrid>
                 </Box>
-                <Box py={12}>
-                    <VStack spacing={2} textAlign="center">
-                        <Heading as="h1" fontSize="4xl">
-                            Plans that fit your need
+                <Stack
+                    align={"center"}
+                    spacing={{ base: 8, md: 10 }}
+                    py={{ base: 20, md: 28 }}
+                    direction={{ base: "column", md: "row" }}
+                >
+                    <Stack flex={1} spacing={{ base: 5, md: 10 }}>
+                        <Heading
+                            lineHeight={1.1}
+                            fontWeight={600}
+                            fontSize={{ base: "3xl", sm: "4xl", lg: "6xl" }}
+                        >
+                            <Text
+                                as={"span"}
+                                position={"relative"}
+                                _after={{
+                                    content: "''",
+                                    width: "full",
+                                    height: "30%",
+                                    position: "absolute",
+                                    bottom: 1,
+                                    left: 0,
+                                    bg: "purple.700",
+                                    zIndex: -1,
+                                }}
+                            >
+                                Zoom Meeting
+                            </Text>
                         </Heading>
-                        <Text fontSize="lg" color={"gray.500"}>
-                            Start with 14-day free trial. No credit card needed.
-                            Cancel at anytime.
+                        <Text color={"gray.500"}>
+                            Connect instantly with a 24x7 specialist or choose
+                            to video visit a particular doctor. Start an instant
+                            consultation within 2 minutes or do video
+                            consultation at the scheduled time. Be assured that
+                            your online consultation will be fully private and
+                            secured.
                         </Text>
-                    </VStack>
-                    <Stack
-                        direction={{ base: "column", md: "row" }}
-                        textAlign="center"
-                        justify="center"
-                        spacing={{ base: 4, lg: 10 }}
-                        py={10}
-                    >
-                        <PriceCard>
-                            <Box py={4} px={12}>
-                                <Text fontWeight="500" fontSize="2xl">
-                                    Individual Therapy
-                                </Text>
-                                <HStack justifyContent="center">
-                                    <Text fontSize="3xl" fontWeight="600">
-                                        $
-                                    </Text>
-                                    <Text fontSize="5xl" fontWeight="900">
-                                        79
-                                    </Text>
-                                    <Text fontSize="3xl" color="gray.500">
-                                        /month
-                                    </Text>
-                                </HStack>
-                            </Box>
-                            <VStack
-                                bg={useColorModeValue("gray.50", "gray.700")}
-                                py={4}
-                                borderBottomRadius={"xl"}
-                            >
-                                <List spacing={3} textAlign="start" px={12}>
-                                    <ListItem>
-                                        <ListIcon
-                                            as={FaCheckCircle}
-                                            color="purple.500"
-                                        />
-                                        Anxiety Therapy
-                                    </ListItem>
-                                    <ListItem>
-                                        <ListIcon
-                                            as={FaCheckCircle}
-                                            color="purple.500"
-                                        />
-                                        Depression Therapy
-                                    </ListItem>
-                                    <ListItem>
-                                        <ListIcon
-                                            as={FaCheckCircle}
-                                            color="purple.500"
-                                        />
-                                        Personal Coaching
-                                    </ListItem>
-                                </List>
-                                <Box w="80%" pt={7}>
-                                    <Button
-                                        w="full"
-                                        colorScheme="purple"
-                                        variant="outline"
-                                    >
-                                        Start trial
-                                    </Button>
-                                </Box>
-                            </VStack>
-                        </PriceCard>
-
-                        <PriceCard>
-                            <Box position="relative">
-                                <Box
-                                    position="absolute"
-                                    top="-16px"
-                                    left="50%"
-                                    style={{ transform: "translate(-50%)" }}
-                                >
-                                    <Text
-                                        textTransform="uppercase"
-                                        bg={"#521262"}
-                                        px={3}
-                                        py={1}
-                                        color={"white"}
-                                        fontSize="sm"
-                                        fontWeight="600"
-                                        rounded="xl"
-                                    >
-                                        Most Popular
-                                    </Text>
-                                </Box>
-                                <Box py={4} px={12}>
-                                    <Text fontWeight="500" fontSize="2xl">
-                                        Marriage Therapy
-                                    </Text>
-                                    <HStack justifyContent="center">
-                                        <Text fontSize="3xl" fontWeight="600">
-                                            $
-                                        </Text>
-                                        <Text fontSize="5xl" fontWeight="900">
-                                            149
-                                        </Text>
-                                        <Text fontSize="3xl" color="gray.500">
-                                            /month
-                                        </Text>
-                                    </HStack>
-                                </Box>
-                                <VStack
-                                    bg={useColorModeValue(
-                                        "gray.50",
-                                        "gray.700"
-                                    )}
-                                    py={4}
-                                    borderBottomRadius={"xl"}
-                                >
-                                    <List spacing={3} textAlign="start" px={12}>
-                                        <ListItem>
-                                            <ListIcon
-                                                as={FaCheckCircle}
-                                                color="purple.500"
-                                            />
-                                            Anxiety Therapy
-                                        </ListItem>
-                                        <ListItem>
-                                            <ListIcon
-                                                as={FaCheckCircle}
-                                                color="purple.500"
-                                            />
-                                            Lorem, ipsum dolor.
-                                        </ListItem>
-                                        <ListItem>
-                                            <ListIcon
-                                                as={FaCheckCircle}
-                                                color="purple.500"
-                                            />
-                                            Family Therapy
-                                        </ListItem>
-                                        <ListItem>
-                                            <ListIcon
-                                                as={FaCheckCircle}
-                                                color="purple.500"
-                                            />
-                                            Personal Coaching
-                                        </ListItem>
-                                        <ListItem>
-                                            <ListIcon
-                                                as={FaCheckCircle}
-                                                color="purple.500"
-                                            />
-                                            Psychotherapy
-                                        </ListItem>
-                                    </List>
-                                    <Box w="80%" pt={7}>
-                                        <Button w="full" colorScheme="purple">
-                                            Start trial
-                                        </Button>
-                                    </Box>
-                                </VStack>
-                            </Box>
-                        </PriceCard>
-                        <PriceCard>
-                            <Box py={4} px={12}>
-                                <Text fontWeight="500" fontSize="2xl">
-                                    Children Therapy
-                                </Text>
-                                <HStack justifyContent="center">
-                                    <Text fontSize="3xl" fontWeight="600">
-                                        $
-                                    </Text>
-                                    <Text fontSize="5xl" fontWeight="900">
-                                        249
-                                    </Text>
-                                    <Text fontSize="3xl" color="gray.500">
-                                        /month
-                                    </Text>
-                                </HStack>
-                            </Box>
-                            <VStack
-                                bg={useColorModeValue("gray.50", "gray.700")}
-                                py={4}
-                                borderBottomRadius={"xl"}
-                            >
-                                <List spacing={3} textAlign="start" px={12}>
-                                    <ListItem>
-                                        <ListIcon
-                                            as={FaCheckCircle}
-                                            color="purple.500"
-                                        />
-                                        Child Therapy
-                                    </ListItem>
-                                    <ListItem>
-                                        <ListIcon
-                                            as={FaCheckCircle}
-                                            color="purple.500"
-                                        />
-                                        Family Therapy
-                                    </ListItem>
-                                    <ListItem>
-                                        <ListIcon
-                                            as={FaCheckCircle}
-                                            color="purple.500"
-                                        />
-                                        Psychotherapy
-                                    </ListItem>
-                                </List>
-                                <Box w="80%" pt={7}>
-                                    <Button
-                                        w="full"
-                                        colorScheme="purple"
-                                        variant="outline"
-                                    >
-                                        Start trial
-                                    </Button>
-                                </Box>
-                            </VStack>
-                        </PriceCard>
+                        <Button
+                            rounded={"full"}
+                            size={"lg"}
+                            fontWeight={"normal"}
+                            px={6}
+                            colorScheme={"purple"}
+                            color={"white"}
+                            bg={"purple.700"}
+                            _hover={{ bg: "purple.800" }}
+                        >
+                            Schedule a session
+                        </Button>
                     </Stack>
-                </Box>
+                    <Flex
+                        flex={1}
+                        justify={"center"}
+                        align={"center"}
+                        position={"relative"}
+                        w={"full"}
+                    >
+                        <Box
+                            position={"relative"}
+                            height={"300px"}
+                            rounded={"2xl"}
+                            boxShadow={"2xl"}
+                            width={"full"}
+                            overflow={"hidden"}
+                        >
+                            <Image
+                                alt={"Zoom Meeting"}
+                                fit={"cover"}
+                                align={"center"}
+                                w={"100%"}
+                                h={"100%"}
+                                src={
+                                    "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F577980%2Fgettyimages-1214753465.jpg&w=700&op=resize"
+                                }
+                            />
+                        </Box>
+                    </Flex>
+                </Stack>
             </Container>
         </Layout>
     );
