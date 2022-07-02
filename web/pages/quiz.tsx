@@ -20,7 +20,7 @@ import {
 import SideBar from "../components/Sidebar/Sidebar";
 import StatsCard from "../components/Card/StatsCard";
 
-const Dashboard = () => {
+const Quiz = () => {
   const primaryBG = useColorModeValue("#f8f9fa", "#18191A");
   const secondaryBG = useColorModeValue("white", "#242526");
   const textHeight = useBreakpointValue({ base: "20%", md: "30%" });
@@ -75,26 +75,7 @@ const Dashboard = () => {
             </Text>
           </Flex>
         </Stack>
-        {/* <SimpleGrid columns={{ sm: 1, md: 2, xl: 4 }} spacing={12} mb={4}>
-          <StatsCard title={"No.of Students"} count={5} icon={BsPeople} />
-          <StatsCard title={"No.of Companies"} count={5} icon={BsBuilding} />
-
-          <StatsCard
-            title={"No.of Applications"}
-            count={5}
-            icon={BsFillPersonLinesFill}
-          />
-          <StatsCard
-            title={"No.of Offers Given"}
-            count={5}
-            icon={BsPersonPlus}
-          />
-        </SimpleGrid> */}
-        <Grid
-          templateColumns={{ sm: "1fr", xl: "repeat(2, 1fr)" }}
-          gap="22px"
-          mt={8}
-        >
+        <Grid templateColumns={{ sm: "1fr" }} gap="22px" mt={8}>
           <Box
             p="16px"
             my={{ sm: "24px", xl: "0px" }}
@@ -109,63 +90,25 @@ const Dashboard = () => {
                 fontWeight="extrabold"
                 textTransform={"uppercase"}
               >
-                Upcoming Company&apos;s
+                Quiz
               </Text>
             </Box>
-            <Box px="5px">
+            <Box bg="red" px="5px" borderRadius={5}>
               <Center>
                 <Text fontSize="xl" mt={"4"}>
                   No Upcoming Companies
                 </Text>
               </Center>
-            </Box>
-          </Box>
-          {/*Applied & Placed*/}
-          <Box
-            p="16px"
-            my={{ sm: "24px", xl: "0px" }}
-            bg={secondaryBG}
-            borderRadius={8}
-          >
-            <Box p="12px 5px" mb="12px">
-              <Text
-                bgGradient="linear(to-l, #7928CA, #FF0080)"
-                bgClip="text"
-                fontSize="2xl"
-                fontWeight="extrabold"
-                textTransform={"uppercase"}
-              >
-                Company&apos;s Applied
-              </Text>
-            </Box>
-            <Box px="5px">
-              <Flex direction="column">
-                <Center>
-                  <Text fontSize="xl" mt={"4"}>
-                    Not Applied to any Company
-                  </Text>
-                </Center>
-              </Flex>
-            </Box>
-            <Box p="12px 5px" my="12px">
-              <Text
-                bgGradient="linear(to-l, #7928CA, #FF0080)"
-                bgClip="text"
-                fontSize="2xl"
-                fontWeight="extrabold"
-                textTransform={"uppercase"}
-              >
-                Company Placed
-              </Text>
-            </Box>
-            <Box px="5px">
-              <Flex direction="column">
-                <Center>
-                  <Text fontSize="xl" mt={"4"}>
-                    Not Placed in any Company
-                  </Text>
-                </Center>
-              </Flex>
+              <Center>
+                <Text fontSize="xl" mt={"4"}>
+                  No Upcoming Companies
+                </Text>
+              </Center>
+              <Center>
+                <Text fontSize="xl" mt={"4"}>
+                  No Upcoming Companies
+                </Text>
+              </Center>
             </Box>
           </Box>
         </Grid>
@@ -174,4 +117,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Quiz;
