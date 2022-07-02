@@ -1,4 +1,4 @@
-import { IconType } from 'react-icons/lib';
+import { IconType } from "react-icons/lib";
 
 interface IBlog {
     url: string;
@@ -32,7 +32,7 @@ interface IService {
     title: string;
     description: string;
     imageUrl: string;
-    direction:string
+    direction: string;
 }
 
 interface IFeature {

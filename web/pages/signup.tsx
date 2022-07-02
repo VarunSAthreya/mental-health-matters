@@ -22,7 +22,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Layout from "../components/UI/Layout";
 import { useAuth } from "../hooks/auth";
-import { db } from "../lib/firebase";
+import { auth, db } from "../lib/firebase";
 
 const SignUp: NextPage = () => {
     const router = useRouter();
@@ -30,7 +30,7 @@ const SignUp: NextPage = () => {
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setConfirmShowPassword] = useState(false);
-    const { user, signup } = useAuth();
+    const { signup } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
 
     const [signupData, setSignupData] = useState({
@@ -69,7 +69,12 @@ const SignUp: NextPage = () => {
 
         try {
             setIsLoading(true);
-            await signup(signupData.email, signupData.password);
+            const userCred = await signup(
+                signupData.email,
+                signupData.password
+            );
+            const user = userCred.user;
+
             await setDoc(doc(db, "users", user.uid), {
                 firstname: signupData.firstname,
                 lastname: signupData.lastname,
