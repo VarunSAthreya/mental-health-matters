@@ -1,4 +1,11 @@
-import { getDoc, doc } from "firebase/firestore";
+import {
+    getDoc,
+    doc,
+    collection,
+    query,
+    where,
+    getDocs,
+} from "firebase/firestore";
 import { db } from "../lib/firebase";
 
 export const getUserDetails = async (userId: string) => {
@@ -13,4 +20,11 @@ export const getUserDetails = async (userId: string) => {
     }
 
     return docRef.data();
+};
+
+export const isPaymentDone = async (userId: string) => {
+    const q = query(collection(db, "payments"), where("userId", "==", userId));
+    const querySnapshot = await getDocs(q);
+
+    return querySnapshot.size > 0;
 };

@@ -7,20 +7,15 @@ import {
     Heading,
     Select,
     Text,
-    Center,
     useColorModeValue,
     useBreakpointValue,
     Button,
     HStack,
-    List,
-    ListIcon,
-    ListItem,
-    VStack,
 } from "@chakra-ui/react";
 import SideBar from "../components/Sidebar/Sidebar";
 import { FaCheckCircle } from "react-icons/fa";
 import PriceCard from "../components/Card/PriceCard";
-import { getUserDetails } from "../function";
+import { getUserDetails, isPaymentDone } from "../function";
 import { useAuth } from "../hooks/auth";
 import { Loader } from "../components/Loader";
 import TotalPricing from "../components/Card/TotalPricing";
@@ -30,6 +25,7 @@ const Dashboard = () => {
     const secondaryBG = useColorModeValue("white", "#242526");
     const textHeight = useBreakpointValue({ base: "20%", md: "30%" });
     const [isLoading, setIsLoading] = useState(false);
+    const [paymentDone, setPaymentDone] = useState(false);
 
     const { user } = useAuth();
     const [userDetails, setUserDetails] = useState({
@@ -46,11 +42,20 @@ const Dashboard = () => {
     }, [user.uid]);
 
     const getData = async () => {
-        setIsLoading(true);
-        getUserDetails(user.uid).then((res) => {
-            return setUserDetails(res as any);
-        });
-        setIsLoading(false);
+        try {
+            setIsLoading(true);
+            getUserDetails(user.uid).then((res) => {
+                return setUserDetails(res as any);
+            });
+
+            isPaymentDone(user.uid).then((res) => {
+                return setPaymentDone(res as any);
+            });
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     if (isLoading) {
@@ -132,47 +137,53 @@ const Dashboard = () => {
           />
         </SimpleGrid> */}
                 <Grid templateColumns={{ sm: "1fr" }} gap="22px" mt={8}>
-                    <Box
-                        p="16px"
-                        my={{ sm: "24px", xl: "0px" }}
-                        bg={secondaryBG}
-                        borderRadius={8}
-                    >
-                        <Box p="12px 5px" mb="12px">
-                            <Text
-                                bgGradient="linear(310deg, #2980B9 0%, #6DD5FA 100%)"
-                                bgClip="text"
-                                fontSize="2xl"
-                                fontWeight="extrabold"
-                                textTransform={"uppercase"}
-                            >
-                                Schedule an Appointment
-                            </Text>
-                        </Box>
-                        <Box display={"flex"} justifyContent="center" px="5px">
-                            <Select
-                                placeholder="Select time"
-                                variant="filled"
-                                mr={2}
-                            >
-                                <option value="option1">10 - 11</option>
-                                <option value="option2">11 - 12</option>
-                                <option value="option3">1 - 2</option>
-                                <option value="option4">2 - 3</option>
-                                <option value="option5">6 - 7</option>
-                                <option value="option6">7 - 8</option>
-                                <option value="option7">8 - 9</option>
-                            </Select>
-                        </Box>
+                    {paymentDone && (
                         <Box
-                            display={"flex"}
-                            justifyContent="center"
-                            px="5px"
-                            my={4}
+                            p="16px"
+                            my={{ sm: "24px", xl: "0px" }}
+                            bg={secondaryBG}
+                            borderRadius={8}
                         >
-                            <Button>SET APPOINTMENT</Button>
+                            <Box p="12px 5px" mb="12px">
+                                <Text
+                                    bgGradient="linear(310deg, #2980B9 0%, #6DD5FA 100%)"
+                                    bgClip="text"
+                                    fontSize="2xl"
+                                    fontWeight="extrabold"
+                                    textTransform={"uppercase"}
+                                >
+                                    Schedule an Appointment
+                                </Text>
+                            </Box>
+                            <Box
+                                display={"flex"}
+                                justifyContent="center"
+                                px="5px"
+                            >
+                                <Select
+                                    placeholder="Select time"
+                                    variant="filled"
+                                    mr={2}
+                                >
+                                    <option value="option1">10 - 11</option>
+                                    <option value="option2">11 - 12</option>
+                                    <option value="option3">1 - 2</option>
+                                    <option value="option4">2 - 3</option>
+                                    <option value="option5">6 - 7</option>
+                                    <option value="option6">7 - 8</option>
+                                    <option value="option7">8 - 9</option>
+                                </Select>
+                            </Box>
+                            <Box
+                                display={"flex"}
+                                justifyContent="center"
+                                px="5px"
+                                my={4}
+                            >
+                                <Button>SET APPOINTMENT</Button>
+                            </Box>
                         </Box>
-                    </Box>
+                    )}
                     <Box
                         p="16px"
                         my={{ sm: "24px", xl: "0px" }}
@@ -228,7 +239,17 @@ const Dashboard = () => {
                                 needed. Cancel at anytime.
                             </Text>
                         </Box>
-                        <TotalPricing />
+                        {paymentDone ? (
+                            <Text
+                                fontSize={{ base: "md", lg: "lg" }}
+                                color={"gray.500"}
+                                mt={3}
+                            >
+                                Payment Done
+                            </Text>
+                        ) : (
+                            <TotalPricing />
+                        )}
                     </Box>
                 </Grid>
             </Flex>
