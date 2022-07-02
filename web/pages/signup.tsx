@@ -12,11 +12,11 @@ import {
     HStack,
     FormControl,
     Input,
+    useToast,
     InputGroup,
 } from "@chakra-ui/react";
 import { setDoc, doc } from "firebase/firestore";
-import { Spinner, useToast } from "native-base";
-
+import { Spinner } from "native-base";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -55,7 +55,12 @@ const SignUp: NextPage = () => {
             return;
         }
         if (signupData.password !== signupData.confirmPassword) {
-            alert("Password does not match");
+            toast({
+                title: "Please fill all the fields",
+                status: "error",
+                duration: 3000,
+                isClosable: true,
+            });
             return;
         }
 

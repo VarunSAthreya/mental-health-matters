@@ -12,7 +12,7 @@ import {
     useToast,
     WrapItem,
 } from "@chakra-ui/react";
-import { addDoc, collection, doc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { Spinner } from "native-base";
 import React, { FunctionComponent, useState } from "react";
 import { BsPerson } from "react-icons/bs";
@@ -51,6 +51,11 @@ const ContactCard: FunctionComponent = () => {
                 duration: 3000,
                 isClosable: true,
             });
+            setData({
+                name: "",
+                email: "",
+                message: "",
+            });
         } catch (err) {
             console.log(err);
         } finally {
@@ -76,6 +81,7 @@ const ContactCard: FunctionComponent = () => {
                                     />
                                     <Input
                                         type="text"
+                                        value={data.name}
                                         size="lg"
                                         onChange={(e) =>
                                             setData({
@@ -86,7 +92,7 @@ const ContactCard: FunctionComponent = () => {
                                     />
                                 </InputGroup>
                             </FormControl>
-                            <FormControl id="name">
+                            <FormControl id="email">
                                 <FormLabel>Mail</FormLabel>
                                 <InputGroup borderColor="#E0E1E7">
                                     <InputLeftElement
@@ -98,6 +104,7 @@ const ContactCard: FunctionComponent = () => {
                                     <Input
                                         type="text"
                                         size="lg"
+                                        value={data.email}
                                         onChange={(e) =>
                                             setData({
                                                 ...data,
@@ -107,13 +114,14 @@ const ContactCard: FunctionComponent = () => {
                                     />
                                 </InputGroup>
                             </FormControl>
-                            <FormControl id="name">
+                            <FormControl id="message">
                                 <FormLabel>Message</FormLabel>
                                 <Textarea
                                     borderColor="gray.300"
                                     _hover={{
                                         borderRadius: "gray.300",
                                     }}
+                                    value={data.message}
                                     placeholder="message"
                                     onChange={(e) =>
                                         setData({
