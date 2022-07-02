@@ -1,4 +1,4 @@
-import { NativeBaseProvider } from "native-base";
+import { extendTheme, NativeBaseProvider } from "native-base";
 import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "../styles/theme";
@@ -18,16 +18,11 @@ const noAuthRequired = [
 ];
 
 function MyApp({ Component, pageProps }: AppProps) {
-    const theme = extendTheme({
-        colors: {
-            primary: nbTheme.colors.violet,
-        },
-    });
     const router = useRouter();
 
     return (
-        <NativeBaseProvider theme={theme} isSSR>
-            <ChakraProvider>
+        <NativeBaseProvider>
+            <ChakraProvider theme={theme}>
                 <AuthContextProvider>
                     {noAuthRequired.includes(router.pathname) ? (
                         <Component {...pageProps} />
