@@ -9,13 +9,60 @@ import {
     InputLeftElement,
     Textarea,
     VStack,
+    useToast,
     WrapItem,
 } from "@chakra-ui/react";
-import React, { FunctionComponent } from "react";
+import { addDoc, collection } from "firebase/firestore";
+import { Spinner } from "native-base";
+import React, { FunctionComponent, useState } from "react";
 import { BsPerson } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
+import { db } from "../../lib/firebase";
 
 const ContactCard: FunctionComponent = () => {
+    const toast = useToast();
+
+    const [data, setData] = useState({
+        name: "",
+        email: "",
+        message: "",
+    });
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handelSubmit = async (e: any) => {
+        e.preventDefault();
+        if ((data.name === "", data.email === "", data.message === "")) {
+            toast({
+                title: "Please fill all the fields",
+                status: "error",
+                duration: 3000,
+                isClosable: true,
+            });
+            return;
+        }
+
+        try {
+            setIsLoading(true);
+            console.log(data);
+            await addDoc(collection(db, "contact"), data);
+            toast({
+                title: "Message sent successfully",
+                status: "success",
+                duration: 3000,
+                isClosable: true,
+            });
+            setData({
+                name: "",
+                email: "",
+                message: "",
+            });
+        } catch (err) {
+            console.log(err);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     return (
         <Box p={4}>
             <WrapItem>
@@ -32,10 +79,20 @@ const ContactCard: FunctionComponent = () => {
                                         pointerEvents="none"
                                         children={<BsPerson color="gray.800" />}
                                     />
-                                    <Input type="text" size="lg" />
+                                    <Input
+                                        type="text"
+                                        value={data.name}
+                                        size="lg"
+                                        onChange={(e) =>
+                                            setData({
+                                                ...data,
+                                                name: e.target.value,
+                                            })
+                                        }
+                                    />
                                 </InputGroup>
                             </FormControl>
-                            <FormControl id="name">
+                            <FormControl id="email">
                                 <FormLabel>Mail</FormLabel>
                                 <InputGroup borderColor="#E0E1E7">
                                     <InputLeftElement
@@ -44,17 +101,34 @@ const ContactCard: FunctionComponent = () => {
                                             <MdOutlineEmail color="gray.800" />
                                         }
                                     />
-                                    <Input type="text" size="lg" />
+                                    <Input
+                                        type="text"
+                                        size="lg"
+                                        value={data.email}
+                                        onChange={(e) =>
+                                            setData({
+                                                ...data,
+                                                email: e.target.value,
+                                            })
+                                        }
+                                    />
                                 </InputGroup>
                             </FormControl>
-                            <FormControl id="name">
+                            <FormControl id="message">
                                 <FormLabel>Message</FormLabel>
                                 <Textarea
                                     borderColor="gray.300"
                                     _hover={{
                                         borderRadius: "gray.300",
                                     }}
+                                    value={data.message}
                                     placeholder="message"
+                                    onChange={(e) =>
+                                        setData({
+                                            ...data,
+                                            message: e.target.value,
+                                        })
+                                    }
                                 />
                             </FormControl>
                             <FormControl id="name" float="right">
@@ -63,8 +137,13 @@ const ContactCard: FunctionComponent = () => {
                                     bg="#521262"
                                     color="white"
                                     _hover={{}}
+                                    disabled={isLoading}
+                                    onClick={handelSubmit}
                                 >
-                                    Send Message
+                                    Send Message{" "}
+                                    {isLoading && (
+                                        <Spinner ml={2} color="white" />
+                                    )}
                                 </Button>
                             </FormControl>
                         </VStack>
