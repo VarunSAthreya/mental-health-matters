@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Box,
     Button,
@@ -11,7 +10,7 @@ import {
     Text,
     useBreakpointValue,
     VStack,
-} from 'native-base';
+} from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { AiFillHeart } from 'react-icons/ai';
 import { FaPeopleCarry, FaRunning } from 'react-icons/fa';
@@ -101,25 +100,19 @@ const Home: NextPage = () => {
                 <Flex
                     w={'full'}
                     h={'80vh'}
-                    // backgroundImage={
-                    //     'url(https://www.minnpost.com/wp-content/uploads/2020/01/WomanSilhouette640.jpg?strip=all)'
-                    // }
-                    // backgroundSize={'cover'}
-                    // backgroundPosition={'center center'}
+                    backgroundImage={
+                        'url(https://www.minnpost.com/wp-content/uploads/2020/01/WomanSilhouette640.jpg?strip=all)'
+                    }
+                    backgroundSize={'cover'}
+                    backgroundPosition={'center center'}
                 >
                     <VStack
                         w={'full'}
-                        justifyContent={'center'}
+                        justify={'center'}
                         px={useBreakpointValue({ base: 4, md: 8 })}
-                        bg={{
-                            linearGradient: {
-                              colors: ["blackAlpha.600", "transparent"],
-                              start: [0, 0],
-                              end: [1, 0]
-                            }
-                          }} 
+                        bgGradient={'linear(to-r, blackAlpha.600, transparent)'}
                     >
-                        <Stack maxW={'2xl'} alignSelf={'center'} space={3}>
+                        <Stack maxW={'2xl'} align={'center'} spacing={3}>
                             <Text color={'purple.400'}>
                                 MENTAL HEALTH MATTERS
                             </Text>
@@ -154,8 +147,9 @@ const Home: NextPage = () => {
                 </Flex>
                 {/*Welcome*/}
                 <Stack
+                    as={Box}
                     textAlign={'center'}
-                    space={{ base: 6 }}
+                    spacing={{ base: 6 }}
                     py={{ base: 20, md: 28 }}
                 >
                     <Heading
@@ -206,20 +200,21 @@ const Home: NextPage = () => {
                         that it’s a bad life. How we respond to it and take care
                         of our mental health are what’s important.
                     </Text>
-                    {/* <SimpleGrid
+                    <SimpleGrid
                         my={6}
                         columns={{ base: 1, md: 3 }}
-                        space={{ base: 5, lg: 8 }}
+                        spacing={{ base: 5, lg: 8 }}
                     >
                         {basicCardData.map((data, index) => (
                             <BasicCard data={data} key={index} />
                         ))}
-                    </SimpleGrid> */}
+                    </SimpleGrid>
                 </Box>
                 {/*Service*/}
                 <Stack
+                    as={Box}
                     textAlign={'center'}
-                    space={{ base: 8 }}
+                    spacing={{ base: 8 }}
                     py={{ base: 20, md: 28 }}
                 >
                     <Heading
@@ -234,30 +229,41 @@ const Home: NextPage = () => {
                         understand the issuse faced by our clients and discuss
                         various/topics to resolve problem.
                     </Text>
-                    {/* <SimpleGrid
+                    <SimpleGrid
                         columns={{ base: 1, md: 3 }}
-                        space={{ base: 5, lg: 8 }}
+                        spacing={{ base: 5, lg: 8 }}
                     >
                         {serviceData.map((data, index) => (
                             <ServiceCard data={data} key={index} />
                         ))}
-                    </SimpleGrid> */}
+                    </SimpleGrid>
                 </Stack>
                 {/*Schedule*/}
                 <Stack
-                    alignSelf={'center'}
-                    space={{ base: 8, md: 10 }}
+                    align={'center'}
+                    spacing={{ base: 8, md: 10 }}
                     py={{ base: 20, md: 28 }}
                     direction={{ base: 'column', md: 'row' }}
                 >
-                    <Stack flex={1} space={{ base: 5, md: 10 }}>
+                    <Stack flex={1} spacing={{ base: 5, md: 10 }}>
                         <Heading
                             lineHeight={1.1}
                             fontWeight={600}
                             fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
                         >
                             <Text
+                                as={'span'}
                                 position={'relative'}
+                                _after={{
+                                    content: "''",
+                                    width: 'full',
+                                    height: '30%',
+                                    position: 'absolute',
+                                    bottom: 1,
+                                    left: 0,
+                                    bg: 'purple.700',
+                                    zIndex: -1,
+                                }}
                             >
                                 Zoom Meeting
                             </Text>
@@ -294,14 +300,14 @@ const Home: NextPage = () => {
                             position={'relative'}
                             height={'300px'}
                             rounded={'2xl'}
-                            shadow={'2xl'}
+                            boxShadow={'2xl'}
                             width={'full'}
                             overflow={'hidden'}
                         >
                             <Image
                                 alt={'Zoom Meeting'}
-                                // fit={'cover'}
-                                alignSelf={'center'}
+                                fit={'cover'}
+                                align={'center'}
                                 w={'100%'}
                                 h={'100%'}
                                 src={
@@ -312,7 +318,7 @@ const Home: NextPage = () => {
                     </Flex>
                 </Stack>
                 {/*Testimonial */}
-                <Stack space={6} alignSelf={'center'} py={{ base: 20 }}>
+                <Stack spacing={6} align={'center'} py={{ base: 20 }}>
                     <Heading>What Our Clients Say</Heading>
                     <Text color={'gray.500'}>
                         We have been working with clients around the world and
@@ -320,7 +326,7 @@ const Home: NextPage = () => {
                     </Text>
                     <Stack
                         direction={{ base: 'column', md: 'row' }}
-                        space={{ base: 10, md: 4, lg: 10 }}
+                        spacing={{ base: 10, md: 4, lg: 10 }}
                         my={10}
                     >
                         {testimonialCardData.map((data, index) => (
@@ -334,5 +340,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
-

@@ -1,31 +1,29 @@
-import { useColorModeValue } from "native-base";
-import React from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { Link, useColorModeValue } from '@chakra-ui/react';
+import { FunctionComponent } from 'react';
+import { useRouter } from 'next/router';
 
-const NavLink = ({ children }: { children: string }) => {
+const NavLink: FunctionComponent = ({ children }: { children: string }) => {
     const router = useRouter();
     return (
         <Link
             px={2}
             py={1}
-            rounded={"md"}
+            rounded={'md'}
             _hover={{
-                textDecoration: "none",
-                bg: useColorModeValue("#521262", "white"),
-                color: useColorModeValue("white", "#521262"),
+                textDecoration: 'none',
+                bg: useColorModeValue('#521262', 'white'),
+                color: useColorModeValue('white', '#521262'),
             }}
-            // _focus={{ outline: 'none' }}
+            _focus={{ outline: 'none' }}
             bg={
                 router.asPath === `/${children.toLowerCase()}`
-                    ? "#521262"
-                    : "transparent"
+                    ? '#521262'
+                    : 'transparent'
             }
             color={
                 router.asPath === `/${children.toLowerCase()}`
-                    ? "white"
-                    : "black"
-                // : useColorModeValue('black', 'white')
+                    ? 'white'
+                    : useColorModeValue('black', 'white')
             }
             href={children.toString().toLowerCase()}
         >

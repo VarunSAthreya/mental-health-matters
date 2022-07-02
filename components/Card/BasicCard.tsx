@@ -5,9 +5,9 @@ import {
     Icon,
     Text,
     useColorModeValue,
-} from "native-base";
-import React, { FunctionComponent } from "react";
-import { IBasicCard } from "../../@types";
+} from '@chakra-ui/react';
+import { FunctionComponent } from 'react';
+import { IBasicCard } from '../../@types';
 
 type Props = {
     data: IBasicCard;
@@ -19,17 +19,17 @@ const BasicCard: FunctionComponent<Props> = ({ data }: Props) => {
     return (
         <Center py={6}>
             <Box
-                maxW={"320px"}
-                w={"full"}
-                bg={useColorModeValue("white", "gray.900")}
-                shadow={"2xl"}
-                rounded={"lg"}
+                maxW={'320px'}
+                w={'full'}
+                bg={useColorModeValue('white', 'gray.900')}
+                boxShadow={'2xl'}
+                rounded={'lg'}
                 p={6}
-                textAlign={"center"}
+                textAlign={'center'}
             >
                 <Icon as={icon} boxSize={12} m={{ base: 2 }} color="#521262" />
-                <Heading fontSize={"2xl"}>{title}</Heading>
-                <Text color={"gray.500"} my={4}>
+                <Heading fontSize={'2xl'}>{title}</Heading>
+                <Text color={'gray.500'} my={4}>
                     {description}
                 </Text>
             </Box>

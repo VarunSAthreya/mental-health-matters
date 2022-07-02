@@ -1,4 +1,4 @@
-import { Box, Container, Heading, Stack, Text } from 'native-base';
+import { Box, Container, Heading, Stack, Text } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import React from 'react';
 import { IBlog } from '../@types';
@@ -45,8 +45,9 @@ const Blogs: NextPage = () => {
         <Layout title="MHM | Blogs">
             <Container maxW={'7xl'} p="12">
                 <Stack
+                    as={Box}
                     rounded={'lg'}
-                    space={{ base: 2 }}
+                    spacing={{ base: 2 }}
                     py={{ base: 20, md: 24 }}
                     bg={'#521262'}
                 >
@@ -71,7 +72,7 @@ const Blogs: NextPage = () => {
                 </Stack>
                 {data.map((blog, index) => (
                     <Stack key={index} p={5} my={2}>
-                        {/* <BlogCard blog={blog} /> */}
+                        <BlogCard blog={blog} />
                     </Stack>
                 ))}
             </Container>

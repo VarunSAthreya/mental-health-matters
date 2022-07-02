@@ -1,4 +1,4 @@
-import { Box, Center, Container, Heading, Stack, Text } from 'native-base';
+import { Box, Center, Container, Heading, Stack, Text } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import React from 'react';
 import ContactCard from '../components/Card/ContactCard';
@@ -9,8 +9,9 @@ const Contact: NextPage = () => {
         <Layout title="MHM | Contact">
             <Container maxW={'7xl'} p="12">
                 <Stack
+                    as={Box}
                     rounded={'lg'}
-                    space={{ base: 2 }}
+                    spacing={{ base: 2 }}
                     py={{ base: 20, md: 24 }}
                     bg={'#521262'}
                 >
@@ -37,7 +38,7 @@ const Contact: NextPage = () => {
                         enabling them to make better healthcare decisions
                     </Text>
                     <Center>
-                        {/* <ContactCard /> */}
+                        <ContactCard />
                     </Center>
                 </Stack>
             </Container>

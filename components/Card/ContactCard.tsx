@@ -10,7 +10,7 @@ import {
     Textarea,
     VStack,
     WrapItem,
-} from 'native-base';
+} from '@chakra-ui/react';
 import { FunctionComponent } from 'react';
 import { BsPerson } from 'react-icons/bs';
 import { MdOutlineEmail } from 'react-icons/md';
@@ -22,7 +22,7 @@ const ContactCard: FunctionComponent = () => {
                 <Box bg="white" borderRadius="lg">
                     <Box m={8} color="#0B0E3F">
                         <VStack
-                            space={5}
+                            spacing={5}
                             width={{ lg: '3xl', md: 'xl', sm: 'xl' }}
                         >
                             <FormControl id="name">

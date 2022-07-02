@@ -1,36 +1,14 @@
-import { extendTheme, NativeBaseProvider, theme as nbTheme } from "native-base";
-import type { AppProps } from "next/app";
-import { useRouter } from "next/router";
-import React from "react";
-import ProtectedRoute from "../components/ProtectedRoute";
-import { AuthContextProvider } from "../hooks/auth";
+import { ChakraProvider } from '@chakra-ui/react';
+import { NextPage } from 'next';
+import { AppProps } from 'next/app';
+import '../css/global.css';
 
-const noAuthRequired = ["/", "/login", "/signup"];
-
-import "../styles/globals.css";
-
-function MyApp({ Component, pageProps }: AppProps) {
-    const theme = extendTheme({
-        colors: {
-            primary: nbTheme.colors.violet,
-        },
-    });
-
-    const router = useRouter();
-
+const App: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
     return (
-        <NativeBaseProvider theme={theme} isSSR>
-            <AuthContextProvider>
-                {noAuthRequired.includes(router.pathname) ? (
-                    <Component {...pageProps} />
-                ) : (
-                    <ProtectedRoute>
-                        <Component {...pageProps} />
-                    </ProtectedRoute>
-                )}
-            </AuthContextProvider>
-        </NativeBaseProvider>
+        <ChakraProvider>
+            <Component {...pageProps} />
+        </ChakraProvider>
     );
-}
+};
 
-export default MyApp;
+export default App;
