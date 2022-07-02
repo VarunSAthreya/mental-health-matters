@@ -1,13 +1,13 @@
 import { Flex, Icon, Stack, Text } from "@chakra-ui/react";
 import { NextPage } from "next";
-import React from "react";
+import React, { FC } from "react";
 import { IFeature } from "../../@types";
 
 type Props = {
     data: IFeature;
 };
 
-const Feature: NextPage<Props> = ({ data }: Props) => {
+const Feature: FC<Props> = ({ data }: Props) => {
     const { icon, text, iconBg, color } = data;
 
     return (
