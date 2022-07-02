@@ -1,7 +1,7 @@
-import Head from 'next/head';
-import React, { FunctionComponent, ReactNode } from 'react';
-import Footer from '../Footer/Footer';
-import NavBar from '../Navigation/NavBar';
+import Head from "next/head";
+import React, { FunctionComponent, ReactNode } from "react";
+import Footer from "../Footer/Footer";
+import NavBar from "../Navigation/NavBar";
 
 type Props = {
     children: ReactNode | ReactNode[];

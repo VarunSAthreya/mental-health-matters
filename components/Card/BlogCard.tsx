@@ -6,9 +6,10 @@ import {
     Link,
     Text,
     useColorModeValue,
-} from 'native-base';
-import { NextPage } from 'next';
-import { IBlog } from '../../@types';
+} from "native-base";
+import { NextPage } from "next";
+import React from "react";
+import { IBlog } from "../../@types";
 
 type Props = {
     blog: IBlog;
@@ -18,9 +19,9 @@ const BlogCard: NextPage<Props> = ({ blog }: Props) => {
     if (blog.id % 2 === 0) {
         return (
             <Box
-                marginTop={{ base: '1', sm: '5' }}
+                marginTop={{ base: "1", sm: "5" }}
                 display="flex"
-                flexDirection={{ base: 'column', sm: 'row' }}
+                flexDirection={{ base: "column", sm: "row" }}
                 justifyContent="space-between"
             >
                 <Box
@@ -31,9 +32,9 @@ const BlogCard: NextPage<Props> = ({ blog }: Props) => {
                     alignItems="center"
                 >
                     <Box
-                        width={{ base: '100%', sm: '85%' }}
+                        width={{ base: "100%", sm: "85%" }}
                         zIndex="2"
-                        marginLeft={{ base: '0', sm: '5%' }}
+                        marginLeft={{ base: "0", sm: "5%" }}
                         marginTop="5%"
                     >
                         <Image
@@ -49,21 +50,20 @@ const BlogCard: NextPage<Props> = ({ blog }: Props) => {
                     flex="1"
                     flexDirection="column"
                     justifyContent="space-evenly"
-                    marginTop={{ base: '3', sm: '0' }}
+                    marginTop={{ base: "3", sm: "0" }}
                 >
                     <Heading marginTop="1">
                         <Link
                             textDecoration="none"
-                            _hover={{ textDecoration: 'none' }}
+                            _hover={{ textDecoration: "none" }}
                         >
                             {blog.title}
                         </Link>
                     </Heading>
                     <Text
-                       
                         marginTop="2"
                         // color={useColorModeValue('gray.700', 'gray.200')}
-                        color={'gray.200'}
+                        color={"gray.200"}
                         fontSize="lg"
                     >
                         {blog.description}
@@ -73,7 +73,7 @@ const BlogCard: NextPage<Props> = ({ blog }: Props) => {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <Button colorScheme={'purple'}>Read More</Button>
+                        <Button colorScheme={"purple"}>Read More</Button>
                     </a>
                 </Box>
             </Box>
@@ -81,9 +81,9 @@ const BlogCard: NextPage<Props> = ({ blog }: Props) => {
     } else {
         return (
             <Box
-                marginTop={{ base: '1', sm: '5' }}
+                marginTop={{ base: "1", sm: "5" }}
                 display="flex"
-                flexDirection={{ base: 'column', sm: 'row' }}
+                flexDirection={{ base: "column", sm: "row" }}
                 justifyContent="space-between"
             >
                 <Box
@@ -91,21 +91,20 @@ const BlogCard: NextPage<Props> = ({ blog }: Props) => {
                     flex="1"
                     flexDirection="column"
                     justifyContent="space-evenly"
-                    marginTop={{ base: '3', sm: '0' }}
+                    marginTop={{ base: "3", sm: "0" }}
                 >
                     <Heading marginTop="1">
                         <Link
                             textDecoration="none"
-                            _hover={{ textDecoration: 'none' }}
+                            _hover={{ textDecoration: "none" }}
                         >
                             {blog.title}
                         </Link>
                     </Heading>
                     <Text
-                     
                         marginTop="2"
                         // color={useColorModeValue('gray.700', 'gray.200')}
-                        color={'gray.200'}
+                        color={"gray.200"}
                         fontSize="lg"
                     >
                         {blog.description}
@@ -115,7 +114,7 @@ const BlogCard: NextPage<Props> = ({ blog }: Props) => {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <Button colorScheme={'purple'} variant={'outline'}>
+                        <Button colorScheme={"purple"} variant={"outline"}>
                             Read More
                         </Button>
                     </a>
@@ -128,9 +127,9 @@ const BlogCard: NextPage<Props> = ({ blog }: Props) => {
                     alignItems="center"
                 >
                     <Box
-                        width={{ base: '100%', sm: '85%' }}
+                        width={{ base: "100%", sm: "85%" }}
                         zIndex="2"
-                        marginLeft={{ base: '0', sm: '5%' }}
+                        marginLeft={{ base: "0", sm: "5%" }}
                         marginTop="5%"
                     >
                         <Image

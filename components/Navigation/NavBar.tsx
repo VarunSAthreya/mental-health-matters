@@ -1,5 +1,8 @@
-import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from 'native-base';
 import {
+    CloseIcon,
+    HamburgerIcon,
+    MoonIcon,
+    SunIcon,
     Box,
     Button,
     Flex,
@@ -9,45 +12,45 @@ import {
     useColorMode,
     useColorModeValue,
     useDisclose,
-} from 'native-base';
-import React, { FunctionComponent } from 'react';
-import Logo from '../Logo/Logo';
-import NavLink from './NavLink';
+} from "native-base";
 
-const Links = ['About', 'Blogs', 'TalkToExperts', 'Contact'];
+import React from "react";
+import Logo from "../Logo/Logo";
+import NavLink from "./NavLink";
 
-const NavBar: FunctionComponent = () => {
+const Links = ["About", "Blogs", "TalkToExperts", "Contact"];
+
+const NavBar = () => {
     const { colorMode, toggleColorMode } = useColorMode();
     const { isOpen, onOpen, onClose } = useDisclose();
     return (
         <>
-            <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+            <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
                 <Flex
                     h={16}
-                    alignItems={'center'}
-                    justifyContent={'space-between'}
+                    alignItems={"center"}
+                    justifyContent={"space-between"}
                 >
                     <Flex
                         h={16}
-                        alignItems={'center'}
-                        justifyContent={'space-between'}
+                        alignItems={"center"}
+                        justifyContent={"space-between"}
                     >
                         <IconButton
-                            size={'md'}
+                            size={"md"}
                             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-                            aria-label={'Open Menu'}
-                            display={{ md: 'none' }}
+                            aria-label={"Open Menu"}
+                            display={{ md: "none" }}
                             onPress={isOpen ? onClose : onOpen}
                         />
-                        <HStack space={8} alignItems={'center'}>
+                        <HStack space={8} alignItems={"center"}>
                             <Logo />
                         </HStack>
                     </Flex>
-                    <HStack space={8} alignItems={'center'}>
+                    <HStack space={8} alignItems={"center"}>
                         <HStack
-                            
                             space={4}
-                            display={{ base: 'none', md: 'flex' }}
+                            display={{ base: "none", md: "flex" }}
                         >
                             {Links.map((link) => (
                                 <NavLink key={link}>{link}</NavLink>
@@ -55,13 +58,13 @@ const NavBar: FunctionComponent = () => {
                         </HStack>
                     </HStack>
 
-                    <Flex alignItems={'center'}>
-                        <Stack direction={'row'} space={7}>
+                    <Flex alignItems={"center"}>
+                        <Stack direction={"row"} space={7}>
                             <Button
                                 onClick={toggleColorMode}
-                                _focus={{ outline: 'none' }}
+                                _focus={{ outline: "none" }}
                             >
-                                {colorMode === 'light' ? (
+                                {colorMode === "light" ? (
                                     <MoonIcon />
                                 ) : (
                                     <SunIcon />
@@ -71,8 +74,8 @@ const NavBar: FunctionComponent = () => {
                     </Flex>
                 </Flex>
                 {isOpen ? (
-                    <Box pb={4} display={{ md: 'none' }}>
-                        <Stack  space={4}>
+                    <Box pb={4} display={{ md: "none" }}>
+                        <Stack space={4}>
                             {Links.map((link) => (
                                 <NavLink key={link}>{link}</NavLink>
                             ))}

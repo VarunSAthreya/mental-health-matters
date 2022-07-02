@@ -1,6 +1,6 @@
-import { Icon, Link, Text } from 'native-base';
-import { FunctionComponent } from 'react';
-import { ISocialMedia } from '../../@types';
+import { Icon, Link, Text } from "native-base";
+import React, { FunctionComponent } from "react";
+import { ISocialMedia } from "../../@types";
 
 type Props = {
     data: ISocialMedia;
@@ -24,7 +24,7 @@ const SocialMedia: FunctionComponent<Props> = ({ data }: Props) => {
                 // target="_blank"
                 // rel="noreferrer"
                 _hover={{
-                    textDecoration: 'none',
+                    textDecoration: "none",
                 }}
                 // _focus={{ outline: 'none' }}
             >
