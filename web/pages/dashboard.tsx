@@ -22,11 +22,14 @@ import { FaCheckCircle } from "react-icons/fa";
 import PriceCard from "../components/Card/PriceCard";
 import { getUserDetails } from "../function";
 import { useAuth } from "../hooks/auth";
+import { Loader } from "../components/Loader";
+import TotalPricing from "../components/Card/TotalPricing";
 
 const Dashboard = () => {
     const primaryBG = useColorModeValue("#f8f9fa", "#18191A");
     const secondaryBG = useColorModeValue("white", "#242526");
     const textHeight = useBreakpointValue({ base: "20%", md: "30%" });
+    const [isLoading, setIsLoading] = useState(false);
 
     const { user } = useAuth();
     const [userDetails, setUserDetails] = useState({
@@ -43,10 +46,16 @@ const Dashboard = () => {
     }, [user.uid]);
 
     const getData = async () => {
+        setIsLoading(true);
         getUserDetails(user.uid).then((res) => {
             return setUserDetails(res as any);
         });
+        setIsLoading(false);
     };
+
+    if (isLoading) {
+        return <Loader />;
+    }
 
     return (
         <Flex flexDirection={"row"} bg={primaryBG}>
@@ -219,314 +228,7 @@ const Dashboard = () => {
                                 needed. Cancel at anytime.
                             </Text>
                         </Box>
-                        <Box px="5px">
-                            <Flex direction="column">
-                                <Center>
-                                    <Box pb={12}>
-                                        <Stack
-                                            direction={{
-                                                base: "column",
-                                                md: "row",
-                                            }}
-                                            textAlign="center"
-                                            justify="center"
-                                            spacing={{ base: 4, lg: 10 }}
-                                            py={10}
-                                        >
-                                            <PriceCard>
-                                                <Box py={4} px={12}>
-                                                    <Text
-                                                        fontWeight="500"
-                                                        fontSize="2xl"
-                                                    >
-                                                        Individual Therapy
-                                                    </Text>
-                                                    <HStack justifyContent="center">
-                                                        <Text
-                                                            fontSize="3xl"
-                                                            fontWeight="600"
-                                                        >
-                                                            $
-                                                        </Text>
-                                                        <Text
-                                                            fontSize="5xl"
-                                                            fontWeight="900"
-                                                        >
-                                                            79
-                                                        </Text>
-                                                        <Text
-                                                            fontSize="3xl"
-                                                            color="gray.500"
-                                                        >
-                                                            /month
-                                                        </Text>
-                                                    </HStack>
-                                                </Box>
-                                                <VStack
-                                                    bg={useColorModeValue(
-                                                        "gray.50",
-                                                        "gray.700"
-                                                    )}
-                                                    py={4}
-                                                    borderBottomRadius={"xl"}
-                                                >
-                                                    <List
-                                                        spacing={3}
-                                                        textAlign="start"
-                                                        px={12}
-                                                    >
-                                                        <ListItem>
-                                                            <ListIcon
-                                                                as={
-                                                                    FaCheckCircle
-                                                                }
-                                                                color="cyan.500"
-                                                            />
-                                                            Anxiety Therapy
-                                                        </ListItem>
-                                                        <ListItem>
-                                                            <ListIcon
-                                                                as={
-                                                                    FaCheckCircle
-                                                                }
-                                                                color="cyan.500"
-                                                            />
-                                                            Depression Therapy
-                                                        </ListItem>
-                                                        <ListItem>
-                                                            <ListIcon
-                                                                as={
-                                                                    FaCheckCircle
-                                                                }
-                                                                color="cyan.500"
-                                                            />
-                                                            Personal Coaching
-                                                        </ListItem>
-                                                    </List>
-                                                    <Box w="80%" pt={7}>
-                                                        <Button
-                                                            w="full"
-                                                            colorScheme="cyan"
-                                                            variant="outline"
-                                                        >
-                                                            Start trial
-                                                        </Button>
-                                                    </Box>
-                                                </VStack>
-                                            </PriceCard>
-
-                                            <PriceCard>
-                                                <Box position="relative">
-                                                    <Box
-                                                        position="absolute"
-                                                        top="-16px"
-                                                        left="50%"
-                                                        style={{
-                                                            transform:
-                                                                "translate(-50%)",
-                                                        }}
-                                                    >
-                                                        <Text
-                                                            textTransform="uppercase"
-                                                            bg={"#2980B9"}
-                                                            px={3}
-                                                            py={1}
-                                                            color={"white"}
-                                                            fontSize="sm"
-                                                            fontWeight="600"
-                                                            rounded="xl"
-                                                        >
-                                                            Most Popular
-                                                        </Text>
-                                                    </Box>
-                                                    <Box py={4} px={12}>
-                                                        <Text
-                                                            fontWeight="500"
-                                                            fontSize="2xl"
-                                                        >
-                                                            Marriage Therapy
-                                                        </Text>
-                                                        <HStack justifyContent="center">
-                                                            <Text
-                                                                fontSize="3xl"
-                                                                fontWeight="600"
-                                                            >
-                                                                $
-                                                            </Text>
-                                                            <Text
-                                                                fontSize="5xl"
-                                                                fontWeight="900"
-                                                            >
-                                                                149
-                                                            </Text>
-                                                            <Text
-                                                                fontSize="3xl"
-                                                                color="gray.500"
-                                                            >
-                                                                /month
-                                                            </Text>
-                                                        </HStack>
-                                                    </Box>
-                                                    <VStack
-                                                        bg={useColorModeValue(
-                                                            "gray.50",
-                                                            "gray.700"
-                                                        )}
-                                                        py={4}
-                                                        borderBottomRadius={
-                                                            "xl"
-                                                        }
-                                                    >
-                                                        <List
-                                                            spacing={3}
-                                                            textAlign="start"
-                                                            px={12}
-                                                        >
-                                                            <ListItem>
-                                                                <ListIcon
-                                                                    as={
-                                                                        FaCheckCircle
-                                                                    }
-                                                                    color="cyan.500"
-                                                                />
-                                                                Anxiety Therapy
-                                                            </ListItem>
-                                                            <ListItem>
-                                                                <ListIcon
-                                                                    as={
-                                                                        FaCheckCircle
-                                                                    }
-                                                                    color="cyan.500"
-                                                                />
-                                                                Lorem, ipsum
-                                                                dolor.
-                                                            </ListItem>
-                                                            <ListItem>
-                                                                <ListIcon
-                                                                    as={
-                                                                        FaCheckCircle
-                                                                    }
-                                                                    color="cyan.500"
-                                                                />
-                                                                Family Therapy
-                                                            </ListItem>
-                                                            <ListItem>
-                                                                <ListIcon
-                                                                    as={
-                                                                        FaCheckCircle
-                                                                    }
-                                                                    color="cyan.500"
-                                                                />
-                                                                Personal
-                                                                Coaching
-                                                            </ListItem>
-                                                            <ListItem>
-                                                                <ListIcon
-                                                                    as={
-                                                                        FaCheckCircle
-                                                                    }
-                                                                    color="cyan.500"
-                                                                />
-                                                                Psychotherapy
-                                                            </ListItem>
-                                                        </List>
-                                                        <Box w="80%" pt={7}>
-                                                            <Button
-                                                                w="full"
-                                                                colorScheme="cyan"
-                                                            >
-                                                                Start trial
-                                                            </Button>
-                                                        </Box>
-                                                    </VStack>
-                                                </Box>
-                                            </PriceCard>
-                                            <PriceCard>
-                                                <Box py={4} px={12}>
-                                                    <Text
-                                                        fontWeight="500"
-                                                        fontSize="2xl"
-                                                    >
-                                                        Children Therapy
-                                                    </Text>
-                                                    <HStack justifyContent="center">
-                                                        <Text
-                                                            fontSize="3xl"
-                                                            fontWeight="600"
-                                                        >
-                                                            $
-                                                        </Text>
-                                                        <Text
-                                                            fontSize="5xl"
-                                                            fontWeight="900"
-                                                        >
-                                                            249
-                                                        </Text>
-                                                        <Text
-                                                            fontSize="3xl"
-                                                            color="gray.500"
-                                                        >
-                                                            /month
-                                                        </Text>
-                                                    </HStack>
-                                                </Box>
-                                                <VStack
-                                                    bg={useColorModeValue(
-                                                        "gray.50",
-                                                        "gray.700"
-                                                    )}
-                                                    py={4}
-                                                    borderBottomRadius={"xl"}
-                                                >
-                                                    <List
-                                                        spacing={3}
-                                                        textAlign="start"
-                                                        px={12}
-                                                    >
-                                                        <ListItem>
-                                                            <ListIcon
-                                                                as={
-                                                                    FaCheckCircle
-                                                                }
-                                                                color="cyan.500"
-                                                            />
-                                                            Child Therapy
-                                                        </ListItem>
-                                                        <ListItem>
-                                                            <ListIcon
-                                                                as={
-                                                                    FaCheckCircle
-                                                                }
-                                                                color="cyan.500"
-                                                            />
-                                                            Family Therapy
-                                                        </ListItem>
-                                                        <ListItem>
-                                                            <ListIcon
-                                                                as={
-                                                                    FaCheckCircle
-                                                                }
-                                                                color="cyan.500"
-                                                            />
-                                                            Psychotherapy
-                                                        </ListItem>
-                                                    </List>
-                                                    <Box w="80%" pt={7}>
-                                                        <Button
-                                                            w="full"
-                                                            colorScheme="cyan"
-                                                            variant="outline"
-                                                        >
-                                                            Start trial
-                                                        </Button>
-                                                    </Box>
-                                                </VStack>
-                                            </PriceCard>
-                                        </Stack>
-                                    </Box>
-                                </Center>
-                            </Flex>
-                        </Box>
+                        <TotalPricing />
                     </Box>
                 </Grid>
             </Flex>
