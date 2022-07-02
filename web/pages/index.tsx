@@ -12,6 +12,7 @@ import {
     VStack,
 } from '@chakra-ui/react';
 import { NextPage } from 'next';
+import React from 'react';
 import { AiFillHeart } from 'react-icons/ai';
 import { FaPeopleCarry, FaRunning } from 'react-icons/fa';
 import { IBasicCard, IService, ITestimonial } from '../@types';

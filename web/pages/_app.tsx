@@ -1,14 +1,22 @@
-import { ChakraProvider } from '@chakra-ui/react';
-import { NextPage } from 'next';
-import { AppProps } from 'next/app';
-import '../css/global.css';
+import { extendTheme, NativeBaseProvider, theme as nbTheme } from "native-base";
+import type { AppProps } from "next/app";
+import { ChakraProvider } from "@chakra-ui/react";
+import React from "react";
 
-const App: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
+function MyApp({ Component, pageProps }: AppProps) {
+    const theme = extendTheme({
+        colors: {
+            primary: nbTheme.colors.violet,
+        },
+    });
+
     return (
         <ChakraProvider>
-            <Component {...pageProps} />
+            <NativeBaseProvider theme={theme} isSSR>
+                <Component {...pageProps} />
+            </NativeBaseProvider>
         </ChakraProvider>
     );
-};
+}
 
-export default App;
+export default MyApp;

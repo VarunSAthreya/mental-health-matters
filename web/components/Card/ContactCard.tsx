@@ -10,10 +10,10 @@ import {
     Textarea,
     VStack,
     WrapItem,
-} from '@chakra-ui/react';
-import { FunctionComponent } from 'react';
-import { BsPerson } from 'react-icons/bs';
-import { MdOutlineEmail } from 'react-icons/md';
+} from "@chakra-ui/react";
+import React, { FunctionComponent } from "react";
+import { BsPerson } from "react-icons/bs";
+import { MdOutlineEmail } from "react-icons/md";
 
 const ContactCard: FunctionComponent = () => {
     return (
@@ -23,7 +23,7 @@ const ContactCard: FunctionComponent = () => {
                     <Box m={8} color="#0B0E3F">
                         <VStack
                             spacing={5}
-                            width={{ lg: '3xl', md: 'xl', sm: 'xl' }}
+                            width={{ lg: "3xl", md: "xl", sm: "xl" }}
                         >
                             <FormControl id="name">
                                 <FormLabel>Your Name</FormLabel>
@@ -52,7 +52,7 @@ const ContactCard: FunctionComponent = () => {
                                 <Textarea
                                     borderColor="gray.300"
                                     _hover={{
-                                        borderRadius: 'gray.300',
+                                        borderRadius: "gray.300",
                                     }}
                                     placeholder="message"
                                 />
