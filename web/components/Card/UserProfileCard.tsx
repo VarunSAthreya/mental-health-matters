@@ -4,6 +4,8 @@ import {
   Button,
   Flex,
   Text,
+  Grid,
+  GridItem,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
@@ -29,44 +31,71 @@ const UserProfileCard: FC<Props> = () => {
   const router = useRouter();
 
   return (
-    <Box
-      bg={useColorModeValue("white", "#242526")}
-      mb={4}
-      borderRadius={8}
-      display={"flex"}
-      flexDirection={"column"}
+    <Grid
+      templateColumns={{ sm: "1fr", md: "repeat(4, 1fr)" }}
+      gap="22px"
+      templateRows="repeat(2, 1fr)"
+      mt={8}
     >
-      <Box display={"flex"} flexDirection={"row"}>
-        <Flex
-          align="center"
-          mb={{ sm: "10px", md: "0px" }}
-          direction={{ sm: "column" }}
-          justify={"center"}
-          p="5px"
-          textAlign={{ sm: "center", md: "start" }}
+      <GridItem colSpan={1}>
+        <Box
+          display={"flex"}
+          h={'100%'}
+          flexDirection={"column"}
+          bg={useColorModeValue("white", "#242526")}
+          borderRadius={8}
+          justifyContent="center"
+          alignItems={"center"}
+          p={8}
         >
           <Avatar
-            me={{ md: "22px" }}
-            name={'Bindu'}
+            name={"Bindu"}
             color={"white"}
-            bg={"linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)"}
-            w="70px"
-            h="70px"
-            borderRadius="15px"
+            bg={"linear-gradient(310deg, #2980B9 0%, #6DD5FA 100%)"}
+            w="150px"
+            h="150px"
+            borderRadius={"100%"}
           />
-          <Flex direction="column" maxWidth="100%" my={{ sm: "14px" }}>
+          <Flex direction="column" my={{ sm: "14px" }}>
             <Text
               fontSize={{ sm: "lg", lg: "2.3rem" }}
               color={useColorModeValue("black", "white")}
               fontWeight="bold"
               ms={{ sm: "8px", md: "0px" }}
             >
-             Rahul
+              Rahul
             </Text>
           </Flex>
-        </Flex>
-        <Box>
-        <Flex
+        </Box>
+      </GridItem>
+      <GridItem colSpan={3}>
+        <Box
+          display={"flex"}
+          flexDirection={"column"}
+          p={8}
+          borderRadius={8}
+          bg={useColorModeValue("white", "#242526")}
+        >
+          <Box p="12px 5px" mb="12px">
+              <Text
+                bgGradient="linear(310deg, #2980B9 0%, #6DD5FA 100%)"
+                bgClip="text"
+                fontSize="2xl"
+                fontWeight="extrabold"
+                textTransform={"uppercase"}
+              >
+                GENERAL INFORMATION
+              </Text>
+              <Text
+                fontSize={{ base: "md", lg: "lg" }}
+                color={"gray.500"}
+                mt={3}
+              >
+                This Quiz is conducted in order to understand your metal health
+                status. So we can treat you better!
+              </Text>
+            </Box>
+          <Flex
             align="center"
             justifyContent="space-between"
             mb="12px"
@@ -147,9 +176,39 @@ const UserProfileCard: FC<Props> = () => {
             </Text>
           </Flex>
         </Box>
-
-      </Box>
-    </Box>
+      </GridItem>
+      <GridItem colSpan={4}>
+        <Box
+          display={"flex"}
+          flexDirection={"column"}
+          bg={useColorModeValue("white", "#242526")}
+          borderRadius={8}
+          justifyContent="center"
+          alignItems={"center"}
+          p={8}
+        >
+          <Box p="12px 5px" mb="12px">
+              <Text
+                bgGradient="linear(310deg, #2980B9 0%, #6DD5FA 100%)"
+                bgClip="text"
+                fontSize="2xl"
+                fontWeight="extrabold"
+                textTransform={"uppercase"}
+              >
+                OTHER INFORMATION
+              </Text>
+              <Text
+                fontSize={{ base: "md", lg: "lg" }}
+                color={"gray.500"}
+                mt={3}
+              >
+                This Quiz is conducted in order to understand your metal health
+                status. So we can treat you better!
+              </Text>
+            </Box>
+        </Box>
+      </GridItem>
+    </Grid>
   );
 };
 

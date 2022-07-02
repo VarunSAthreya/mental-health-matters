@@ -40,13 +40,13 @@ const StudentDetails: NextPage = () => {
                             pb="1.5rem"
                         >
                             <Text
-                                bgGradient="linear-gradient(to left, #7928CA, #FF0080)"
+                                bgGradient="linear-gradient(310deg, #2980B9 0%, #6DD5FA 100%)"
                                 bgClip="text"
                                 fontSize="4xl"
                                 fontWeight="extrabold"
                                 textTransform={'uppercase'}
                             >
-                                Student Details
+                                USER PROFILE
                             </Text>
                             <Breadcrumb
                                 separator={

@@ -17,46 +17,47 @@ import {
 import { useRouter } from 'next/router';
 import React from 'react';
 import {
-    BsBuilding,
-    BsFillPersonLinesFill,
-    BsPeople,
-    BsPersonCircle,
-    BsPersonPlus,
-} from 'react-icons/bs';
-import { FiHome, FiMenu } from 'react-icons/fi';
-import IconBox from '../Icons/IconBox';
-import Separator from '../Separator/Separator';
+  BsBuilding,
+  BsFillPersonLinesFill,
+  BsPeople,
+  BsPersonCircle,
+  BsPersonPlus,
+} from "react-icons/bs";
+import { FiHome, FiMenu } from "react-icons/fi";
+import { MdDashboard } from "react-icons/md";
+import IconBox from "../Icons/IconBox";
+import Separator from "../Separator/Separator";
 
 const routes = [
-    { name: 'Home', link: '/dashboard', icon: FiHome },
-    { name: 'Profile', link: '/profile', icon: BsPersonCircle },
+  { name: "Dashboard", link: "/dashboard", icon: MdDashboard },
+  { name: "Profile", link: "/profile", icon: BsPersonCircle },
 ];
 
 const SideBar = () => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    return (
-        <Box minH="100vh">
-            <SidebarContent
-                onClose={() => onClose}
-                display={{ base: 'none', md: 'flex' }}
-            />
-            <Drawer
-                autoFocus={false}
-                isOpen={isOpen}
-                placement="left"
-                onClose={onClose}
-                returnFocusOnClose={false}
-                onOverlayClick={onClose}
-                size="full"
-            >
-                <DrawerContent>
-                    <SidebarContent onClose={onClose} />
-                </DrawerContent>
-            </Drawer>
-            {/* mobilenav */}
-            <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
-        </Box>
-    );
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  return (
+    <Box minH="100vh">
+      <SidebarContent
+        onClose={() => onClose}
+        display={{ base: "none", md: "flex" }}
+      />
+      <Drawer
+        autoFocus={false}
+        isOpen={isOpen}
+        placement="left"
+        onClose={onClose}
+        returnFocusOnClose={false}
+        onOverlayClick={onClose}
+        size="full"
+      >
+        <DrawerContent>
+          <SidebarContent onClose={onClose} />
+        </DrawerContent>
+      </Drawer>
+      {/* mobilenav */}
+      <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
+    </Box>
+  );
 };
 
 const SidebarContent = ({ onClose, ...rest }) => {
@@ -85,9 +86,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
                     <Text
                         fontSize="1.3rem"
                         mt="3px"
-                        bgGradient="linear(to-l, #7928CA, #FF0080)"
+                        bgGradient="linear(to-r, #2980B9, #6DD5FA)"
                         bgClip="text"
-                        fontWeight="extrabold"
+                        fontWeight="bold"
                         textTransform={'uppercase'}
                         onClick={() => router.push(`/`)}
                         cursor={'pointer'}
@@ -150,12 +151,12 @@ const NavItem = ({ icon, link, children, ...rest }) => {
                 cursor="pointer"
                 bg={
                     router.asPath === link
-                        ? 'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                        ? 'linear-gradient( 310deg, #2980B9 0%, #6DD5FA 100%)'
                         : defaultColor
                 }
                 my={2}
                 _hover={{
-                    bg: 'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)',
+                    bg: 'linear-gradient( 310deg, #2980B9 0%, #6DD5FA 100%)',
                     color: 'white',
                 }}
                 {...rest}
@@ -165,7 +166,7 @@ const NavItem = ({ icon, link, children, ...rest }) => {
                         bg={
                             router.asPath === link
                                 ? 'white'
-                                : 'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                                : 'linear-gradient( 310deg, #2980B9 0%, #6DD5FA 100%)'
                         }
                         h="40px"
                         w="40px"
