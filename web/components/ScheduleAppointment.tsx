@@ -38,7 +38,7 @@ const ScheduleAppointment = () => {
 
         try {
             setIsLoading(true);
-            await setAppointment(user.uid, date, time);
+            await setAppointment({ userId: user.uid, date, time });
             toast({
                 title: "Appointment scheduled successfully",
                 status: "success",

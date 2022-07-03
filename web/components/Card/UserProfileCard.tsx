@@ -1,7 +1,6 @@
 import {
     Avatar,
     Box,
-    Button,
     Flex,
     Text,
     Grid,
@@ -9,9 +8,9 @@ import {
     useColorModeValue,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import React, { FC } from "react";
-import { Use } from "react-native-svg";
-import Separator from "../Separator/Separator";
+import React, { FC, useEffect, useState } from "react";
+import { IAppointment } from "../../@types";
+import { getAppointments } from "../../function";
 
 type Props = {
     User: {
@@ -26,6 +25,13 @@ type Props = {
 
 const UserProfileCard: FC<Props> = ({ User }) => {
     const router = useRouter();
+    const [appointments, setAppointments] = useState<IAppointment[]>([]);
+
+    useEffect(() => {
+        getAppointments(User.id).then((res) => {
+            setAppointments(res as any);
+        });
+    }, [User.id]);
 
     return (
         <Grid
@@ -218,6 +224,63 @@ const UserProfileCard: FC<Props> = ({ User }) => {
                             This Quiz is conducted in order to understand your
                             metal health status. So we can treat you better!
                         </Text>
+                    </Box>
+                </Box>
+            </GridItem>
+            <GridItem colSpan={4}>
+                <Box
+                    display={"flex"}
+                    flexDirection={"column"}
+                    bg={useColorModeValue("white", "#242526")}
+                    borderRadius={8}
+                    justifyContent="center"
+                    alignItems={"center"}
+                    p={8}
+                >
+                    <Box p="12px 5px" mb="12px">
+                        <Text
+                            bgGradient="linear(310deg, #2980B9 0%, #6DD5FA 100%)"
+                            bgClip="text"
+                            fontSize="2xl"
+                            fontWeight="extrabold"
+                            textTransform={"uppercase"}
+                        >
+                            Appointments
+                        </Text>
+                        <Text
+                            fontSize={{ base: "md", lg: "lg" }}
+                            color={"gray.500"}
+                            mt={3}
+                        >
+                            List of Scheduled Appointments
+                        </Text>
+                        {appointments.map((appointment) => (
+                            <Flex
+                                key={appointment.createdAt}
+                                align="center"
+                                justifyContent="space-between"
+                                mb="12px"
+                                borderRadius={8}
+                                bg={"#f8f9fa"}
+                                p={3}
+                            >
+                                <Text
+                                    fontSize="md"
+                                    color={"gray.500"}
+                                    me="10px"
+                                    fontWeight={"semibold"}
+                                >
+                                    Date: {appointment.date}
+                                </Text>
+                                <Text
+                                    fontSize="md"
+                                    color="black"
+                                    fontWeight={"semibold"}
+                                >
+                                    Time: {appointment.time}
+                                </Text>
+                            </Flex>
+                        ))}
                     </Box>
                 </Box>
             </GridItem>

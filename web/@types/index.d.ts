@@ -41,3 +41,10 @@ interface IFeature {
     icon: IconType;
     color: string;
 }
+
+interface IAppointment {
+    userId: string;
+    time: string;
+    date: string;
+    createdAt: string;
+}

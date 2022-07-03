@@ -30,10 +30,28 @@ export const isPaymentDone = async (userId: string) => {
     return querySnapshot.size > 0;
 };
 
-export const setAppointment = async (
-    userId: string,
-    time: string,
-    date: string
-) => {
-    return await addDoc(collection(db, "appointment"), { userId, time, date });
+export const setAppointment = async ({
+    userId,
+    time,
+    date,
+}: {
+    userId: string;
+    time: string;
+    date: string;
+}) => {
+    return addDoc(collection(db, "appointment"), {
+        userId,
+        time,
+        date,
+        createdAt: new Date().toISOString(),
+    });
+};
+
+export const getAppointments = async (userId: string) => {
+    const q = query(
+        collection(db, "appointment"),
+        where("userId", "==", userId)
+    );
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map((doc) => doc.data());
 };
