@@ -10,7 +10,8 @@ import {
     Text,
     useBreakpointValue,
     VStack,
-    Hide
+    Hide,
+    useColorModeValue,
 } from "@chakra-ui/react";
 import { NextPage } from "next";
 import React from "react";
@@ -22,7 +23,7 @@ import ServiceCard from "../components/Card/ServiceCard";
 import TestimonialCard from "../components/Card/TestimonialCard";
 import Layout from "../components/UI/Layout";
 import LottieView from "../components/Lotte/LotteView";
-import animationData from '../public/lotte/brain.json'
+import animationData from "../public/lotte/brain.json";
 
 const basicCardData: IBasicCard[] = [
     {
@@ -77,22 +78,33 @@ const Home: NextPage = () => {
         <Layout title="MHM">
             <Container maxW={"7xl"}>
                 {/*Poster*/}
-                <Box display={"flex"} flexDir={{base:"column-reverse",md:"row"}}>
+                <Box
+                    display={"flex"}
+                    flexDir={{ base: "column-reverse", md: "row" }}
+                >
                     <Stack
                         as={Box}
                         textAlign={"start"}
-                        w={{base:'100%',md:"50%"}}
+                        w={{ base: "100%", md: "50%" }}
                         spacing={{ base: 8 }}
                         my={4}
                         pt={{ base: 16, md: 36 }}
                         pb={{ base: 16, md: 36 }}
                     >
-                        <Text color={"cyan.600"} textAlign={{base:"center",md:"start"}}>MENTAL HEALTH MATTERS</Text>
                         <Text
-                            color={"gray.200"}
+                            bgGradient="linear(310deg, #FF4331 0%, #D31A50 100%)"
+                            bgClip="text"
+                            textAlign={{ base: "center", md: "start" }}
+                            fontSize={{ base: "xl", md: "2xl" }}
+                        >
+                            MENTAL HEALTH MATTERS
+                        </Text>
+                        <Text
+                            // color={"gray.200"}
+                            color={useColorModeValue("gray.900", "gray.500")}
                             fontWeight={400}
                             lineHeight={1.2}
-                            textAlign={{base:"center",md:"start"}}
+                            textAlign={{ base: "center", md: "start" }}
                             fontSize={useBreakpointValue({
                                 base: "2xl",
                             })}
@@ -102,12 +114,13 @@ const Home: NextPage = () => {
                             ways of dealing with
                         </Text>
                         <Text
-                            color={"cyan.600"}
+                            bgGradient="linear(310deg, #FF4331 0%, #D31A50 100%)"
+                            bgClip="text"
                             fontWeight={400}
-                            textAlign={{base:"center",md:"start"}}
+                            textAlign={{ base: "center", md: "start" }}
                             lineHeight={1.2}
                             fontSize={useBreakpointValue({
-                                base: "2xl",
+                                base: "3xl",
                             })}
                         >
                             Mental Health
@@ -118,22 +131,20 @@ const Home: NextPage = () => {
                             align={"start"}
                             alignSelf={"start"}
                             position={"relative"}
-                        >
-                        </Stack>
+                        ></Stack>
                     </Stack>
-                    <Hide below='md'>
-                    <Box
-                        pos={"absolute"}
-                        zIndex={50}
-                        width={{md:400,lg:500}}
-                        height={385}
-                        top={{md:"4%",lg:"3%"}}
-                        left={{md:"51%",lg:"58%"}}
-                    >
-                        <LottieView animationData={animationData}/>
-                    </Box>
+                    <Hide below="md">
+                        <Box
+                            pos={"absolute"}
+                            zIndex={50}
+                            width={{ md: 400, lg: 500 }}
+                            height={385}
+                            top={{ md: "4%", lg: "3%" }}
+                            left={{ md: "51%", lg: "58%" }}
+                        >
+                            <LottieView animationData={animationData} />
+                        </Box>
                     </Hide>
-                    
                 </Box>
                 {/*Welcome*/}
                 <Stack
