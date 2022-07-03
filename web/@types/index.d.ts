@@ -48,3 +48,8 @@ interface IAppointment {
     date: string;
     createdAt: string;
 }
+
+interface ISurvey {
+    question: string;
+    options: string[];
+}

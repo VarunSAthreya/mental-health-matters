@@ -129,75 +129,77 @@ const Dashboard = () => {
             icon={BsPersonPlus}
           />
         </SimpleGrid> */}
-          <Grid templateColumns={{ sm: "1fr" }} gap="22px" mt={8}>
-            {paymentDone && <ScheduleAppointment />}
-            <Box
-              p="16px"
-              my={{ sm: "24px", xl: "0px" }}
-              bg={secondaryBG}
-              borderRadius={8}
-            >
-              <Box p="12px 5px" mb="12px">
-                <Text
-                  bgGradient="linear(310deg, #2980B9 0%, #6DD5FA 100%)"
-                  bgClip="text"
-                  fontSize="2xl"
-                  fontWeight="extrabold"
-                  textTransform={"uppercase"}
-                >
-                  Take a Quiz
-                </Text>
-                <Text
-                  fontSize={{ base: "md", lg: "lg" }}
-                  color={"gray.500"}
-                  mt={3}
-                >
-                  This Quiz is conducted in order to understand your metal
-                  health status. So we can treat you better!
-                </Text>
-              </Box>
-              <Box display={"flex"} justifyContent="center" px="5px">
-                <Button>CLICK HERE</Button>
-              </Box>
-            </Box>
-            <Box
-              p="16px"
-              my={{ sm: "24px", xl: "0px" }}
-              bg={secondaryBG}
-              borderRadius={8}
-            >
-              <Box p="12px 5px" my="12px">
-                <Text
-                  bgGradient="linear(310deg, #2980B9 0%, #6DD5FA 100%)"
-                  bgClip="text"
-                  fontSize="2xl"
-                  fontWeight="extrabold"
-                  textTransform={"uppercase"}
-                >
-                  Payment Plans Offered
-                </Text>
-                <Text
-                  fontSize={{ base: "md", lg: "lg" }}
-                  color={"gray.500"}
-                  mt={3}
-                >
-                  Start with 14-day free trial. No credit card needed. Cancel at
-                  anytime.
-                </Text>
-              </Box>
-              {paymentDone ? (
-                <Text
-                  fontSize={{ base: "md", lg: "lg" }}
-                  color={"gray.500"}
-                  mt={3}
-                >
-                  Payment Done
-                </Text>
-              ) : (
-                <TotalPricing />
-              )}
-            </Box>
-          </Grid>
+                <Grid templateColumns={{ sm: "1fr" }} gap="22px" mt={8}>
+                    {paymentDone && <ScheduleAppointment />}
+                    <Box
+                        p="16px"
+                        my={{ sm: "24px", xl: "0px" }}
+                        bg={secondaryBG}
+                        borderRadius={8}
+                    >
+                        <Box p="12px 5px" mb="12px">
+                            <Text
+                                bgGradient="linear(310deg, #2980B9 0%, #6DD5FA 100%)"
+                                bgClip="text"
+                                fontSize="2xl"
+                                fontWeight="extrabold"
+                                textTransform={"uppercase"}
+                            >
+                                Take a Survey
+                            </Text>
+                            <Text
+                                fontSize={{ base: "md", lg: "lg" }}
+                                color={"gray.500"}
+                                mt={3}
+                            >
+                                This Survey is conducted in order to understand
+                                your metal health status. So we can treat you
+                                better!
+                            </Text>
+                        </Box>
+                        <Box display={"flex"} justifyContent="center" px="5px">
+                            <Button>CLICK HERE</Button>
+                        </Box>
+                    </Box>
+                    <Box
+                        p="16px"
+                        my={{ sm: "24px", xl: "0px" }}
+                        bg={secondaryBG}
+                        borderRadius={8}
+                    >
+                        <Box p="12px 5px" my="12px">
+                            <Text
+                                bgGradient="linear(310deg, #2980B9 0%, #6DD5FA 100%)"
+                                bgClip="text"
+                                fontSize="2xl"
+                                fontWeight="extrabold"
+                                textTransform={"uppercase"}
+                            >
+                                Payment Plans Offered
+                            </Text>
+                            <Text
+                                fontSize={{ base: "md", lg: "lg" }}
+                                color={"gray.500"}
+                                mt={3}
+                            >
+                                Start with 14-day free trial. No credit card
+                                needed. Cancel at anytime.
+                            </Text>
+                        </Box>
+                        {paymentDone ? (
+                            <Text
+                                fontSize={{ base: "md", lg: "lg" }}
+                                color={"gray.500"}
+                                mt={3}
+                            >
+                                Payment Done
+                            </Text>
+                        ) : (
+                            <TotalPricing />
+                        )}
+                    </Box>
+                </Grid>
+            </Flex>
         </Flex>
       </Flex>
     );
