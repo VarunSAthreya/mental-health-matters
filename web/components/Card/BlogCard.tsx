@@ -9,14 +9,14 @@ import {
     useColorModeValue,
 } from "@chakra-ui/react";
 import { NextPage } from "next";
-import React from "react";
+import React, { FC } from "react";
 import { IBlog } from "../../@types";
 
 type Props = {
     blog: IBlog;
 };
 
-const BlogCard: NextPage<Props> = ({ blog }: Props) => {
+const BlogCard: FC<Props> = ({ blog }: Props) => {
     if (blog.id % 2 === 0) {
         return (
             <Box
@@ -74,7 +74,7 @@ const BlogCard: NextPage<Props> = ({ blog }: Props) => {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <Button colorScheme={"cyan"}>Read More</Button>
+                        <Button bgColor={"#FF4331"}>Read More</Button>
                     </a>
                 </Box>
             </Box>
@@ -115,7 +115,7 @@ const BlogCard: NextPage<Props> = ({ blog }: Props) => {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <Button colorScheme={"cyan"} variant={"outline"}>
+                        <Button colorScheme={"#FF4331"} variant={"outline"}>
                             Read More
                         </Button>
                     </a>

@@ -11,11 +11,13 @@ import {
     Button,
 } from "@chakra-ui/react";
 import SideBar from "../components/Sidebar/Sidebar";
-import { getUserDetails, isPaymentDone } from "../function";
+import { getUserDetails, isPaymentDone, getSurvey } from "../function";
 import { useAuth } from "../hooks/auth";
 import { Loader } from "../components/Loader";
 import TotalPricing from "../components/Card/TotalPricing";
 import ScheduleAppointment from "../components/ScheduleAppointment";
+import { useRouter } from "next/router";
+import { ISurvey } from "../@types";
 
 const Dashboard = () => {
     const primaryBG = useColorModeValue("#f8f9fa", "#18191A");
@@ -25,6 +27,8 @@ const Dashboard = () => {
     const [paymentDone, setPaymentDone] = useState(false);
 
     const { user } = useAuth();
+    const router = useRouter();
+
     const [userDetails, setUserDetails] = useState({
         firstname: "",
         lastname: "",
@@ -33,6 +37,13 @@ const Dashboard = () => {
         age: 0,
         id: "",
     });
+    const [survey, setSurvey] = useState<
+        {
+            createdAt: string;
+            userId: string;
+            survey: any[];
+        }[]
+    >([]);
 
     useEffect(() => {
         getData();
@@ -47,6 +58,10 @@ const Dashboard = () => {
 
             isPaymentDone(user.uid).then((res) => {
                 return setPaymentDone(res as any);
+            });
+
+            getSurvey(user.uid).then((res) => {
+                return setSurvey(res as any);
             });
         } catch (error) {
             console.log(error);
@@ -158,7 +173,16 @@ const Dashboard = () => {
                             </Text>
                         </Box>
                         <Box display={"flex"} justifyContent="center" px="5px">
-                            <Button>CLICK HERE</Button>
+                            <Box>
+                                {survey.map((item) => (
+                                    <Text key={item.createdAt}>
+                                        {item.createdAt}
+                                    </Text>
+                                ))}
+                            </Box>
+                            <Button onClick={() => router.push("/survey")}>
+                                CLICK HERE
+                            </Button>
                         </Box>
                     </Box>
                     <Box
