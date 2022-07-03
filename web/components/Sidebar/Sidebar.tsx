@@ -78,7 +78,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
             <Text
               fontSize="1.2rem"
               mt="3px"
-              bgGradient="linear(to-r, #2980B9, #6DD5FA)"
+              bgGradient="linear(310deg,#FF4331,#D31A50)"
               bgClip="text"
               fontWeight="bold"
               textTransform={"uppercase"}
@@ -141,12 +141,12 @@ const NavItem = ({ icon, link, children, ...rest }) => {
                 cursor="pointer"
                 bg={
                     router.asPath === link
-                        ? 'linear-gradient( 310deg, #2980B9 0%, #6DD5FA 100%)'
+                        ? 'linear-gradient(310deg,#FF4331,#D31A50)'
                         : defaultColor
                 }
                 my={2}
                 _hover={{
-                    bg: 'linear-gradient( 310deg, #2980B9 0%, #6DD5FA 100%)',
+                    bg: 'linear-gradient(310deg,#FF4331,#D31A50)',
                     color: 'white',
                 }}
                 {...rest}
@@ -156,7 +156,7 @@ const NavItem = ({ icon, link, children, ...rest }) => {
                         bg={
                             router.asPath === link
                                 ? 'white'
-                                : 'linear-gradient( 310deg, #2980B9 0%, #6DD5FA 100%)'
+                                : 'linear-gradient(310deg,#FF4331,#D31A50)'
                         }
                         h="40px"
                         w="40px"

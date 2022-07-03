@@ -24,7 +24,7 @@ import { Loader } from "../Loader";
 const TotalPricing = () => {
     const { user } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
-    const color = useColorModeValue("gray.50", "gray.700");
+    const color = useColorModeValue("red.50", "#78393978");
 
     useEffect(() => {
         loadScript();
@@ -103,21 +103,21 @@ const TotalPricing = () => {
                                         <ListItem>
                                             <ListIcon
                                                 as={FaCheckCircle}
-                                                color="cyan.500"
+                                                color="red.500"
                                             />
                                             Anxiety Therapy
                                         </ListItem>
                                         <ListItem>
                                             <ListIcon
                                                 as={FaCheckCircle}
-                                                color="cyan.500"
+                                                color="red.500"
                                             />
                                             Depression Therapy
                                         </ListItem>
                                         <ListItem>
                                             <ListIcon
                                                 as={FaCheckCircle}
-                                                color="cyan.500"
+                                                color="red.500"
                                             />
                                             Personal Coaching
                                         </ListItem>
@@ -125,7 +125,7 @@ const TotalPricing = () => {
                                     <Box w="80%" pt={7}>
                                         <Button
                                             w="full"
-                                            colorScheme="cyan"
+                                            colorScheme="red"
                                             variant="outline"
                                             onClick={() =>
                                                 handleBuy({
@@ -152,7 +152,7 @@ const TotalPricing = () => {
                                     >
                                         <Text
                                             textTransform="uppercase"
-                                            bg={"#2980B9"}
+                                            bg={"#FF4331"}
                                             px={3}
                                             py={1}
                                             color={"white"}
@@ -201,35 +201,35 @@ const TotalPricing = () => {
                                             <ListItem>
                                                 <ListIcon
                                                     as={FaCheckCircle}
-                                                    color="cyan.500"
+                                                    color="red.500"
                                                 />
                                                 Anxiety Therapy
                                             </ListItem>
                                             <ListItem>
                                                 <ListIcon
                                                     as={FaCheckCircle}
-                                                    color="cyan.500"
+                                                    color="red.500"
                                                 />
                                                 Lorem, ipsum dolor.
                                             </ListItem>
                                             <ListItem>
                                                 <ListIcon
                                                     as={FaCheckCircle}
-                                                    color="cyan.500"
+                                                    color="red.500"
                                                 />
                                                 Family Therapy
                                             </ListItem>
                                             <ListItem>
                                                 <ListIcon
                                                     as={FaCheckCircle}
-                                                    color="cyan.500"
+                                                    color="red.500"
                                                 />
                                                 Personal Coaching
                                             </ListItem>
                                             <ListItem>
                                                 <ListIcon
                                                     as={FaCheckCircle}
-                                                    color="cyan.500"
+                                                    color="red.500"
                                                 />
                                                 Psychotherapy
                                             </ListItem>
@@ -237,7 +237,7 @@ const TotalPricing = () => {
                                         <Box w="80%" pt={7}>
                                             <Button
                                                 w="full"
-                                                colorScheme="cyan"
+                                                colorScheme="red"
                                                 onClick={() =>
                                                     handleBuy({
                                                         price: 149,
@@ -277,21 +277,21 @@ const TotalPricing = () => {
                                         <ListItem>
                                             <ListIcon
                                                 as={FaCheckCircle}
-                                                color="cyan.500"
+                                                color="red.500"
                                             />
                                             Child Therapy
                                         </ListItem>
                                         <ListItem>
                                             <ListIcon
                                                 as={FaCheckCircle}
-                                                color="cyan.500"
+                                                color="red.500"
                                             />
                                             Family Therapy
                                         </ListItem>
                                         <ListItem>
                                             <ListIcon
                                                 as={FaCheckCircle}
-                                                color="cyan.500"
+                                                color="red.500"
                                             />
                                             Psychotherapy
                                         </ListItem>
@@ -299,7 +299,7 @@ const TotalPricing = () => {
                                     <Box w="80%" pt={7}>
                                         <Button
                                             w="full"
-                                            colorScheme="cyan"
+                                            colorScheme="red"
                                             variant="outline"
                                             onClick={() =>
                                                 handleBuy({

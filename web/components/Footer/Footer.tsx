@@ -102,7 +102,7 @@ const Footer: FunctionComponent = () => {
                             display="flex"
                             alignItems="center"
                             _hover={{
-                                color: "#2980B9",
+                                color: "#FF4331",
                             }}
                         >
                             <Icon boxSize={5} m={{ base: 2 }} as={MdPhone} />
@@ -123,7 +123,7 @@ const Footer: FunctionComponent = () => {
                             display="flex"
                             alignItems="center"
                             _hover={{
-                                color: "#2980B9",
+                                color: "#FF4331",
                             }}
                         >
                             <Icon boxSize={5} m={{ base: 2 }} as={MdEmail} />
@@ -161,7 +161,7 @@ const Footer: FunctionComponent = () => {
                             display="flex"
                             alignItems="center"
                             _hover={{
-                                color: "#2980B9",
+                                color: "#FF4331",
                                 textDecoration: "none",
                             }}
                         >
@@ -183,7 +183,7 @@ const Footer: FunctionComponent = () => {
                             display="flex"
                             alignItems="center"
                             _hover={{
-                                color: "#2980B9",
+                                color: "#FF4331",
                             }}
                         >
                             <Icon
@@ -208,7 +208,7 @@ const Footer: FunctionComponent = () => {
                             display="flex"
                             alignItems="center"
                             _hover={{
-                                color: "#2980B9",
+                                color: "#FF4331",
                             }}
                         >
                             <Icon boxSize={5} m={{ base: 2 }} as={BsTwitter} />
@@ -229,7 +229,7 @@ const Footer: FunctionComponent = () => {
                             display="flex"
                             alignItems="center"
                             _hover={{
-                                color: "#2980B9",
+                                color: "#FF4331",
                             }}
                         >
                             <Icon boxSize={5} m={{ base: 2 }} as={BsYoutube} />

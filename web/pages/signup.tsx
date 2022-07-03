@@ -110,7 +110,7 @@ const SignUp: NextPage = () => {
             <Heading
               fontSize={"4xl"}
               textAlign={"center"}
-              bgGradient="linear(310deg, #2980B9 0%, #6DD5FA 100%)"
+              bgGradient="linear(310deg,#FF4331,#D31A50)"
               bgClip="text"
               fontWeight="bold"
               textTransform={"uppercase"}
@@ -240,10 +240,16 @@ const SignUp: NextPage = () => {
                 <Button
                   loadingText="Submitting"
                   size="lg"
-                  bg={"blue.400"}
+                  bg={"#FF4331"}
                   color={"white"}
                   _hover={{
-                    bg: "blue.500",
+                    bg: "#9d271c",
+                  }}
+                  _focus={{
+                    bg:"#9d271c"
+                  }}
+                  _active={{
+                    bg:"#9d271c"
                   }}
                   onClick={handelSubmit}
                   disabled={isLoading}
@@ -256,8 +262,14 @@ const SignUp: NextPage = () => {
                 <Text align={"center"}>
                   Already have an account?{" "}
                   <Button
-                    color={"blue.400"}
+                    color={"#FF4331"}
                     variant="link"
+                    _focus={{
+                      bg:"#9d271c"
+                    }}
+                    _active={{
+                      bg:"#9d271c"
+                    }}
                     onClick={() => router.push("/login")}
                   >
                     {"Login"}

@@ -12,13 +12,13 @@ const NavLink = ({ children }: { children: string }) => {
             rounded={"md"}
             _hover={{
                 textDecoration: "none",
-                bg: useColorModeValue("#2980B9", "white"),
-                color: useColorModeValue("white", "#2980B9"),
+                bg: useColorModeValue("#FF4331", "white"),
+                color: useColorModeValue("white", "#FF4331"),
             }}
             _focus={{ outline: "none" }}
             bg={
                 router.asPath === `/${children.toLowerCase()}`
-                    ? "#2980B9"
+                    ? "#FF4331"
                     : "transparent"
             }
             color={

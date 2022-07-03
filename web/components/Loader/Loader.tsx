@@ -6,8 +6,8 @@ const Loader: FC = () => {
         <Center h="100vh">
             <Spinner
                 thickness="10px"
-                emptyColor={useColorModeValue('#f8f9fa', '#18191A')}
-                color="#FF0080"
+                emptyColor={useColorModeValue('#f8f9fa', '#2980B9')}
+                color="#00aaff00"
                 h={24}
                 w={24}
             />

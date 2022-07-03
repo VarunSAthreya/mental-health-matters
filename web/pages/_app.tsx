@@ -21,19 +21,19 @@ function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter();
 
     return (
+      <ChakraProvider theme={theme}>
         <NativeBaseProvider>
-            <ChakraProvider theme={theme}>
-                <AuthContextProvider>
-                    {noAuthRequired.includes(router.pathname) ? (
-                        <Component {...pageProps} />
-                    ) : (
-                        <ProtectedRoute>
-                            <Component {...pageProps} />
-                        </ProtectedRoute>
-                    )}
-                </AuthContextProvider>
-            </ChakraProvider>
+          <AuthContextProvider>
+            {noAuthRequired.includes(router.pathname) ? (
+              <Component {...pageProps} />
+            ) : (
+              <ProtectedRoute>
+                <Component {...pageProps} />
+              </ProtectedRoute>
+            )}
+          </AuthContextProvider>
         </NativeBaseProvider>
+      </ChakraProvider>
     );
 }
 

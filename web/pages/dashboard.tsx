@@ -94,7 +94,7 @@ const Dashboard = () => {
                 </Text>
                 <Text
                   as={"span"}
-                  bgGradient="linear(310deg, #2980B9 0%, #6DD5FA 100%)"
+                  bgGradient="linear(310deg,#FF4331,#D31A50)"
                   bgClip="text"
                   fontSize="4xl"
                   fontWeight="extrabold"
@@ -139,7 +139,7 @@ const Dashboard = () => {
                     >
                         <Box p="12px 5px" mb="12px">
                             <Text
-                                bgGradient="linear(310deg, #2980B9 0%, #6DD5FA 100%)"
+                                bgGradient="linear(310deg,#FF4331,#D31A50)"
                                 bgClip="text"
                                 fontSize="2xl"
                                 fontWeight="extrabold"
@@ -169,7 +169,7 @@ const Dashboard = () => {
                     >
                         <Box p="12px 5px" my="12px">
                             <Text
-                                bgGradient="linear(310deg, #2980B9 0%, #6DD5FA 100%)"
+                                bgGradient="linear(310deg,#FF4331,#D31A50)"
                                 bgClip="text"
                                 fontSize="2xl"
                                 fontWeight="extrabold"
@@ -201,7 +201,6 @@ const Dashboard = () => {
                 </Grid>
             </Flex>
         </Flex>
-      </Flex>
     );
 };
 
