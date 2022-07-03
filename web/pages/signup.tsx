@@ -22,16 +22,16 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Layout from "../components/UI/Layout";
 import { useAuth } from "../hooks/auth";
-import { db } from "../lib/firebase";
+import { auth, db } from "../lib/firebase";
 
 const SignUp: NextPage = () => {
   const router = useRouter();
   const toast = useToast();
 
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setConfirmShowPassword] = useState(false);
-  const { user, signup } = useAuth();
-  const [isLoading, setIsLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setConfirmShowPassword] = useState(false);
+    const { signup } = useAuth();
+    const [isLoading, setIsLoading] = useState(false);
 
   const [signupData, setSignupData] = useState({
     email: "",
@@ -67,18 +67,23 @@ const SignUp: NextPage = () => {
     // console.log(user);
     console.log(signupData);
 
-    try {
-      setIsLoading(true);
-      await signup(signupData.email, signupData.password);
-      await setDoc(doc(db, "users", user.uid), {
-        firstname: signupData.firstname,
-        lastname: signupData.lastname,
-        age: signupData.age,
-        phone: signupData.phone,
-        email: signupData.email,
-        id: user.uid,
-        type: "user",
-      });
+        try {
+            setIsLoading(true);
+            const userCred = await signup(
+                signupData.email,
+                signupData.password
+            );
+            const user = userCred.user;
+
+            await setDoc(doc(db, "users", user.uid), {
+                firstname: signupData.firstname,
+                lastname: signupData.lastname,
+                age: signupData.age,
+                phone: signupData.phone,
+                email: signupData.email,
+                id: user.uid,
+                type: "user",
+            });
 
       router.push("/dashboard");
     } catch (err) {

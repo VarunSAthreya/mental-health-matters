@@ -1,5 +1,5 @@
-import React from 'react';
-import { ChevronRightIcon } from '@chakra-ui/icons';
+import React, { useEffect, useState } from "react";
+import { ChevronRightIcon } from "@chakra-ui/icons";
 import {
     Box,
     Breadcrumb,
@@ -8,30 +8,50 @@ import {
     Flex,
     Text,
     useColorModeValue,
-} from '@chakra-ui/react';
-import { NextPage } from 'next';
-import { useRouter } from 'next/router';
-import SideBar from '../components/Sidebar/Sidebar';
-import UserProfileCard from '../components/Card/UserProfileCard';
+} from "@chakra-ui/react";
+import { NextPage } from "next";
+import { useRouter } from "next/router";
+import SideBar from "../components/Sidebar/Sidebar";
+import UserProfileCard from "../components/Card/UserProfileCard";
+import { getUserDetails } from "../function";
+import { useAuth } from "../hooks/auth";
 
-const StudentDetails: NextPage = () => {
+const UserDetails: NextPage = () => {
+    const primaryBG = useColorModeValue("#f8f9fa", "#18191A");
+    const secondaryBG = useColorModeValue("white", "#242526");
 
-    const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
-    const secondaryBG = useColorModeValue('white', '#242526');
+    const { user } = useAuth();
+    const [userDetails, setUserDetails] = useState({
+        firstname: "",
+        lastname: "",
+        email: "",
+        phone: "",
+        age: 0,
+        id: "",
+    });
 
+    useEffect(() => {
+        getData();
+    }, [user.uid]);
+
+    const getData = async () => {
+        getUserDetails(user.uid).then((res) => {
+            return setUserDetails(res as any);
+        });
+    };
 
     return (
-        <Flex flexDirection={'row'} bg={primaryBG}>
+        <Flex flexDirection={"row"} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
-                pt={{ base: '120px', md: '25px' }}
-                marginLeft={'290px'}
-                width={'100%'}
+                pt={{ base: "120px", md: "25px" }}
+                marginLeft={"290px"}
+                width={"100%"}
                 px={4}
             >
-                <Box mb="22px" overflowX={{ sm: 'scroll', xl: 'hidden' }}>
-                    <Box pb={'25px'}>
+                <Box mb="22px" overflowX={{ sm: "scroll", xl: "hidden" }}>
+                    <Box pb={"25px"}>
                         <Flex
                             direction="column"
                             bg={secondaryBG}
@@ -44,7 +64,7 @@ const StudentDetails: NextPage = () => {
                                 bgClip="text"
                                 fontSize="4xl"
                                 fontWeight="extrabold"
-                                textTransform={'uppercase'}
+                                textTransform={"uppercase"}
                             >
                                 USER PROFILE
                             </Text>
@@ -58,12 +78,12 @@ const StudentDetails: NextPage = () => {
                                         href="/"
                                         color="gray.500"
                                         _hover={{
-                                            textDecoration: 'none',
-                                            color: '#FF0080',
+                                            textDecoration: "none",
+                                            color: "#FF0080",
                                         }}
-                                        _focus={{ outline: 'none' }}
+                                        _focus={{ outline: "none" }}
                                     >
-                                       Dashboard
+                                        Dashboard
                                     </BreadcrumbLink>
                                 </BreadcrumbItem>
                                 <BreadcrumbItem isCurrentPage>
@@ -71,10 +91,10 @@ const StudentDetails: NextPage = () => {
                                         href="#"
                                         color="gray.500"
                                         _hover={{
-                                            textDecoration: 'none',
-                                            color: '#FF0080',
+                                            textDecoration: "none",
+                                            color: "#FF0080",
                                         }}
-                                        _focus={{ outline: 'none' }}
+                                        _focus={{ outline: "none" }}
                                     >
                                         User Details
                                     </BreadcrumbLink>
@@ -83,7 +103,7 @@ const StudentDetails: NextPage = () => {
                         </Flex>
                     </Box>
                     <Box borderRadius={8}>
-                        <UserProfileCard />
+                        <UserProfileCard User={userDetails} />
                     </Box>
                 </Box>
             </Flex>
@@ -91,4 +111,4 @@ const StudentDetails: NextPage = () => {
     );
 };
 
-export default StudentDetails;
+export default UserDetails;

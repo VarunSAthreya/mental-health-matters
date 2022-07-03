@@ -26,6 +26,7 @@ const ContactCard: FunctionComponent = () => {
         name: "",
         email: "",
         message: "",
+        createdAt: new Date().toISOString(),
     });
     const [isLoading, setIsLoading] = useState(false);
 
@@ -55,6 +56,7 @@ const ContactCard: FunctionComponent = () => {
                 name: "",
                 email: "",
                 message: "",
+                createdAt: new Date().toISOString(),
             });
         } catch (err) {
             console.log(err);
