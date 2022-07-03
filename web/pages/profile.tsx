@@ -41,12 +41,12 @@ const UserDetails: NextPage = () => {
     };
 
     return (
-        <Flex flexDirection={"row"} bg={primaryBG}>
+        <Flex flexDirection={{base:"column",lg:"row"}} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
-                pt={{ base: "120px", md: "25px" }}
-                marginLeft={"290px"}
+                pt={{ base: "20px", md: "25px" }}
+                marginLeft={{ base: 0, lg: "290px" }}
                 width={"100%"}
                 px={4}
             >
@@ -79,7 +79,7 @@ const UserDetails: NextPage = () => {
                                         color="gray.500"
                                         _hover={{
                                             textDecoration: "none",
-                                            color: "#FF0080",
+                                            color: "#2980B9",
                                         }}
                                         _focus={{ outline: "none" }}
                                     >
@@ -92,7 +92,7 @@ const UserDetails: NextPage = () => {
                                         color="gray.500"
                                         _hover={{
                                             textDecoration: "none",
-                                            color: "#FF0080",
+                                            color: "#2980B9",
                                         }}
                                         _focus={{ outline: "none" }}
                                     >

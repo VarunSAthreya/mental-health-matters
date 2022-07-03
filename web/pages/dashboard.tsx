@@ -75,65 +75,61 @@ const Dashboard = () => {
     }
 
     return (
-        <Flex flexDirection={"row"} bg={primaryBG}>
-            <SideBar />
-            <Flex
-                flexDirection="column"
-                pt={{ base: "120px", md: "25px" }}
-                marginLeft={"295px"}
-                width={"100%"}
-                p={4}
-            >
-                <Stack
-                    direction={{ base: "column", md: "row" }}
-                    bg={secondaryBG}
-                    borderRadius={8}
+      <Flex flexDirection={{base:"column",lg:"row"}} bg={primaryBG}>
+        <SideBar />
+        <Flex
+          flexDirection="column"
+          pt={{ base: "120px", md: "25px" }}
+          marginLeft={{ base: 0, lg: "295px" }}
+          width={"100%"}
+          p={4}
+        >
+          <Stack
+            direction={{ base: "column", md: "row" }}
+            bg={secondaryBG}
+            borderRadius={8}
+          >
+            <Flex p={6} flexDir={"column"} justifyContent={"flex-start"}>
+              <Heading fontSize={{ base: "3xl" }}>
+                <Text
+                  as={"span"}
+                  position={"relative"}
+                  mr={2}
+                  _after={{
+                    content: "''",
+                    width: "full",
+                    height: textHeight,
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    zIndex: -1,
+                  }}
                 >
-                    <Flex
-                        p={6}
-                        flexDir={"column"}
-                        justifyContent={"flex-start"}
-                    >
-                        <Heading fontSize={{ base: "3xl" }}>
-                            <Text
-                                as={"span"}
-                                position={"relative"}
-                                mr={2}
-                                _after={{
-                                    content: "''",
-                                    width: "full",
-                                    height: textHeight,
-                                    position: "absolute",
-                                    bottom: 0,
-                                    left: 0,
-                                    zIndex: -1,
-                                }}
-                            >
-                                WELCOME
-                            </Text>
-                            <Text
-                                as={"span"}
-                                bgGradient="linear(310deg, #2980B9 0%, #6DD5FA 100%)"
-                                bgClip="text"
-                                fontSize="4xl"
-                                fontWeight="extrabold"
-                                textTransform={"uppercase"}
-                            >
-                                {userDetails.firstname} {userDetails.lastname}
-                            </Text>{" "}
-                        </Heading>
-                        <Text
-                            fontSize={{ base: "md", lg: "lg" }}
-                            color={"gray.500"}
-                            mt={3}
-                        >
-                            Here You get all the details about the doctor&apos;
-                            Schedule,Meeting schedule and all the payment plans
-                            and other important details.
-                        </Text>
-                    </Flex>
-                </Stack>
-                {/* <SimpleGrid columns={{ sm: 1, md: 2, xl: 4 }} spacing={12} mb={4}>
+                  WELCOME
+                </Text>
+                <Text
+                  as={"span"}
+                  bgGradient="linear(310deg, #2980B9 0%, #6DD5FA 100%)"
+                  bgClip="text"
+                  fontSize="4xl"
+                  fontWeight="extrabold"
+                  textTransform={"uppercase"}
+                >
+                  {userDetails.firstname} {userDetails.lastname}
+                </Text>{" "}
+              </Heading>
+              <Text
+                fontSize={{ base: "md", lg: "lg" }}
+                color={"gray.500"}
+                mt={3}
+              >
+                Here You get all the details about the doctor&apos;
+                Schedule,Meeting schedule and all the payment plans and other
+                important details.
+              </Text>
+            </Flex>
+          </Stack>
+          {/* <SimpleGrid columns={{ sm: 1, md: 2, xl: 4 }} spacing={12} mb={4}>
           <StatsCard title={"No.of Students"} count={5} icon={BsPeople} />
           <StatsCard title={"No.of Companies"} count={5} icon={BsBuilding} />
 
@@ -229,6 +225,7 @@ const Dashboard = () => {
                 </Grid>
             </Flex>
         </Flex>
+      </Flex>
     );
 };
 
