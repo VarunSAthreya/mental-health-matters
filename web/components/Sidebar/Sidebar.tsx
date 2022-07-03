@@ -17,11 +17,7 @@ import {
 import { useRouter } from 'next/router';
 import React from 'react';
 import {
-  BsBuilding,
-  BsFillPersonLinesFill,
-  BsPeople,
   BsPersonCircle,
-  BsPersonPlus,
 } from "react-icons/bs";
 import { FiHome, FiMenu } from "react-icons/fi";
 import { MdDashboard } from "react-icons/md";
@@ -84,7 +80,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
             >
                 <Box pt={'25px'} mb="12px">
                     <Text
-                        fontSize="1.3rem"
+                        fontSize="1.2rem"
                         mt="3px"
                         bgGradient="linear(to-r, #2980B9, #6DD5FA)"
                         bgClip="text"
@@ -93,7 +89,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                         onClick={() => router.push(`/`)}
                         cursor={'pointer'}
                     >
-                        PLACEMENT PORTAL
+                        MENTAL HEALTH PORTAL
                     </Text>
                     <Separator></Separator>
                 </Box>

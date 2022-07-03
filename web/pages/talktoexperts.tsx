@@ -31,38 +31,38 @@ const TalkToExperts: NextPage = () => {
             icon: MdEmojiPeople,
             text: "Individual Therapy",
             iconBg: "white",
-            color: useColorModeValue("purple.100", "purple.900"),
+            color: useColorModeValue("cyan.100", "cyan.900"),
         },
         {
             icon: MdFamilyRestroom,
             text: "Family Therapy",
             iconBg: "white",
-            color: useColorModeValue("purple.100", "purple.900"),
+            color: useColorModeValue("cyan.100", "cyan.900"),
         },
         {
             icon: MdChildCare,
             text: "Children Therapy",
             iconBg: "white",
-            color: useColorModeValue("purple.100", "purple.900"),
+            color: useColorModeValue("cyan.100", "cyan.900"),
         },
     ];
     const featureData2: IFeature[] = [
         {
             icon: MdEmojiPeople,
             text: "Individual therapy is one type of psychotherapy in which a trained professional helps a single person work through personal issues they have been facing. It is an effective treatment for a variety of emotional difficulties and mental illnesses.",
-            iconBg: useColorModeValue("purple.100", "purple.900"),
+            iconBg: useColorModeValue("cyan.100", "cyan.900"),
             color: "white",
         },
         {
             icon: MdFamilyRestroom,
             text: "Couples therapy can address a wide range of relationship issues, including recurring conflicts, feelings of disconnection, an affair or difficulties due to external stressors.",
-            iconBg: useColorModeValue("purple.100", "purple.900"),
+            iconBg: useColorModeValue("cyan.100", "cyan.900"),
             color: "white",
         },
         {
             icon: MdChildCare,
             text: "Child counseling is a type of therapy that focuses on young children, teens, and adolescents with one or more mental illnesses. It also provides aid to youths, who have experienced trauma, and/or who are experiencing a dysfunctional or stressful home environment.",
-            iconBg: useColorModeValue("purple.100", "purple.900"),
+            iconBg: useColorModeValue("cyan.100", "cyan.900"),
             color: "white",
         },
     ];
@@ -75,7 +75,7 @@ const TalkToExperts: NextPage = () => {
                             textTransform={"uppercase"}
                             fontWeight={600}
                             fontSize={"sm"}
-                            bg={"#521262"}
+                            bg={"#2980B9"}
                             color={"white"}
                             p={2}
                             alignSelf={"flex-start"}
@@ -131,13 +131,6 @@ const TalkToExperts: NextPage = () => {
                         />
                     </Flex>
                 </SimpleGrid>
-                <Box p={4} mt={16}>
-                    <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
-                        {featureData2.map((data, index) => (
-                            <Feature data={data} key={index} />
-                        ))}
-                    </SimpleGrid>
-                </Box>
                 <Stack
                     align={"center"}
                     spacing={{ base: 8, md: 10 }}
@@ -160,7 +153,7 @@ const TalkToExperts: NextPage = () => {
                                     position: "absolute",
                                     bottom: 1,
                                     left: 0,
-                                    bg: "purple.700",
+                                    bg: "cyan.700",
                                     zIndex: -1,
                                 }}
                             >
@@ -180,10 +173,10 @@ const TalkToExperts: NextPage = () => {
                             size={"lg"}
                             fontWeight={"normal"}
                             px={6}
-                            colorScheme={"purple"}
+                            colorScheme={"cyan"}
                             color={"white"}
-                            bg={"purple.700"}
-                            _hover={{ bg: "purple.800" }}
+                            bg={"cyan.700"}
+                            _hover={{ bg: "cyan.800" }}
                         >
                             Schedule a session
                         </Button>

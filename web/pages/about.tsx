@@ -18,80 +18,39 @@ import { FaBrain } from 'react-icons/fa';
 import { MdHearing } from 'react-icons/md';
 import Layout from '../components/UI/Layout';
 import LottieView from "../components/Lotte/LotteView";
+import animationData from '../public/lotte/about.json'
 
 const About: NextPage = () => {
     return (
       <Layout title="MHM | About">
         <Container maxW={"7xl"} p="12">
-          <Box display={"flex"}>
-            <Stack
-              as={Box}
-              textAlign={"start"}
-              w={"50%"}
-              spacing={{ base: 8 }}
-              my={4}
-              pt={{ base: 20}}
-              pb={36}
-            >
-              <Heading
-                color="white"
-                p={3}
-                fontWeight={600}
-                fontSize={{ base: "2xl", sm: "4xl" }}
-                lineHeight={"110%"}
-              >
-                About Us
-              </Heading>
-              <Text p={3} color="white">
-                Our mission to make quality healthcare affordable and accessible
-                for over a billion+ Indians. We believe in empowering our users
-                with the most accurate, comprehensive, and curated information
-                and care, enabling them to make better healthcare decisions
-              </Text>
-              <Stack
-                direction={"column"}
-                spacing={3}
-                align={"start"}
-                alignSelf={"start"}
-                position={"relative"}
-              >
-                {/* <Button
-                                bgGradient="linear(to-l, #0F3443, #34E89E)"
-                                width={'150px'}
-                                height={'50px'}
-                                px={10}
-                                _hover={{
-                                    bgGradient:
-                                        'linear(to-l, #0F3443, #34E89E)',
-                                }}
-                                _focus={{
-                                    outline: 'none',
-                                    bgGradient:
-                                        'linear(to-l, #0F3443, #34E89E)',
-                                }}
-                                _active={{
-                                    bgGradient:
-                                        'linear(to-l, #0F3443, #34E89E)',
-                                }}
-                                onClick={() => router.push('/learning')}
-                                rightIcon={<ArrowForwardIcon />}
-                            >
-                                Get Started
-                            </Button> */}
-              </Stack>
-            </Stack>
-            <Box
-              pos={"absolute"}
-              zIndex={50}
-              width={500}
-              height={385}
-              top={"5%"}
-              left={"58%"}
-            >
-              <LottieView />
-            </Box>
-          </Box>
+          <Stack
+            as={Box}
+            rounded={"lg"}
+            spacing={{ base: 2 }}
+            py={{ base: 10 }}
+            bg={"#242526"}
+          >
+            <Heading
+              p={3}
+              mb={3}
+              bgGradient="linear(310deg, #2980B9 0%, #6DD5FA 100%)"
+              bgClip="text"
+              fontWeight="extrabold"
+              textTransform={"uppercase"}
+              fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
+              lineHeight={"110%"}
 
+            >
+              About Us
+            </Heading>
+            <Text p={3} color={"gray.500"}>
+              Our mission to make quality healthcare affordable and accessible
+              for over a billion+ Indians. We believe in empowering our users
+              with the most accurate, comprehensive, and curated information and
+              care, enabling them to make better healthcare decisions
+            </Text>
+          </Stack>
           <SimpleGrid
             columns={{ base: 1, md: 2 }}
             spacing={10}
@@ -110,7 +69,7 @@ const About: NextPage = () => {
             <Stack spacing={4}>
               <Text
                 textTransform={"uppercase"}
-                color={"#521262"}
+                color={"#2980B9"}
                 fontWeight={600}
                 fontSize={"sm"}
                 p={2}
@@ -148,7 +107,7 @@ const About: NextPage = () => {
                   justify={"center"}
                   color={"white"}
                   rounded={"full"}
-                  bg={"#521262"}
+                  bg={"#2980B9"}
                   mb={1}
                 >
                   <Icon as={AiFillRead} w={10} h={10} />
@@ -166,7 +125,7 @@ const About: NextPage = () => {
                   justify={"center"}
                   color={"white"}
                   rounded={"full"}
-                  bg={"#521262"}
+                  bg={"#2980B9"}
                   mb={1}
                 >
                   <Icon as={FaBrain} w={10} h={10} />
@@ -184,7 +143,7 @@ const About: NextPage = () => {
                   justify={"center"}
                   color={"white"}
                   rounded={"full"}
-                  bg={"#521262"}
+                  bg={"#2980B9"}
                   mb={1}
                 >
                   <Icon as={BsFillPeopleFill} w={10} h={10} />
@@ -202,7 +161,7 @@ const About: NextPage = () => {
                   justify={"center"}
                   color={"white"}
                   rounded={"full"}
-                  bg={"#521262"}
+                  bg={"#2980B9"}
                   mb={1}
                 >
                   <Icon as={MdHearing} w={10} h={10} />

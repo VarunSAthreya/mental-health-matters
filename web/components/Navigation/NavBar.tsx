@@ -14,14 +14,14 @@ import React, { FunctionComponent } from "react";
 import Logo from "../Logo/Logo";
 import NavLink from "./NavLink";
 
-const Links = ["About", "Blogs", "TalkToExperts", "Contact"];
+const Links = ["About", "Blogs", "TalkToExperts", "Contact","Login"];
 
 const NavBar: FunctionComponent = () => {
     const { colorMode, toggleColorMode } = useColorMode();
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
         <>
-            <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+            <Box bg={useColorModeValue("gray.100", "#242526")} px={4}>
                 <Flex
                     h={16}
                     alignItems={"center"}

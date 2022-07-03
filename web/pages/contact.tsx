@@ -7,21 +7,23 @@ import Layout from '../components/UI/Layout';
 const Contact: NextPage = () => {
     return (
         <Layout title="MHM | Contact">
-            <Container maxW={'7xl'} p="12">
+            <Container maxW={'7xl'} p="8">
                 <Stack
                     as={Box}
                     rounded={'lg'}
                     spacing={{ base: 2 }}
-                    py={{ base: 20, md: 24 }}
-                    bg={'#521262'}
+                    py={{ base: 14 }}
+                    bg={'#242526'}
                 >
                     <Heading
                         p={3}
                         pl={5}
-                        fontWeight={600}
                         fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
                         lineHeight={'110%'}
-                        color="white"
+                        bgGradient="linear(310deg, #2980B9 0%, #6DD5FA 100%)"
+           bgClip="text"
+           fontWeight="extrabold"
+           textTransform={"uppercase"}
                     >
                         Contact
                     </Heading>

@@ -10,6 +10,7 @@ import {
     Text,
     useBreakpointValue,
     VStack,
+    Hide
 } from "@chakra-ui/react";
 import { NextPage } from "next";
 import React from "react";
@@ -21,6 +22,7 @@ import ServiceCard from "../components/Card/ServiceCard";
 import TestimonialCard from "../components/Card/TestimonialCard";
 import Layout from "../components/UI/Layout";
 import LottieView from "../components/Lotte/LotteView";
+import animationData from '../public/lotte/brain.json'
 
 const basicCardData: IBasicCard[] = [
     {
@@ -75,21 +77,22 @@ const Home: NextPage = () => {
         <Layout title="MHM">
             <Container maxW={"7xl"}>
                 {/*Poster*/}
-                <Box display={"flex"}>
+                <Box display={"flex"} flexDir={{base:"column-reverse",md:"row"}}>
                     <Stack
                         as={Box}
                         textAlign={"start"}
-                        w={"50%"}
+                        w={{base:'100%',md:"50%"}}
                         spacing={{ base: 8 }}
                         my={4}
-                        pt={{ base: 20, md: 48 }}
-                        pb={36}
+                        pt={{ base: 16, md: 36 }}
+                        pb={{ base: 16, md: 36 }}
                     >
-                        <Text color={"purple.400"}>MENTAL HEALTH MATTERS</Text>
+                        <Text color={"cyan.600"} textAlign={{base:"center",md:"start"}}>MENTAL HEALTH MATTERS</Text>
                         <Text
                             color={"gray.200"}
                             fontWeight={400}
                             lineHeight={1.2}
+                            textAlign={{base:"center",md:"start"}}
                             fontSize={useBreakpointValue({
                                 base: "2xl",
                             })}
@@ -99,8 +102,9 @@ const Home: NextPage = () => {
                             ways of dealing with
                         </Text>
                         <Text
-                            color={"purple.400"}
+                            color={"cyan.600"}
                             fontWeight={400}
+                            textAlign={{base:"center",md:"start"}}
                             lineHeight={1.2}
                             fontSize={useBreakpointValue({
                                 base: "2xl",
@@ -115,41 +119,21 @@ const Home: NextPage = () => {
                             alignSelf={"start"}
                             position={"relative"}
                         >
-                            {/* <Button
-                                bgGradient="linear(to-l, #0F3443, #34E89E)"
-                                width={'150px'}
-                                height={'50px'}
-                                px={10}
-                                _hover={{
-                                    bgGradient:
-                                        'linear(to-l, #0F3443, #34E89E)',
-                                }}
-                                _focus={{
-                                    outline: 'none',
-                                    bgGradient:
-                                        'linear(to-l, #0F3443, #34E89E)',
-                                }}
-                                _active={{
-                                    bgGradient:
-                                        'linear(to-l, #0F3443, #34E89E)',
-                                }}
-                                onClick={() => router.push('/learning')}
-                                rightIcon={<ArrowForwardIcon />}
-                            >
-                                Get Started
-                            </Button> */}
                         </Stack>
                     </Stack>
+                    <Hide below='md'>
                     <Box
                         pos={"absolute"}
                         zIndex={50}
-                        width={500}
+                        width={{md:400,lg:500}}
                         height={385}
-                        top={"3%"}
-                        left={"58%"}
+                        top={{md:"4%",lg:"3%"}}
+                        left={{md:"51%",lg:"58%"}}
                     >
-                        <LottieView />
+                        <LottieView animationData={animationData}/>
                     </Box>
+                    </Hide>
+                    
                 </Box>
                 {/*Welcome*/}
                 <Stack
@@ -244,7 +228,6 @@ const Home: NextPage = () => {
                         ))}
                     </SimpleGrid>
                 </Stack>
-                {/*Schedule*/}
             </Container>
         </Layout>
     );
