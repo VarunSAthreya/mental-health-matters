@@ -8,7 +8,7 @@ const Logo: FunctionComponent = () => {
                 <Image
                     src="/assets/images/logo.png"
                     alt="Logo"
-                    maxW={"150px"}
+                    maxW={"42px"}
                     h={"auto"}
                 />
             </Link>
