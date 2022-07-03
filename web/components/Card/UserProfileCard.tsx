@@ -37,7 +37,6 @@ const UserProfileCard: FC<Props> = ({ User }) => {
         <Grid
             templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }}
             gap="22px"
-            templateRows="repeat(2, 1fr)"
             mt={8}
         >
             <GridItem colSpan={1}>
@@ -196,7 +195,7 @@ const UserProfileCard: FC<Props> = ({ User }) => {
                     </Flex>
                 </Box>
             </GridItem>
-            <GridItem colSpan={{ base: 1, md: 4 }}>
+            <GridItem colSpan={{ base: 1, md: 4 }} rowSpan={1}>
                 <Box
                     display={"flex"}
                     flexDirection={"column"}

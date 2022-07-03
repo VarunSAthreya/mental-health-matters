@@ -41,7 +41,7 @@ const UserDetails: NextPage = () => {
     };
 
     return (
-        <Flex flexDirection={{base:"column",lg:"row"}} bg={primaryBG}>
+        <Flex flexDirection={{ base: "column", lg: "row" }} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
@@ -60,7 +60,7 @@ const UserDetails: NextPage = () => {
                             pb="1.5rem"
                         >
                             <Text
-                                bgGradient="linear-gradient(310deg, #2980B9 0%, #6DD5FA 100%)"
+                                bgGradient="linear-gradient(310deg,#FF4331,#D31A50)"
                                 bgClip="text"
                                 fontSize="4xl"
                                 fontWeight="extrabold"
@@ -79,7 +79,7 @@ const UserDetails: NextPage = () => {
                                         color="gray.500"
                                         _hover={{
                                             textDecoration: "none",
-                                            color: "#2980B9",
+                                            color: "#FF4331",
                                         }}
                                         _focus={{ outline: "none" }}
                                     >
@@ -92,7 +92,7 @@ const UserDetails: NextPage = () => {
                                         color="gray.500"
                                         _hover={{
                                             textDecoration: "none",
-                                            color: "#2980B9",
+                                            color: "#FF4331",
                                         }}
                                         _focus={{ outline: "none" }}
                                     >
