@@ -149,14 +149,14 @@ const Dashboard = () => {
                                 fontWeight="extrabold"
                                 textTransform={"uppercase"}
                             >
-                                Take a Quiz
+                                Take a Survey
                             </Text>
                             <Text
                                 fontSize={{ base: "md", lg: "lg" }}
                                 color={"gray.500"}
                                 mt={3}
                             >
-                                This Quiz is conducted in order to understand
+                                This Survey is conducted in order to understand
                                 your metal health status. So we can treat you
                                 better!
                             </Text>

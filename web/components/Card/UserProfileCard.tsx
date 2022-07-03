@@ -94,7 +94,7 @@ const UserProfileCard: FC<Props> = ({ User }) => {
                             color={"gray.500"}
                             mt={3}
                         >
-                            This Quiz is conducted in order to understand your
+                            This Survey is conducted in order to understand your
                             metal health status. So we can treat you better!
                         </Text>
                     </Box>
@@ -221,7 +221,7 @@ const UserProfileCard: FC<Props> = ({ User }) => {
                             color={"gray.500"}
                             mt={3}
                         >
-                            This Quiz is conducted in order to understand your
+                            This Survey is conducted in order to understand your
                             metal health status. So we can treat you better!
                         </Text>
                     </Box>

@@ -55,3 +55,17 @@ export const getAppointments = async (userId: string) => {
     const querySnapshot = await getDocs(q);
     return querySnapshot.docs.map((doc) => doc.data());
 };
+
+export const addSurvey = async ({
+    answers,
+    userId,
+}: {
+    answers: any;
+    userId: string;
+}) => {
+    return addDoc(collection(db, "survey"), {
+        userId,
+        survey: answers,
+        createdAt: new Date().toISOString(),
+    });
+};
