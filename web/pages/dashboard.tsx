@@ -5,20 +5,17 @@ import {
     Grid,
     Stack,
     Heading,
-    Select,
     Text,
     useColorModeValue,
     useBreakpointValue,
     Button,
-    HStack,
 } from "@chakra-ui/react";
 import SideBar from "../components/Sidebar/Sidebar";
-import { FaCheckCircle } from "react-icons/fa";
-import PriceCard from "../components/Card/PriceCard";
 import { getUserDetails, isPaymentDone } from "../function";
 import { useAuth } from "../hooks/auth";
 import { Loader } from "../components/Loader";
 import TotalPricing from "../components/Card/TotalPricing";
+import ScheduleAppointment from "../components/ScheduleAppointment";
 
 const Dashboard = () => {
     const primaryBG = useColorModeValue("#f8f9fa", "#18191A");
@@ -137,53 +134,7 @@ const Dashboard = () => {
           />
         </SimpleGrid> */}
                 <Grid templateColumns={{ sm: "1fr" }} gap="22px" mt={8}>
-                    {paymentDone && (
-                        <Box
-                            p="16px"
-                            my={{ sm: "24px", xl: "0px" }}
-                            bg={secondaryBG}
-                            borderRadius={8}
-                        >
-                            <Box p="12px 5px" mb="12px">
-                                <Text
-                                    bgGradient="linear(310deg, #2980B9 0%, #6DD5FA 100%)"
-                                    bgClip="text"
-                                    fontSize="2xl"
-                                    fontWeight="extrabold"
-                                    textTransform={"uppercase"}
-                                >
-                                    Schedule an Appointment
-                                </Text>
-                            </Box>
-                            <Box
-                                display={"flex"}
-                                justifyContent="center"
-                                px="5px"
-                            >
-                                <Select
-                                    placeholder="Select time"
-                                    variant="filled"
-                                    mr={2}
-                                >
-                                    <option value="option1">10 - 11</option>
-                                    <option value="option2">11 - 12</option>
-                                    <option value="option3">1 - 2</option>
-                                    <option value="option4">2 - 3</option>
-                                    <option value="option5">6 - 7</option>
-                                    <option value="option6">7 - 8</option>
-                                    <option value="option7">8 - 9</option>
-                                </Select>
-                            </Box>
-                            <Box
-                                display={"flex"}
-                                justifyContent="center"
-                                px="5px"
-                                my={4}
-                            >
-                                <Button>SET APPOINTMENT</Button>
-                            </Box>
-                        </Box>
-                    )}
+                    {paymentDone && <ScheduleAppointment />}
                     <Box
                         p="16px"
                         my={{ sm: "24px", xl: "0px" }}

@@ -5,6 +5,7 @@ import {
     query,
     where,
     getDocs,
+    addDoc,
 } from "firebase/firestore";
 import { db } from "../lib/firebase";
 
@@ -27,4 +28,12 @@ export const isPaymentDone = async (userId: string) => {
     const querySnapshot = await getDocs(q);
 
     return querySnapshot.size > 0;
+};
+
+export const setAppointment = async (
+    userId: string,
+    time: string,
+    date: string
+) => {
+    return await addDoc(collection(db, "appointment"), { userId, time, date });
 };
