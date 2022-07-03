@@ -51,7 +51,7 @@ const Footer: FunctionComponent = () => {
 
     return (
         <Box
-            bg={useColorModeValue("gray.50", "gray.900")}
+            bg={useColorModeValue("gray.50", "#242526")}
             color={useColorModeValue("gray.700", "gray.200")}
         >
             <Container as={Stack} maxW={"6xl"} py={10}>
@@ -102,7 +102,7 @@ const Footer: FunctionComponent = () => {
                             display="flex"
                             alignItems="center"
                             _hover={{
-                                color: "#521262",
+                                color: "#2980B9",
                             }}
                         >
                             <Icon boxSize={5} m={{ base: 2 }} as={MdPhone} />
@@ -123,7 +123,7 @@ const Footer: FunctionComponent = () => {
                             display="flex"
                             alignItems="center"
                             _hover={{
-                                color: "#521262",
+                                color: "#2980B9",
                             }}
                         >
                             <Icon boxSize={5} m={{ base: 2 }} as={MdEmail} />
@@ -161,7 +161,7 @@ const Footer: FunctionComponent = () => {
                             display="flex"
                             alignItems="center"
                             _hover={{
-                                color: "#521262",
+                                color: "#2980B9",
                                 textDecoration: "none",
                             }}
                         >
@@ -183,7 +183,7 @@ const Footer: FunctionComponent = () => {
                             display="flex"
                             alignItems="center"
                             _hover={{
-                                color: "#521262",
+                                color: "#2980B9",
                             }}
                         >
                             <Icon
@@ -208,7 +208,7 @@ const Footer: FunctionComponent = () => {
                             display="flex"
                             alignItems="center"
                             _hover={{
-                                color: "#521262",
+                                color: "#2980B9",
                             }}
                         >
                             <Icon boxSize={5} m={{ base: 2 }} as={BsTwitter} />
@@ -229,7 +229,7 @@ const Footer: FunctionComponent = () => {
                             display="flex"
                             alignItems="center"
                             _hover={{
-                                color: "#521262",
+                                color: "#2980B9",
                             }}
                         >
                             <Icon boxSize={5} m={{ base: 2 }} as={BsYoutube} />

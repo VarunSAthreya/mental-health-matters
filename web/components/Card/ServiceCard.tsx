@@ -21,10 +21,10 @@ const ServiceCard: FunctionComponent<Props> = ({ data }: Props) => {
       <Box
         p={6}
         display={"flex"}
-        flexDir={direction}
+        flexDir={{base:"column",md:direction}}
         w={"full"}
         alignItems={"center"}
-        bg={useColorModeValue("white", "gray.900")}
+        bg={useColorModeValue("white", "#242526")}
         boxShadow={"2xl"}
         rounded={"lg"}
       >

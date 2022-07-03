@@ -134,7 +134,7 @@ const ContactCard: FunctionComponent = () => {
                             <FormControl id="name" float="right">
                                 <Button
                                     variant="solid"
-                                    bg="#521262"
+                                    bg="#2980B9"
                                     color="white"
                                     _hover={{}}
                                     disabled={isLoading}

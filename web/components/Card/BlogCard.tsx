@@ -74,7 +74,7 @@ const BlogCard: NextPage<Props> = ({ blog }: Props) => {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <Button colorScheme={"purple"}>Read More</Button>
+                        <Button colorScheme={"cyan"}>Read More</Button>
                     </a>
                 </Box>
             </Box>
@@ -115,7 +115,7 @@ const BlogCard: NextPage<Props> = ({ blog }: Props) => {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <Button colorScheme={"purple"} variant={"outline"}>
+                        <Button colorScheme={"cyan"} variant={"outline"}>
                             Read More
                         </Button>
                     </a>
