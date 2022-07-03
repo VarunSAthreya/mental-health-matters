@@ -69,3 +69,9 @@ export const addSurvey = async ({
         createdAt: new Date().toISOString(),
     });
 };
+
+export const getSurvey = async (userId: string) => {
+    const q = query(collection(db, "survey"), where("userId", "==", userId));
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map((doc) => doc.data());
+};
