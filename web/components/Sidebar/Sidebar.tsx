@@ -22,6 +22,7 @@ import {
 import { FiHome, FiMenu } from "react-icons/fi";
 import { MdDashboard } from "react-icons/md";
 import IconBox from "../Icons/IconBox";
+import Logo from '../Logo/Logo';
 import Separator from "../Separator/Separator";
 
 const routes = [
@@ -32,7 +33,7 @@ const routes = [
 const SideBar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh">
+    <Box minH={{base:"10vh",lg:"100vh"}}>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "flex" }}
@@ -61,67 +62,60 @@ const SidebarContent = ({ onClose, ...rest }) => {
 
     const { colorMode, toggleColorMode } = useColorMode();
     return (
-        <Box
-            bg={useColorModeValue('white', '#242526')}
-            w={{ base: 'full', md: 72 }}
-            pos={'fixed'}
-            borderRadius={8}
-            left={2}
-            flexDirection={'column'}
-            top={6}
-            h="95%"
-            {...rest}
-        >
-            <Flex
-                h="20"
-                alignItems="center"
-                mx="6"
-                justifyContent="space-between"
+      <Box
+        bg={useColorModeValue("white", "#242526")}
+        w={{ base: "full", md: 72 }}
+        pos={{ base: "static", md: "fixed" }}
+        borderRadius={{ base: 0, md: 8 }}
+        left={2}
+        flexDirection={"column"}
+        top={6}
+        h={{ base: "100%", lg: "95%" }}
+        {...rest}
+      >
+        <Flex h="20" alignItems="center" mx="6" justifyContent="space-between">
+          <Box pt={"25px"} mb="12px">
+            <Text
+              fontSize="1.2rem"
+              mt="3px"
+              bgGradient="linear(to-r, #2980B9, #6DD5FA)"
+              bgClip="text"
+              fontWeight="bold"
+              textTransform={"uppercase"}
+              onClick={() => router.push(`/`)}
+              cursor={"pointer"}
             >
-                <Box pt={'25px'} mb="12px">
-                    <Text
-                        fontSize="1.2rem"
-                        mt="3px"
-                        bgGradient="linear(to-r, #2980B9, #6DD5FA)"
-                        bgClip="text"
-                        fontWeight="bold"
-                        textTransform={'uppercase'}
-                        onClick={() => router.push(`/`)}
-                        cursor={'pointer'}
-                    >
-                        MENTAL HEALTH PORTAL
-                    </Text>
-                    <Separator></Separator>
-                </Box>
-                <CloseButton
-                    display={{ base: 'flex', md: 'none' }}
-                    onClick={onClose}
-                />
-            </Flex>
-            <Flex flexDirection={'column'}>
-                {routes.map((link) => (
-                    <NavItem key={link.name} icon={link.icon} link={link.link}>
-                        {link.name}
-                    </NavItem>
-                ))}
-            </Flex>
-            <Flex justify={'center'} pos={'relative'} bottom={0}>
-                <Button
-                    onClick={toggleColorMode}
-                    _focus={{ outline: 'none' }}
-                    variant="no-hover"
-                    rightIcon={
-                        colorMode === 'light' ? <MoonIcon /> : <SunIcon />
-                    }
-                >
-                    {colorMode === 'light' ? (
-                        <Text mr={4}>DARK MODE</Text>
-                    ) : (
-                        <Text mr={4}>LIGHT MODE</Text>
-                    )}
-                </Button>
-            </Flex>
-        </Box>
+              MENTAL HEALTH PORTAL
+            </Text>
+            <Separator></Separator>
+          </Box>
+          <CloseButton
+            display={{ base: "flex", md: "none" }}
+            onClick={onClose}
+          />
+        </Flex>
+        <Flex flexDirection={"column"}>
+          {routes.map((link) => (
+            <NavItem key={link.name} icon={link.icon} link={link.link}>
+              {link.name}
+            </NavItem>
+          ))}
+        </Flex>
+        <Flex justify={"center"} pos={"relative"} bottom={0}>
+          <Button
+            onClick={toggleColorMode}
+            _focus={{ outline: "none" }}
+            variant="no-hover"
+            rightIcon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+          >
+            {colorMode === "light" ? (
+              <Text mr={4}>DARK MODE</Text>
+            ) : (
+              <Text mr={4}>LIGHT MODE</Text>
+            )}
+          </Button>
+        </Flex>
+      </Box>
     );
 };
 
@@ -217,7 +211,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                 icon={<FiMenu />}
             />
 
-            {/* <CreativeTimLogo w="32px" h="32px" me="10px" /> */}
+            <Logo/>
         </Flex>
     );
 };
