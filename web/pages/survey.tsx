@@ -1,25 +1,23 @@
-import React, { useState } from "react";
 import {
     Box,
+    Button,
     Flex,
     Grid,
-    SimpleGrid,
-    Stack,
     Heading,
-    Text,
-    Center,
     Select,
-    useColorModeValue,
-    Button,
     Spinner,
+    Stack,
+    Text,
     useBreakpointValue,
+    useColorModeValue,
     useToast,
 } from "@chakra-ui/react";
-import SideBar from "../components/Sidebar/Sidebar";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 import { ISurvey } from "../@types";
+import SideBar from "../components/Sidebar/Sidebar";
 import { addSurvey } from "../function";
 import { useAuth } from "../hooks/auth";
-import { useRouter } from "next/router";
 
 const Survey = () => {
     const primaryBG = useColorModeValue("#f8f9fa", "#18191A");

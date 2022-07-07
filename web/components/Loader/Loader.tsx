@@ -1,5 +1,5 @@
-import React, { FC } from "react";
 import { Center, Spinner, useColorModeValue } from "@chakra-ui/react";
+import { FC } from "react";
 
 const Loader: FC = () => {
     return (

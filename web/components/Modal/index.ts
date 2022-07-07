@@ -1,2 +1,1 @@
-export * from './ChangePassword';
-export * from './Error';
+export * from "./Error";

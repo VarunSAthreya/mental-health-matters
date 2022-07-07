@@ -1,15 +1,15 @@
 import {
     Box,
     Flex,
+    Icon,
     Stat,
     StatLabel,
     StatNumber,
     useColorModeValue,
-    Icon,
-} from '@chakra-ui/react';
-import React, { FC } from 'react';
-import { IconType } from 'react-icons';
-import IconBox from '../Icons/IconBox';
+} from "@chakra-ui/react";
+import { FC } from "react";
+import { IconType } from "react-icons";
+import IconBox from "../Icons/IconBox";
 
 type Props = {
     title: string;
@@ -21,7 +21,7 @@ const StatsCard: FC<Props> = ({ title, count, icon }) => {
     return (
         <Box
             minH="83px"
-            bg={useColorModeValue('white', '#242526')}
+            bg={useColorModeValue("white", "#242526")}
             p={4}
             borderRadius={8}
         >
@@ -37,17 +37,17 @@ const StatsCard: FC<Props> = ({ title, count, icon }) => {
                     </StatLabel>
                     <StatNumber
                         fontSize="md"
-                        color={useColorModeValue('black', 'white')}
+                        color={useColorModeValue("black", "white")}
                     >
                         {count}
                     </StatNumber>
                 </Stat>
                 <IconBox
-                    h={'45px'}
-                    w={'45px'}
-                    bg={'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'}
+                    h={"45px"}
+                    w={"45px"}
+                    bg={"linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)"}
                 >
-                    <Icon h={'24px'} w={'24px'} color="white" as={icon} />
+                    <Icon h={"24px"} w={"24px"} color="white" as={icon} />
                 </IconBox>
             </Flex>
         </Box>

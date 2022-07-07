@@ -1,197 +1,197 @@
 export const stack = {
-  hidden: {
-    opacity: 0,
-    x:-100
-  },
-  whileInView: {
-    opacity: 1,
-    x:0,
-    transition: {
-      delay: 0.5,
-      duration: 0.6,
-  },
-},
-  exit: {
-    x:-100,
-    opacity: 0,
-  },
-  };
-
-  export const innerStack = {
     hidden: {
         opacity: 0,
-        x:-80
-      },
-      whileInView: {
-        opacity: 1,
-        x:0
+        x: -100,
     },
-      exit: {
+    whileInView: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            delay: 0.5,
+            duration: 0.6,
+        },
+    },
+    exit: {
+        x: -100,
         opacity: 0,
-        x:-80,
-      },
-  }
+    },
+};
 
-  export const image = {
+export const innerStack = {
     hidden: {
         opacity: 0,
-        x:100
-      },
-      whileInView: {
-        opacity: 1,
-        x:0
+        x: -80,
     },
-      exit: {
+    whileInView: {
+        opacity: 1,
+        x: 0,
+    },
+    exit: {
         opacity: 0,
-        x:100,
-      },
-  }
+        x: -80,
+    },
+};
 
-  export const secondaryImage = {
+export const image = {
     hidden: {
         opacity: 0,
-        x:10
-      },
-      whileInView: {
-        opacity: 1,
-        x:0
+        x: 100,
     },
-      exit: {
+    whileInView: {
+        opacity: 1,
+        x: 0,
+    },
+    exit: {
         opacity: 0,
-        x:10,
-      },
-  }
+        x: 100,
+    },
+};
 
-  export const divider = {
-      hidden: { width: 0 },
-      whileInView: {
-          width: '100%',
-          transition: {
-              delay: 0.2,
-              duration: 0.4,
-          },
-      },
-  };
+export const secondaryImage = {
+    hidden: {
+        opacity: 0,
+        x: 10,
+    },
+    whileInView: {
+        opacity: 1,
+        x: 0,
+    },
+    exit: {
+        opacity: 0,
+        x: 10,
+    },
+};
 
-  export const secondaryDivider = {
+export const divider = {
     hidden: { width: 0 },
     whileInView: {
-        width: '10%',
+        width: "100%",
+        transition: {
+            delay: 0.2,
+            duration: 0.4,
+        },
+    },
+};
+
+export const secondaryDivider = {
+    hidden: { width: 0 },
+    whileInView: {
+        width: "10%",
         transition: {
             delay: 0.2,
             duration: 0.8,
         },
     },
-  }
+};
 
-  export const aspectRatio = {
+export const aspectRatio = {
     hidden: {
         opacity: 0,
-        x:-10
-      },
-      whileInView: {
-        opacity: 1,
-        x:0
+        x: -10,
     },
-      exit: {
-        opacity: 0,
-        x:-10
-      },
-  }
-
-  export const secondaryStack = {
-    hidden: {
-        opacity: 0,
-        x:100
-      },
-      whileInView: {
+    whileInView: {
         opacity: 1,
-        x:0
+        x: 0,
     },
-      exit: {
+    exit: {
         opacity: 0,
-        x:100,
-      },
-  }
+        x: -10,
+    },
+};
 
-  export const box = {
+export const secondaryStack = {
     hidden: {
         opacity: 0,
-        x:100
-      },
-      whileInView: {
+        x: 100,
+    },
+    whileInView: {
         opacity: 1,
-        x:0,
+        x: 0,
+    },
+    exit: {
+        opacity: 0,
+        x: 100,
+    },
+};
+
+export const box = {
+    hidden: {
+        opacity: 0,
+        x: 100,
+    },
+    whileInView: {
+        opacity: 1,
+        x: 0,
         transition: {
-          delay: 0.5,
-          duration: 0.6,
-      },
+            delay: 0.5,
+            duration: 0.6,
+        },
     },
-      exit: {
+    exit: {
         opacity: 0,
-      },
-  }
+    },
+};
 
-  export const gridItem = {
+export const gridItem = {
     hidden: {
         opacity: 0,
-        y:-80
-      },
-      whileInView: {
-        opacity: 1,
-        y:0
+        y: -80,
     },
-      exit: {
+    whileInView: {
+        opacity: 1,
+        y: 0,
+    },
+    exit: {
         opacity: 0,
-        y:-80,
-      },
-  }
+        y: -80,
+    },
+};
 
-  export const secondaryGridItem = {
+export const secondaryGridItem = {
     hidden: {
         opacity: 0,
-        y:-80
-      },
-      whileInView: {
-        opacity: 1,
-        y:0
+        y: -80,
     },
-      exit: {
+    whileInView: {
+        opacity: 1,
+        y: 0,
+    },
+    exit: {
         opacity: 0,
-        y:-80,
-      },
-  }
+        y: -80,
+    },
+};
 
-  export const simpleGrid = {
-      hidden: {
-          opacity: 0,
-      },
-      visible: {
-          opacity: 1,
-          transition: {
-              staggerChildren: 0.2,
-          },
-      },
-      exit: {
-          opacity: 0,
-          transition: {
-              delay: 0.2,
-              duration: 0.5,
-          },
-      },
-  };
-
-  export const ternaryStack = {
+export const simpleGrid = {
     hidden: {
         opacity: 0,
-        y:80
-      },
-      whileInView: {
-        opacity: 1,
-        y:0
     },
-      exit: {
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.2,
+        },
+    },
+    exit: {
         opacity: 0,
-        y:80,
-      },
-  }
+        transition: {
+            delay: 0.2,
+            duration: 0.5,
+        },
+    },
+};
+
+export const ternaryStack = {
+    hidden: {
+        opacity: 0,
+        y: 80,
+    },
+    whileInView: {
+        opacity: 1,
+        y: 0,
+    },
+    exit: {
+        opacity: 0,
+        y: 80,
+    },
+};

@@ -1,11 +1,10 @@
-import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
-import theme from "../styles/theme";
-import React from "react";
+import type { AppProps } from "next/app";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import ProtectedRoute from "../components/ProtectedRoute";
 import { AuthContextProvider } from "../hooks/auth";
-import Head from "next/head";
+import theme from "../styles/theme";
 
 const noAuthRequired = [
     "/",

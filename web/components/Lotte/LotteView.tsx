@@ -1,13 +1,12 @@
-import { useLottie } from 'lottie-react';
-import animationData from '../../public/lotte/brain.json';
+import { useLottie } from "lottie-react";
 
-const LottieView = (props) => {
+const LottieView = (props: any) => {
     const defaultOptions = {
         loop: true,
         autoplay: true,
         animationData: props.animationData,
         rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice',
+            preserveAspectRatio: "xMidYMid slice",
         },
     };
     const { View } = useLottie(defaultOptions);

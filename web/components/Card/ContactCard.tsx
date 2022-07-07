@@ -7,14 +7,14 @@ import {
     Input,
     InputGroup,
     InputLeftElement,
-    Textarea,
-    VStack,
-    useToast,
     Spinner,
+    Textarea,
+    useToast,
+    VStack,
     WrapItem,
 } from "@chakra-ui/react";
 import { addDoc, collection } from "firebase/firestore";
-import React, { FunctionComponent, useState } from "react";
+import { FunctionComponent, useState } from "react";
 import { BsPerson } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
 import { db } from "../../lib/firebase";

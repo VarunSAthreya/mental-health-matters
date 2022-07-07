@@ -8,8 +8,7 @@ import {
     Text,
     useColorModeValue,
 } from "@chakra-ui/react";
-import { NextPage } from "next";
-import React, { FC } from "react";
+import { FC } from "react";
 import { IBlog } from "../../@types";
 
 type Props = {

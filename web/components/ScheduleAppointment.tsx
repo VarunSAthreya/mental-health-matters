@@ -1,14 +1,14 @@
 import {
+    Box,
+    Button,
     Input,
     Select,
-    Box,
-    Text,
     Spinner,
-    Button,
+    Text,
     useColorModeValue,
     useToast,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { useState } from "react";
 import { setAppointment } from "../function";
 import { useAuth } from "../hooks/auth";
 

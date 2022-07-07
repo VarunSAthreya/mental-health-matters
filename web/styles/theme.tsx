@@ -1,16 +1,16 @@
-import { extendTheme } from '@chakra-ui/react';
-import { mode } from '@chakra-ui/theme-tools';
+import { extendTheme } from "@chakra-ui/react";
+import { mode } from "@chakra-ui/theme-tools";
 
 const theme = extendTheme({
     styles: {
         global: (props: any) => ({
             body: {
-                bg: mode('#f8f9fa', '#111111')(props),
+                bg: mode("#f8f9fa", "#111111")(props),
             },
         }),
     },
     config: {
-        initialColorMode: 'dark',
+        initialColorMode: "dark",
         useSystemColorMode: false,
     },
 });

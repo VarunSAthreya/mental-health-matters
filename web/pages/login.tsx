@@ -1,25 +1,23 @@
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
-    Flex,
     Box,
+    Button,
+    Flex,
     FormControl,
     FormLabel,
+    Heading,
     Input,
     InputGroup,
-    HStack,
     InputRightElement,
-    Stack,
-    Button,
-    Heading,
-    Text,
     Spinner,
+    Stack,
+    Text,
     useColorModeValue,
-    Link,
 } from "@chakra-ui/react";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
-import { useAuth } from "../hooks/auth";
+import { useState } from "react";
 import Layout from "../components/UI/Layout";
+import { useAuth } from "../hooks/auth";
 
 const Login = () => {
     const router = useRouter();

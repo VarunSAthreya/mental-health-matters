@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Link, useColorModeValue } from "@chakra-ui/react";
-import React, { FunctionComponent } from "react";
 import { useRouter } from "next/router";
 
 const NavLink = ({ children }: { children: string }) => {

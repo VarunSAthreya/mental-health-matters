@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from "react";
 import {
     Box,
+    Button,
     Flex,
     Grid,
-    Stack,
     Heading,
+    Stack,
     Text,
-    useColorModeValue,
     useBreakpointValue,
-    Button,
+    useColorModeValue,
 } from "@chakra-ui/react";
-import SideBar from "../components/Sidebar/Sidebar";
-import { getUserDetails, isPaymentDone, getSurvey } from "../function";
-import { useAuth } from "../hooks/auth";
-import { Loader } from "../components/Loader";
-import TotalPricing from "../components/Card/TotalPricing";
-import ScheduleAppointment from "../components/ScheduleAppointment";
 import { useRouter } from "next/router";
-import { ISurvey } from "../@types";
+import { useEffect, useState } from "react";
+import TotalPricing from "../components/Card/TotalPricing";
+import { Loader } from "../components/Loader";
+import ScheduleAppointment from "../components/ScheduleAppointment";
+import SideBar from "../components/Sidebar/Sidebar";
+import { getSurvey, getUserDetails, isPaymentDone } from "../function";
+import { useAuth } from "../hooks/auth";
 
 const Dashboard = () => {
     const primaryBG = useColorModeValue("#f8f9fa", "#18191A");
@@ -75,61 +74,65 @@ const Dashboard = () => {
     }
 
     return (
-      <Flex flexDirection={{base:"column",lg:"row"}} bg={primaryBG}>
-        <SideBar />
-        <Flex
-          flexDirection="column"
-          pt={{ base: "120px", md: "25px" }}
-          marginLeft={{ base: 0, lg: "295px" }}
-          width={"100%"}
-          p={4}
-        >
-          <Stack
-            direction={{ base: "column", md: "row" }}
-            bg={secondaryBG}
-            borderRadius={8}
-          >
-            <Flex p={6} flexDir={"column"} justifyContent={"flex-start"}>
-              <Heading fontSize={{ base: "3xl" }}>
-                <Text
-                  as={"span"}
-                  position={"relative"}
-                  mr={2}
-                  _after={{
-                    content: "''",
-                    width: "full",
-                    height: textHeight,
-                    position: "absolute",
-                    bottom: 0,
-                    left: 0,
-                    zIndex: -1,
-                  }}
+        <Flex flexDirection={{ base: "column", lg: "row" }} bg={primaryBG}>
+            <SideBar />
+            <Flex
+                flexDirection="column"
+                pt={{ base: "120px", md: "25px" }}
+                marginLeft={{ base: 0, lg: "295px" }}
+                width={"100%"}
+                p={4}
+            >
+                <Stack
+                    direction={{ base: "column", md: "row" }}
+                    bg={secondaryBG}
+                    borderRadius={8}
                 >
-                  WELCOME
-                </Text>
-                <Text
-                  as={"span"}
-                  bgGradient="linear(310deg,#FF4331,#D31A50)"
-                  bgClip="text"
-                  fontSize="4xl"
-                  fontWeight="extrabold"
-                  textTransform={"uppercase"}
-                >
-                  {userDetails.firstname} {userDetails.lastname}
-                </Text>{" "}
-              </Heading>
-              <Text
-                fontSize={{ base: "md", lg: "lg" }}
-                color={"gray.500"}
-                mt={3}
-              >
-                Here You get all the details about the doctor&apos;
-                Schedule,Meeting schedule and all the payment plans and other
-                important details.
-              </Text>
-            </Flex>
-          </Stack>
-          {/* <SimpleGrid columns={{ sm: 1, md: 2, xl: 4 }} spacing={12} mb={4}>
+                    <Flex
+                        p={6}
+                        flexDir={"column"}
+                        justifyContent={"flex-start"}
+                    >
+                        <Heading fontSize={{ base: "3xl" }}>
+                            <Text
+                                as={"span"}
+                                position={"relative"}
+                                mr={2}
+                                _after={{
+                                    content: "''",
+                                    width: "full",
+                                    height: textHeight,
+                                    position: "absolute",
+                                    bottom: 0,
+                                    left: 0,
+                                    zIndex: -1,
+                                }}
+                            >
+                                WELCOME
+                            </Text>
+                            <Text
+                                as={"span"}
+                                bgGradient="linear(310deg,#FF4331,#D31A50)"
+                                bgClip="text"
+                                fontSize="4xl"
+                                fontWeight="extrabold"
+                                textTransform={"uppercase"}
+                            >
+                                {userDetails.firstname} {userDetails.lastname}
+                            </Text>{" "}
+                        </Heading>
+                        <Text
+                            fontSize={{ base: "md", lg: "lg" }}
+                            color={"gray.500"}
+                            mt={3}
+                        >
+                            Here You get all the details about the doctor&apos;
+                            Schedule,Meeting schedule and all the payment plans
+                            and other important details.
+                        </Text>
+                    </Flex>
+                </Stack>
+                {/* <SimpleGrid columns={{ sm: 1, md: 2, xl: 4 }} spacing={12} mb={4}>
           <StatsCard title={"No.of Students"} count={5} icon={BsPeople} />
           <StatsCard title={"No.of Companies"} count={5} icon={BsBuilding} />
 

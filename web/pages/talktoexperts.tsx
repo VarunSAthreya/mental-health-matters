@@ -1,27 +1,19 @@
-import React from "react";
 import {
     Box,
     Button,
     Container,
     Flex,
     Heading,
-    HStack,
     Image,
-    List,
-    ListIcon,
-    ListItem,
     SimpleGrid,
     Stack,
     StackDivider,
     Text,
     useColorModeValue,
-    VStack,
 } from "@chakra-ui/react";
 import { NextPage } from "next";
-import { FaCheckCircle } from "react-icons/fa";
 import { MdChildCare, MdEmojiPeople, MdFamilyRestroom } from "react-icons/md";
 import { IFeature } from "../@types";
-import PriceCard from "../components/Card/PriceCard";
 import Feature from "../components/UI/Feature";
 import Layout from "../components/UI/Layout";
 

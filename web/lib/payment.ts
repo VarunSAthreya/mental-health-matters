@@ -1,21 +1,5 @@
 import axios from "axios";
 
-{
-    /* <Button
-                    onClick={async () => {
-                        console.log("Clicked");
-                        await loadScript();
-
-                        const onFinish = (payemntId: any) => {
-                            console.log(payemntId);
-                        };
-                        await showRazorpay({ amount: 100, window, onFinish });
-                    }}
-                >
-                    Pay
-                </Button> */
-}
-
 export const loadScript = async () => {
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";

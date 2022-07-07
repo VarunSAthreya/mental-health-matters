@@ -8,18 +8,18 @@ import {
     ListIcon,
     ListItem,
     Stack,
-    useColorModeValue,
     Text,
+    useColorModeValue,
     VStack,
 } from "@chakra-ui/react";
 import { addDoc, collection } from "firebase/firestore";
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { useAuth } from "../../hooks/auth";
-import { loadScript, showRazorpay } from "../../lib/payment";
-import PriceCard from "./PriceCard";
 import { db } from "../../lib/firebase";
+import { loadScript, showRazorpay } from "../../lib/payment";
 import { Loader } from "../Loader";
+import PriceCard from "./PriceCard";
 
 const TotalPricing = () => {
     const { user } = useAuth();

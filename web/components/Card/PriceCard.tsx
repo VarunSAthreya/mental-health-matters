@@ -1,5 +1,5 @@
 import { Box, useColorModeValue } from "@chakra-ui/react";
-import React, { FunctionComponent, ReactNode } from "react";
+import { ReactNode } from "react";
 
 const PriceCard = ({ children }: { children: ReactNode }) => {
     return (

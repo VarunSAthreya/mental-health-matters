@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import {
     Box,
@@ -10,9 +9,9 @@ import {
     useColorModeValue,
 } from "@chakra-ui/react";
 import { NextPage } from "next";
-import { useRouter } from "next/router";
-import SideBar from "../components/Sidebar/Sidebar";
+import { useEffect, useState } from "react";
 import UserProfileCard from "../components/Card/UserProfileCard";
+import SideBar from "../components/Sidebar/Sidebar";
 import { getUserDetails } from "../function";
 import { useAuth } from "../hooks/auth";
 

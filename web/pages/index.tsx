@@ -1,48 +1,28 @@
 import {
     Box,
-    Button,
+    BoxProps,
     Container,
-    Flex,
     Heading,
+    Hide,
     Image,
+    ImageProps,
     SimpleGrid,
+    SimpleGridProps,
     Stack,
+    StackProps,
     Text,
     useBreakpointValue,
-    VStack,
-    Hide,
-    StackProps,
-    BoxProps,
-    ImageProps,
-    SimpleGridProps,
     useColorModeValue,
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import { NextPage } from "next";
-import { motion } from 'framer-motion';
-import React from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { FaPeopleCarry, FaRunning } from "react-icons/fa";
-import { IBasicCard, IService, ITestimonial } from "../@types";
+import { IBasicCard, IService } from "../@types";
 import BasicCard from "../components/Card/BasicCard";
 import ServiceCard from "../components/Card/ServiceCard";
-import TestimonialCard from "../components/Card/TestimonialCard";
-import Layout from "../components/UI/Layout";
 import LottieView from "../components/Lotte/LotteView";
-import {
-    aspectRatio,
-    box,
-    divider,
-    gridItem,
-    image,
-    innerStack,
-    secondaryDivider,
-    secondaryGridItem,
-    secondaryImage,
-    secondaryStack,
-    simpleGrid,
-    stack,
-    ternaryStack,
-} from '../util/variants';
+import Layout from "../components/UI/Layout";
 import animationData from "../public/lotte/brain.json";
 
 const basicCardData: IBasicCard[] = [

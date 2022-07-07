@@ -1,6 +1,5 @@
 import { Flex, Icon, Stack, Text } from "@chakra-ui/react";
-import { NextPage } from "next";
-import React, { FC } from "react";
+import { FC } from "react";
 import { IFeature } from "../../@types";
 
 type Props = {

@@ -1,28 +1,28 @@
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
-    FormLabel,
-    Stack,
-    InputRightElement,
     Box,
-    Flex,
-    useColorModeValue,
-    Heading,
     Button,
-    Text,
-    HStack,
+    Flex,
     FormControl,
+    FormLabel,
+    Heading,
+    HStack,
     Input,
-    Spinner,
-    useToast,
     InputGroup,
+    InputRightElement,
+    Spinner,
+    Stack,
+    Text,
+    useColorModeValue,
+    useToast,
 } from "@chakra-ui/react";
-import { setDoc, doc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { useState } from "react";
 import Layout from "../components/UI/Layout";
 import { useAuth } from "../hooks/auth";
-import { auth, db } from "../lib/firebase";
+import { db } from "../lib/firebase";
 
 const SignUp: NextPage = () => {
     const router = useRouter();

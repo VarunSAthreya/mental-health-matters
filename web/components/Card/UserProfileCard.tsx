@@ -2,13 +2,13 @@ import {
     Avatar,
     Box,
     Flex,
-    Text,
     Grid,
     GridItem,
+    Text,
     useColorModeValue,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { IAppointment } from "../../@types";
 import { getAppointments } from "../../function";
 

@@ -9,7 +9,7 @@ import {
     Text,
     useColorModeValue,
 } from "@chakra-ui/react";
-import React, { FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 import {
     BsFacebook,
     BsGithub,
@@ -20,8 +20,8 @@ import {
 } from "react-icons/bs";
 import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md";
 import { ISocialMedia } from "../../@types";
-import SocialMedia from "../UI/SocialMedia";
 import Logo from "../Logo/Logo";
+import SocialMedia from "../UI/SocialMedia";
 
 const Footer: FunctionComponent = () => {
     const varun: ISocialMedia[] = [

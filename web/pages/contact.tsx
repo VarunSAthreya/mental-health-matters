@@ -1,6 +1,5 @@
 import { Box, Center, Container, Heading, Stack, Text } from "@chakra-ui/react";
 import { NextPage } from "next";
-import React from "react";
 import ContactCard from "../components/Card/ContactCard";
 import Layout from "../components/UI/Layout";
 

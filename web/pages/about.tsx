@@ -8,17 +8,13 @@ import {
     SimpleGrid,
     Stack,
     Text,
-    useBreakpointValue,
 } from "@chakra-ui/react";
 import { NextPage } from "next";
-import React from "react";
 import { AiFillRead } from "react-icons/ai";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { FaBrain } from "react-icons/fa";
 import { MdHearing } from "react-icons/md";
 import Layout from "../components/UI/Layout";
-import LottieView from "../components/Lotte/LotteView";
-import animationData from "../public/lotte/about.json";
 
 const About: NextPage = () => {
     return (
