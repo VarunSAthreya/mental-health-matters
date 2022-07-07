@@ -1,22 +1,22 @@
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
-  FormLabel,
-  Stack,
-  InputRightElement,
-  Box,
-  Flex,
-  useColorModeValue,
-  Heading,
-  Button,
-  Text,
-  HStack,
-  FormControl,
-  Input,
-  useToast,
-  InputGroup,
+    FormLabel,
+    Stack,
+    InputRightElement,
+    Box,
+    Flex,
+    useColorModeValue,
+    Heading,
+    Button,
+    Text,
+    HStack,
+    FormControl,
+    Input,
+    Spinner,
+    useToast,
+    InputGroup,
 } from "@chakra-ui/react";
 import { setDoc, doc } from "firebase/firestore";
-import { Spinner } from "native-base";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -25,47 +25,47 @@ import { useAuth } from "../hooks/auth";
 import { auth, db } from "../lib/firebase";
 
 const SignUp: NextPage = () => {
-  const router = useRouter();
-  const toast = useToast();
+    const router = useRouter();
+    const toast = useToast();
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setConfirmShowPassword] = useState(false);
     const { signup } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
 
-  const [signupData, setSignupData] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    firstname: "",
-    lastname: "",
-    age: "",
-    phone: "",
-  });
+    const [signupData, setSignupData] = useState({
+        email: "",
+        password: "",
+        confirmPassword: "",
+        firstname: "",
+        lastname: "",
+        age: "",
+        phone: "",
+    });
 
-  const handelSubmit = async (e: any) => {
-    e.preventDefault();
-    if (
-      signupData.password === "" ||
-      signupData.confirmPassword === "" ||
-      signupData.firstname === "" ||
-      signupData.age === "" ||
-      signupData.phone === ""
-    ) {
-      return;
-    }
-    if (signupData.password !== signupData.confirmPassword) {
-      toast({
-        title: "Please fill all the fields",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
-      return;
-    }
+    const handelSubmit = async (e: any) => {
+        e.preventDefault();
+        if (
+            signupData.password === "" ||
+            signupData.confirmPassword === "" ||
+            signupData.firstname === "" ||
+            signupData.age === "" ||
+            signupData.phone === ""
+        ) {
+            return;
+        }
+        if (signupData.password !== signupData.confirmPassword) {
+            toast({
+                title: "Please fill all the fields",
+                status: "error",
+                duration: 3000,
+                isClosable: true,
+            });
+            return;
+        }
 
-    // console.log(user);
-    console.log(signupData);
+        // console.log(user);
+        console.log(signupData);
 
         try {
             setIsLoading(true);
@@ -85,203 +85,223 @@ const SignUp: NextPage = () => {
                 type: "user",
             });
 
-      router.push("/dashboard");
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+            router.push("/dashboard");
+        } catch (err) {
+            console.log(err);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
-  return (
-    <Layout title="MHM | Sign Up">
-      <Flex minH={"100vh"} align={"center"} justify={"center"} my={10}>
-        <Stack
-          spacing={8}
-          mx={"auto"}
-          maxW={"lg"}
-          py={12}
-          px={6}
-          bg={useColorModeValue("white", "#242526")}
-          boxShadow={"lg"}
-          rounded={"lg"}
-        >
-          <Stack align={"center"}>
-            <Heading
-              fontSize={"4xl"}
-              textAlign={"center"}
-              bgGradient="linear(310deg,#FF4331,#D31A50)"
-              bgClip="text"
-              fontWeight="bold"
-              textTransform={"uppercase"}
-            >
-              {"Sign Up"}
-            </Heading>
-          </Stack>
-          <Box p={8}>
-            <Stack spacing={4}>
-              <HStack>
-                <Box>
-                  <FormControl id="firstName" isRequired>
-                    <FormLabel>First Name</FormLabel>
-                    <Input
-                      type="text"
-                      onChange={(e) =>
-                        setSignupData({
-                          ...signupData,
-                          firstname: e.target.value,
-                        })
-                      }
-                    />
-                  </FormControl>
-                </Box>
-                <Box>
-                  <FormControl id="lastName">
-                    <FormLabel>Last Name</FormLabel>
-                    <Input
-                      type="text"
-                      onChange={(e) =>
-                        setSignupData({
-                          ...signupData,
-                          lastname: e.target.value,
-                        })
-                      }
-                    />
-                  </FormControl>
-                </Box>
-              </HStack>
-              <FormControl id="phone" isRequired>
-                <FormLabel>Phone</FormLabel>
-                <Input
-                  type="number"
-                  onChange={(e) =>
-                    setSignupData({
-                      ...signupData,
-                      phone: e.target.value,
-                    })
-                  }
-                />
-              </FormControl>
-              <FormControl id="age" isRequired>
-                <FormLabel>Age</FormLabel>
-                <Input
-                  type="number"
-                  onChange={(e) =>
-                    setSignupData({
-                      ...signupData,
-                      age: e.target.value,
-                    })
-                  }
-                />
-              </FormControl>
-              <FormControl id="email" isRequired>
-                <FormLabel>Email address</FormLabel>
-                <Input
-                  type="email"
-                  onChange={(e) =>
-                    setSignupData({
-                      ...signupData,
-                      email: e.target.value,
-                    })
-                  }
-                />
-              </FormControl>
-              <FormControl id="password" isRequired>
-                <FormLabel>Password</FormLabel>
-                <InputGroup>
-                  <Input
-                    type={showPassword ? "text" : "password"}
-                    onChange={(e) =>
-                      setSignupData({
-                        ...signupData,
-                        password: e.target.value,
-                      })
-                    }
-                  />
-                  <InputRightElement h={"full"}>
-                    <Button
-                      variant={"ghost"}
-                      onClick={() =>
-                        setShowPassword((showPassword) => !showPassword)
-                      }
-                    >
-                      {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
-              </FormControl>
-              <FormControl id="ConfirmPassword" isRequired>
-                <FormLabel>Confirm Password</FormLabel>
-                <InputGroup>
-                  <Input
-                    type={showConfirmPassword ? "text" : "password"}
-                    onChange={(e) =>
-                      setSignupData({
-                        ...signupData,
-                        confirmPassword: e.target.value,
-                      })
-                    }
-                  />
-                  <InputRightElement h={"full"}>
-                    <Button
-                      variant={"ghost"}
-                      onClick={() =>
-                        setConfirmShowPassword(
-                          (showConfirmPassword) => !showConfirmPassword
-                        )
-                      }
-                    >
-                      {showConfirmPassword ? <ViewIcon /> : <ViewOffIcon />}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
-              </FormControl>
-              <Stack spacing={10} pt={2}>
-                <Button
-                  loadingText="Submitting"
-                  size="lg"
-                  bg={"#FF4331"}
-                  color={"white"}
-                  _hover={{
-                    bg: "#9d271c",
-                  }}
-                  _focus={{
-                    bg:"#9d271c"
-                  }}
-                  _active={{
-                    bg:"#9d271c"
-                  }}
-                  onClick={handelSubmit}
-                  disabled={isLoading}
+    return (
+        <Layout title="MHM | Sign Up">
+            <Flex minH={"100vh"} align={"center"} justify={"center"} my={10}>
+                <Stack
+                    spacing={8}
+                    mx={"auto"}
+                    maxW={"lg"}
+                    py={12}
+                    px={6}
+                    bg={useColorModeValue("white", "#242526")}
+                    boxShadow={"lg"}
+                    rounded={"lg"}
                 >
-                  {"Sign Up"}
-                  {isLoading && <Spinner ml={2} color="white" />}
-                </Button>
-              </Stack>
-              <Stack pt={6}>
-                <Text align={"center"}>
-                  Already have an account?{" "}
-                  <Button
-                    color={"#FF4331"}
-                    variant="link"
-                    _focus={{
-                      bg:"#9d271c"
-                    }}
-                    _active={{
-                      bg:"#9d271c"
-                    }}
-                    onClick={() => router.push("/login")}
-                  >
-                    {"Login"}
-                  </Button>
-                </Text>
-              </Stack>
-            </Stack>
-          </Box>
-        </Stack>
-      </Flex>
-    </Layout>
-  );
+                    <Stack align={"center"}>
+                        <Heading
+                            fontSize={"4xl"}
+                            textAlign={"center"}
+                            bgGradient="linear(310deg,#FF4331,#D31A50)"
+                            bgClip="text"
+                            fontWeight="bold"
+                            textTransform={"uppercase"}
+                        >
+                            {"Sign Up"}
+                        </Heading>
+                    </Stack>
+                    <Box p={8}>
+                        <Stack spacing={4}>
+                            <HStack>
+                                <Box>
+                                    <FormControl id="firstName" isRequired>
+                                        <FormLabel>First Name</FormLabel>
+                                        <Input
+                                            type="text"
+                                            onChange={(e) =>
+                                                setSignupData({
+                                                    ...signupData,
+                                                    firstname: e.target.value,
+                                                })
+                                            }
+                                        />
+                                    </FormControl>
+                                </Box>
+                                <Box>
+                                    <FormControl id="lastName">
+                                        <FormLabel>Last Name</FormLabel>
+                                        <Input
+                                            type="text"
+                                            onChange={(e) =>
+                                                setSignupData({
+                                                    ...signupData,
+                                                    lastname: e.target.value,
+                                                })
+                                            }
+                                        />
+                                    </FormControl>
+                                </Box>
+                            </HStack>
+                            <FormControl id="phone" isRequired>
+                                <FormLabel>Phone</FormLabel>
+                                <Input
+                                    type="number"
+                                    onChange={(e) =>
+                                        setSignupData({
+                                            ...signupData,
+                                            phone: e.target.value,
+                                        })
+                                    }
+                                />
+                            </FormControl>
+                            <FormControl id="age" isRequired>
+                                <FormLabel>Age</FormLabel>
+                                <Input
+                                    type="number"
+                                    onChange={(e) =>
+                                        setSignupData({
+                                            ...signupData,
+                                            age: e.target.value,
+                                        })
+                                    }
+                                />
+                            </FormControl>
+                            <FormControl id="email" isRequired>
+                                <FormLabel>Email address</FormLabel>
+                                <Input
+                                    type="email"
+                                    onChange={(e) =>
+                                        setSignupData({
+                                            ...signupData,
+                                            email: e.target.value,
+                                        })
+                                    }
+                                />
+                            </FormControl>
+                            <FormControl id="password" isRequired>
+                                <FormLabel>Password</FormLabel>
+                                <InputGroup>
+                                    <Input
+                                        type={
+                                            showPassword ? "text" : "password"
+                                        }
+                                        onChange={(e) =>
+                                            setSignupData({
+                                                ...signupData,
+                                                password: e.target.value,
+                                            })
+                                        }
+                                    />
+                                    <InputRightElement h={"full"}>
+                                        <Button
+                                            variant={"ghost"}
+                                            onClick={() =>
+                                                setShowPassword(
+                                                    (showPassword) =>
+                                                        !showPassword
+                                                )
+                                            }
+                                        >
+                                            {showPassword ? (
+                                                <ViewIcon />
+                                            ) : (
+                                                <ViewOffIcon />
+                                            )}
+                                        </Button>
+                                    </InputRightElement>
+                                </InputGroup>
+                            </FormControl>
+                            <FormControl id="ConfirmPassword" isRequired>
+                                <FormLabel>Confirm Password</FormLabel>
+                                <InputGroup>
+                                    <Input
+                                        type={
+                                            showConfirmPassword
+                                                ? "text"
+                                                : "password"
+                                        }
+                                        onChange={(e) =>
+                                            setSignupData({
+                                                ...signupData,
+                                                confirmPassword: e.target.value,
+                                            })
+                                        }
+                                    />
+                                    <InputRightElement h={"full"}>
+                                        <Button
+                                            variant={"ghost"}
+                                            onClick={() =>
+                                                setConfirmShowPassword(
+                                                    (showConfirmPassword) =>
+                                                        !showConfirmPassword
+                                                )
+                                            }
+                                        >
+                                            {showConfirmPassword ? (
+                                                <ViewIcon />
+                                            ) : (
+                                                <ViewOffIcon />
+                                            )}
+                                        </Button>
+                                    </InputRightElement>
+                                </InputGroup>
+                            </FormControl>
+                            <Stack spacing={10} pt={2}>
+                                <Button
+                                    loadingText="Submitting"
+                                    size="lg"
+                                    bg={"#FF4331"}
+                                    color={"white"}
+                                    _hover={{
+                                        bg: "#9d271c",
+                                    }}
+                                    _focus={{
+                                        bg: "#9d271c",
+                                    }}
+                                    _active={{
+                                        bg: "#9d271c",
+                                    }}
+                                    onClick={handelSubmit}
+                                    disabled={isLoading}
+                                >
+                                    {"Sign Up"}
+                                    {isLoading && (
+                                        <Spinner ml={2} color="white" />
+                                    )}
+                                </Button>
+                            </Stack>
+                            <Stack pt={6}>
+                                <Text align={"center"}>
+                                    Already have an account?{" "}
+                                    <Button
+                                        color={"#FF4331"}
+                                        variant="link"
+                                        _focus={{
+                                            bg: "#9d271c",
+                                        }}
+                                        _active={{
+                                            bg: "#9d271c",
+                                        }}
+                                        onClick={() => router.push("/login")}
+                                    >
+                                        {"Login"}
+                                    </Button>
+                                </Text>
+                            </Stack>
+                        </Stack>
+                    </Box>
+                </Stack>
+            </Flex>
+        </Layout>
+    );
 };
 
 export default SignUp;

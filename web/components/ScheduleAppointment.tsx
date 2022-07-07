@@ -3,13 +3,13 @@ import {
     Select,
     Box,
     Text,
+    Spinner,
     Button,
     useColorModeValue,
     useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { setAppointment } from "../function";
-import { Spinner } from "native-base";
 import { useAuth } from "../hooks/auth";
 
 const ScheduleAppointment = () => {

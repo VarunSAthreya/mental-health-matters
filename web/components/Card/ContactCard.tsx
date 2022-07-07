@@ -10,10 +10,10 @@ import {
     Textarea,
     VStack,
     useToast,
+    Spinner,
     WrapItem,
 } from "@chakra-ui/react";
 import { addDoc, collection } from "firebase/firestore";
-import { Spinner } from "native-base";
 import React, { FunctionComponent, useState } from "react";
 import { BsPerson } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
