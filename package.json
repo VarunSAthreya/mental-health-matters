@@ -1,5 +1,5 @@
 {
-    "name": "ineuron",
+    "name": "mental-health-matters",
     "private": true,
     "scripts": {
         "dev": "next dev",
