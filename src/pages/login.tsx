@@ -1,19 +1,14 @@
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import {
     Box,
     Button,
     Flex,
-    FormControl,
-    FormLabel,
     Heading,
-    Input,
-    InputGroup,
-    InputRightElement,
     Spinner,
     Stack,
-    Text,
     useColorModeValue,
 } from '@chakra-ui/react';
+import type { BuiltInProviderType } from 'next-auth/providers';
+import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Layout from '../components/UI/Layout';
@@ -21,15 +16,13 @@ import Layout from '../components/UI/Layout';
 const Login = () => {
     const router = useRouter();
 
-    const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [loginData, setLoginData] = useState({
-        email: '',
-        password: '',
-    });
 
-    const handelSubmit = async (e: any) => {
-        console.log(e);
+    const handelSubmit = async (provider: BuiltInProviderType) => {
+        setIsLoading(true);
+        await signIn(provider);
+        setIsLoading(false);
+        router.push('/dashboard');
     };
 
     return (
@@ -59,51 +52,6 @@ const Login = () => {
                     </Stack>
                     <Box rounded={'lg'} p={8}>
                         <Stack spacing={4}>
-                            <FormControl id="email" isRequired>
-                                <FormLabel>Email address</FormLabel>
-                                <Input
-                                    type="email"
-                                    onChange={(e) =>
-                                        setLoginData({
-                                            ...loginData,
-                                            email: e.target.value,
-                                        })
-                                    }
-                                />
-                            </FormControl>
-                            <FormControl id="password" isRequired>
-                                <FormLabel>Password</FormLabel>
-                                <InputGroup>
-                                    <Input
-                                        type={
-                                            showPassword ? 'text' : 'password'
-                                        }
-                                        onChange={(e) =>
-                                            setLoginData({
-                                                ...loginData,
-                                                password: e.target.value,
-                                            })
-                                        }
-                                    />
-                                    <InputRightElement h={'full'}>
-                                        <Button
-                                            variant={'ghost'}
-                                            onClick={() =>
-                                                setShowPassword(
-                                                    (showPassword) =>
-                                                        !showPassword
-                                                )
-                                            }
-                                        >
-                                            {showPassword ? (
-                                                <ViewIcon />
-                                            ) : (
-                                                <ViewOffIcon />
-                                            )}
-                                        </Button>
-                                    </InputRightElement>
-                                </InputGroup>
-                            </FormControl>
                             <Stack spacing={10} pt={2}>
                                 <Button
                                     loadingText="Submitting"
@@ -120,31 +68,35 @@ const Login = () => {
                                         bg: '#9d271c',
                                     }}
                                     disabled={isLoading}
-                                    onClick={handelSubmit}
+                                    onClick={() => handelSubmit('github')}
                                 >
-                                    {'Login'}
+                                    {'Login Using Github'}
                                     {isLoading && (
                                         <Spinner ml={2} color="white" />
                                     )}
                                 </Button>
-                            </Stack>
-                            <Stack pt={6}>
-                                <Text align={'center'}>
-                                    {"Don't have an account? "}
-                                    <Button
-                                        color={'#FF4331'}
-                                        variant="link"
-                                        _focus={{
-                                            bg: '#9d271c',
-                                        }}
-                                        _active={{
-                                            bg: '#9d271c',
-                                        }}
-                                        onClick={() => router.push('/signup')}
-                                    >
-                                        {'Sign Up'}
-                                    </Button>
-                                </Text>
+                                <Button
+                                    loadingText="Submitting"
+                                    size="lg"
+                                    bg={'#FF4331'}
+                                    color={'white'}
+                                    _hover={{
+                                        bg: '#9d271c',
+                                    }}
+                                    _focus={{
+                                        bg: '#9d271c',
+                                    }}
+                                    _active={{
+                                        bg: '#9d271c',
+                                    }}
+                                    disabled={isLoading}
+                                    onClick={() => handelSubmit('discord')}
+                                >
+                                    {'Login Using Discord'}
+                                    {isLoading && (
+                                        <Spinner ml={2} color="white" />
+                                    )}
+                                </Button>
                             </Stack>
                         </Stack>
                     </Box>
