@@ -9,20 +9,18 @@ import {
 } from '@chakra-ui/react';
 import type { BuiltInProviderType } from 'next-auth/providers';
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Layout from '../components/UI/Layout';
 
 const Login = () => {
-    const router = useRouter();
-
     const [isLoading, setIsLoading] = useState(false);
 
     const handelSubmit = async (provider: BuiltInProviderType) => {
         setIsLoading(true);
-        await signIn(provider);
+        await signIn(provider, {
+            callbackUrl: 'http://localhost:3000/dashboard',
+        });
         setIsLoading(false);
-        router.push('/dashboard');
     };
 
     return (

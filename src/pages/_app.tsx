@@ -3,25 +3,12 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { SessionProvider } from 'next-auth/react';
 import type { AppType } from 'next/dist/shared/lib/utils';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import ProtectedRoute from '../components/ProtectedRoute';
+import AuthWrapper from '../components/Auth/AuthWrapper';
 import '../styles/globals.css';
 import theme from '../styles/theme';
 import { trpc } from '../utils/trpc';
 
-const noAuthRequired = [
-    '/',
-    '/login',
-    '/signup',
-    '/about',
-    '/blogs',
-    '/contact',
-    '/talktoexperts',
-];
-
 const MyApp: AppType = ({ Component, pageProps }) => {
-    const router = useRouter();
-
     return (
         <>
             <Head>
@@ -40,15 +27,9 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 
             <SessionProvider session={pageProps.session}>
                 <ChakraProvider theme={theme}>
-                    {/* <AuthContextProvider> */}
-                    {noAuthRequired.includes(router.pathname) ? (
+                    <AuthWrapper>
                         <Component {...pageProps} />
-                    ) : (
-                        <ProtectedRoute>
-                            <Component {...pageProps} />
-                        </ProtectedRoute>
-                    )}
-                    {/* </AuthContextProvider> */}
+                    </AuthWrapper>
                 </ChakraProvider>
             </SessionProvider>
         </>
