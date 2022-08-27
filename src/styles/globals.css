@@ -14,3 +14,14 @@ a {
 * {
   box-sizing: border-box;
 }
+
+
+::-moz-selection { /* Code for Firefox */
+  color: white;
+  background: #E02647;
+}
+
+::selection {
+  color: white;
+  background: #E02647;
+}
