@@ -1,0 +1,8 @@
+.next
+node_modules
+.editorconfig
+.eslintignore
+.gitignore
+.prettierignore
+generated/
+package-lock.json
