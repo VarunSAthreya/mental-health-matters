@@ -75,7 +75,12 @@ const serviceData: IService[] = [
 ];
 
 const Home: NextPage = () => {
-    const hello = trpc.proxy.example.hello.useQuery({ text: 'from tRPC' });
+    const { data, isLoading } = trpc.useQuery([
+        'example.hello',
+        { text: 'from tRPC' },
+    ]);
+
+    console.log({ data });
 
     const MotionStack = motion<StackProps>(Stack);
     const MotionImage = motion<ImageProps>(Image);
