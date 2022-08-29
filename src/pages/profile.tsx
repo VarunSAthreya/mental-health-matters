@@ -9,33 +9,16 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 import { NextPage } from 'next';
-import { useState } from 'react';
 import UserProfileCard from '../components/Card/UserProfileCard';
 import SideBar from '../components/Sidebar/Sidebar';
+import { trpc } from '../utils/trpc';
 
 const UserDetails: NextPage = () => {
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
 
-    // const { user } = useAuth();
-    const [userDetails, setUserDetails] = useState({
-        firstname: '',
-        lastname: '',
-        email: '',
-        phone: '',
-        age: 0,
-        id: '',
-    });
-
-    // useEffect(() => {
-    //     getData();
-    // }, [user.uid]);
-
-    // const getData = async () => {
-    //     getUserDetails(user.uid).then((res) => {
-    //         return setUserDetails(res as any);
-    //     });
-    // };
+    const { data, isLoading } = trpc.useQuery(['user.details']);
+    if (isLoading || data == undefined || data == null) return null;
 
     return (
         <Flex flexDirection={{ base: 'column', lg: 'row' }} bg={primaryBG}>
@@ -100,7 +83,7 @@ const UserDetails: NextPage = () => {
                         </Flex>
                     </Box>
                     <Box borderRadius={8}>
-                        <UserProfileCard User={userDetails} />
+                        <UserProfileCard user={data} />
                     </Box>
                 </Box>
             </Flex>

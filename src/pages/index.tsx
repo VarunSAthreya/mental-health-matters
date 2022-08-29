@@ -24,7 +24,6 @@ import BasicCard from '../components/Card/BasicCard';
 import ServiceCard from '../components/Card/ServiceCard';
 import LottieView from '../components/Lotte/LotteView';
 import Layout from '../components/UI/Layout';
-import { trpc } from '../utils/trpc';
 
 const basicCardData: IBasicCard[] = [
     {
@@ -75,13 +74,6 @@ const serviceData: IService[] = [
 ];
 
 const Home: NextPage = () => {
-    const { data, isLoading } = trpc.useQuery([
-        'example.hello',
-        { text: 'from tRPC' },
-    ]);
-
-    console.log({ data });
-
     const MotionStack = motion<StackProps>(Stack);
     const MotionImage = motion<ImageProps>(Image);
     const MotionBox = motion<BoxProps>(Box);
