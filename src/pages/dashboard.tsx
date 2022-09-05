@@ -52,7 +52,7 @@ const Dashboard = () => {
             latest.createdAt.setMonth(latest.createdAt.getMonth() + 1)
         );
 
-        if (exp > new Date()) return false;
+        if (exp < new Date()) return false;
 
         return true;
     };
