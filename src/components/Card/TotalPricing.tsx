@@ -24,13 +24,13 @@ const TotalPricing = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     const { mutateAsync: generateOrderId } = trpc.useMutation([
-        'user.generateRazorpayOrderId',
+        'payment.generateOrderID',
     ]);
     const { mutateAsync: verifySignature } = trpc.useMutation([
-        'user.verifyRazorpayPayment',
+        'payment.verifySignature',
     ]);
     const { mutateAsync: finalizePayment } = trpc.useMutation(
-        ['user.finalizePayment'],
+        ['payment.finalize'],
         {
             onSuccess: () => {
                 const utils = trpc.useContext();
