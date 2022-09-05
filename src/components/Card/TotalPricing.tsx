@@ -14,13 +14,32 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
+import type { RazorpayResponseType } from '../../server/schema/user.schema';
 import { loadScript, showRazorpay } from '../../utils/payment';
+import { trpc } from '../../utils/trpc';
 import { Loader } from '../Loader';
 import PriceCard from './PriceCard';
 
 const TotalPricing = () => {
-    // const { user } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
+
+    const { mutateAsync: generateOrderId } = trpc.useMutation([
+        'user.generateRazorpayOrderId',
+    ]);
+    const { mutateAsync: verifySignature } = trpc.useMutation([
+        'user.verifyRazorpayPayment',
+    ]);
+    const { mutateAsync: finalizePayment } = trpc.useMutation(
+        ['user.finalizePayment'],
+        {
+            onSuccess: () => {
+                const utils = trpc.useContext();
+                utils.invalidateQueries(['user.allDetails']);
+                console.log('Payment done');
+            },
+        }
+    );
+
     const color = useColorModeValue('red.50', '#78393978');
 
     useEffect(() => {
@@ -40,18 +59,33 @@ const TotalPricing = () => {
         try {
             setIsLoading(true);
 
-            const onFinish = async (paymentId: string) => {
-                console.log({ paymentId });
-                // await addDoc(collection(db, "payments"), {
-                //     userId: user.uid,
-                //     paymentId: paymentId,
-                //     amount: price,
-                //     createdAt: new Date().toISOString(),
-                //     type: type,
-                // });
+            const paymentData = await generateOrderId({
+                amount: price,
+            });
+
+            let isPaymentDone = false;
+            let paymentId = '';
+            let orderId = '';
+
+            const onFinish = async (paymentDetails: RazorpayResponseType) => {
+                console.log({ paymentDetails });
+                const { verified } = await verifySignature(paymentDetails);
+                isPaymentDone = verified;
+                paymentId = paymentDetails.razorpay_payment_id;
+                orderId = paymentDetails.razorpay_order_id;
             };
 
-            await showRazorpay({ amount: price, window, onFinish });
+            if (isPaymentDone && paymentId && orderId) {
+                console.log('payment verified');
+                finalizePayment({
+                    paymentId: paymentId,
+                    orderId: orderId,
+                    amount: price,
+                    type,
+                    currency: paymentData.currency,
+                });
+            }
+            await showRazorpay({ paymentData, window, onFinish });
         } catch (error) {
             console.log({ error });
         } finally {
