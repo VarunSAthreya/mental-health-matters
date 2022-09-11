@@ -13,138 +13,80 @@ import {
     useToast,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React from 'react';
 import type { ISurvey } from '../../@types';
 import SideBar from '../components/Sidebar/Sidebar';
+import { trpc } from '../utils/trpc';
 
 const Survey = () => {
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
     const textHeight = useBreakpointValue({ base: '20%', md: '30%' });
-    const questions: ISurvey[] = [
-        {
-            question: 'Overall how would you rate your physical health?',
-            options: [
-                'Excellent',
-                'Somewhat Good',
-                'Average',
-                'Somewhat Poor',
-                'Poor',
-                'Not Sure',
-            ],
-        },
-        {
-            question: 'Overall how would you rate your mental health?',
-            options: [
-                'Excellent',
-                'Somewhat Good',
-                'Average',
-                'Somewhat Poor',
-                'Poor',
-                'Not Sure',
-            ],
-        },
-        {
-            question:
-                'During the past 4 weeks, have you had any problems with your work or daily life due to your physical health?',
-            options: ['Yes', 'No', 'Not Sure'],
-        },
-        {
-            question:
-                'During the past 4 weeks, have you had any problems with your work or daily life due to any emotional problems, such as feeling depressed, sad or anxious? ',
-            options: ['Yes', 'No', 'Not Sure'],
-        },
-        {
-            question:
-                'During the past 4 weeks, how often has your mental health affected your ability to get work done?',
-            options: [
-                'Very Often',
-                'Somewhat Often',
-                'Not Often',
-                'Not At All',
-            ],
-        },
-        {
-            question:
-                'Have you felt particularly low or down for more than 2 weeks in a row?',
-            options: [
-                'Very Often',
-                'Somewhat Often',
-                'Not Often',
-                'Not At All',
-            ],
-        },
-        {
-            question:
-                'During the past two weeks, how often has your mental health affected your relationships?',
-            options: [
-                'Very Often',
-                'Somewhat Often',
-                'Not Often',
-                'Not At All',
-            ],
-        },
-        {
-            question: 'Have you noticed any change in your diet habits?',
-            options: [
-                'Yes, I eat too much',
-                "Yes, I dont't very much",
-                'Not Much',
-                'No Change',
-            ],
-        },
-        {
-            question: 'When was the last time you were really happy?',
-            options: [
-                'Few days ago',
-                'Few weeks ago',
-                'Few moth ago',
-                'Few years ago',
-                "I dont't know",
-            ],
-        },
-        {
-            question: 'How often do you feel positive about your life?',
-            options: [
-                'Never',
-                'Once in a while',
-                'Almost half of the time',
-                'Most of the time',
-                'Always',
-            ],
-        },
-        {
-            question: 'What is your relationship status?',
-            options: ['Single', 'Married', 'Divorced', 'Windowed', 'Separated'],
-        },
-    ];
 
     let answers: { question: string; answer: string }[] = [];
-    const [isLoading, setIsLoading] = useState(false);
-    // const { user } = useAuth();
+
     const toast = useToast();
     const router = useRouter();
 
-    const handleSubmit = async () => {
-        console.log('HEY');
+    const { data, isLoading: fetching } = trpc.useQuery([
+        'survey.get',
+        { name: 'General Survey' },
+    ]);
 
-        try {
-            setIsLoading(true);
-            console.log(answers);
-            // await addSurvey({ answers, userId: user.uid });
-            toast({
-                title: 'Success',
-                description: 'Survey submitted successfully',
-                status: 'success',
-                duration: 3000,
-                isClosable: true,
-            });
-            router.push('/dashboard');
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setIsLoading(false);
+    const { mutate: submitSurvey, isLoading } = trpc.useMutation(
+        'survey.submit',
+        {
+            onSuccess: () => {
+                toast({
+                    title: 'Survey submitted successfully',
+                    status: 'success',
+                    duration: 3000,
+                    isClosable: true,
+                });
+                router.push('/dashboard');
+            },
+            onError: (err) => {
+                toast({
+                    title: 'Error submitting survey',
+                    description: err.message,
+                    status: 'error',
+                    duration: 3000,
+                    isClosable: true,
+                });
+            },
         }
+    );
+
+    if (fetching) return null;
+
+    const questions: ISurvey[] = data ? JSON.parse(data.questions) : [];
+
+    const handleSubmit = async () => {
+        console.log(questions.length, ' ', answers.length);
+
+        if (questions.length !== answers.length) {
+            toast({
+                title: 'Please answer all the questions!',
+                status: 'warning',
+                duration: 2000,
+            });
+            return;
+        }
+
+        submitSurvey({
+            result: JSON.stringify(answers),
+            name: data ? data.name : '',
+        });
+    };
+
+    const onChange = (question: string, answer: string) => {
+        if (answers.find((answer) => answer.question === question)) {
+            answers = answers.filter((answer) => answer.question !== question);
+        }
+        answers.push({
+            question,
+            answer: answer,
+        });
     };
 
     return (
@@ -245,14 +187,10 @@ const Survey = () => {
                                             _focus={{ outline: 'none' }}
                                             mr={2}
                                             onChange={(e) =>
-                                                (answers = [
-                                                    ...answers,
-                                                    {
-                                                        question:
-                                                            question.question,
-                                                        answer: e.target.value,
-                                                    },
-                                                ])
+                                                onChange(
+                                                    question.question,
+                                                    e.target.value
+                                                )
                                             }
                                         >
                                             {question.options.map(

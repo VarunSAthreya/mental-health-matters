@@ -8,10 +8,11 @@ import {
     useColorModeValue,
     useToast,
 } from '@chakra-ui/react';
+import type { FC } from 'react';
 import { useState } from 'react';
 import { trpc } from '../utils/trpc';
 
-const ScheduleAppointment = () => {
+const ScheduleAppointment: FC = () => {
     const timings = [
         '10:00 AM - 11:00 AM',
         '11:00 AM - 12:00 PM',
@@ -47,12 +48,6 @@ const ScheduleAppointment = () => {
             });
         },
     });
-
-    const handleSubmit = async (e: any) => {
-        e.preventDefault();
-
-        mutate({ date, time });
-    };
 
     return (
         <Box
@@ -95,7 +90,10 @@ const ScheduleAppointment = () => {
             </Box>
 
             <Box display={'flex'} justifyContent="center" px="5px" my={4}>
-                <Button disabled={isLoading} onClick={handleSubmit}>
+                <Button
+                    disabled={isLoading}
+                    onClick={() => mutate({ date, time })}
+                >
                     SET APPOINTMENT{' '}
                     {isLoading && <Spinner ml={2} color="white" />}
                 </Button>
