@@ -22,7 +22,6 @@ export const userRouter = createProtectedRouter()
                             createdAt: 'desc',
                         },
                     },
-                    surveys: true,
                     appointments: true,
                 },
             });
