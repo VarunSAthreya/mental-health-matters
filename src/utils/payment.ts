@@ -1,5 +1,3 @@
-// import axios from "axios";
-
 import { env } from '../env/client.mjs';
 import type {
     PaymentDataType,
