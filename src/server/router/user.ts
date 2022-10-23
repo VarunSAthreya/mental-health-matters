@@ -22,6 +22,14 @@ export const userRouter = createProtectedRouter()
                             createdAt: 'desc',
                         },
                     },
+                    SurveyResults: {
+                        where: {
+                            userId: ctx.session?.user?.id,
+                        },
+                        orderBy: {
+                            createdAt: 'desc',
+                        },
+                    },
                     appointments: true,
                 },
             });

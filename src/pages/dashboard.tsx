@@ -159,20 +159,36 @@ const Dashboard = () => {
                                 better!
                             </Text>
                         </Box>
-                        <Box display={'flex'} justifyContent="center" px="5px">
+                        <Box display={'block'} justifyContent="center" px="5px">
                             <Box>
-                                {userData?.surveys &&
-                                userData?.surveys.length > 0
-                                    ? userData?.surveys.map((survey, index) => (
-                                          <Text key={index}>
-                                              {survey.createdAt.toISOString()}
-                                          </Text>
-                                      ))
+                                {userData?.SurveyResults &&
+                                userData?.SurveyResults.length > 0
+                                    ? userData?.SurveyResults.map(
+                                          (survey, index) => (
+                                              <Text
+                                                  display="block"
+                                                  key={index}
+                                                  mb="4"
+                                              >
+                                                  Previous Survey taken at:{' '}
+                                                  {survey.createdAt.toISOString()}
+                                              </Text>
+                                          )
+                                      )
                                     : null}
                             </Box>
-                            <Button onClick={() => router.push('/survey')}>
-                                CLICK HERE
-                            </Button>
+                            <Box
+                                display={'flex'}
+                                justifyContent="center"
+                                px="5px"
+                            >
+                                <Button
+                                    display="block"
+                                    onClick={() => router.push('/survey')}
+                                >
+                                    CLICK HERE
+                                </Button>
+                            </Box>
                         </Box>
                     </Box>
                     <Box
