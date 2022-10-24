@@ -10,18 +10,44 @@ import {
     Stack,
     Text,
     useColorModeValue,
+    useToast,
     VStack,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
+import type { RazorpayResponseType } from '../../server/schema/user.schema';
 import { loadScript, showRazorpay } from '../../utils/payment';
+import { trpc } from '../../utils/trpc';
 import { Loader } from '../Loader';
 import PriceCard from './PriceCard';
 
 const TotalPricing = () => {
-    // const { user } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
+    const toast = useToast();
+
+    const { mutateAsync: generateOrderId } = trpc.useMutation([
+        'payment.generateOrderID',
+    ]);
+    const { mutateAsync: verifySignature } = trpc.useMutation([
+        'payment.verifySignature',
+    ]);
+    const { mutateAsync: finalizePayment } = trpc.useMutation(
+        ['payment.finalize'],
+        {
+            onError: (err) => {
+                console.log(err);
+                toast({
+                    title: err.message,
+                    status: 'error',
+                    duration: 3000,
+                    isClosable: true,
+                });
+            },
+        }
+    );
+
     const color = useColorModeValue('red.50', '#78393978');
+    const utils = trpc.useContext();
 
     useEffect(() => {
         loadScript();
@@ -37,21 +63,51 @@ const TotalPricing = () => {
         type: string;
     }) => {
         console.log({ price });
+        let isPaymentDone = false;
+        let paymentId = '';
+        let orderId = '';
+
         try {
             setIsLoading(true);
 
-            const onFinish = async (paymentId: string) => {
-                console.log({ paymentId });
-                // await addDoc(collection(db, "payments"), {
-                //     userId: user.uid,
-                //     paymentId: paymentId,
-                //     amount: price,
-                //     createdAt: new Date().toISOString(),
-                //     type: type,
-                // });
+            const paymentData = await generateOrderId({
+                amount: price,
+            });
+
+            const updateDB = async () => {
+                if (isPaymentDone && paymentId && orderId) {
+                    console.log('payment verified');
+                    await finalizePayment({
+                        paymentId: paymentId,
+                        orderId: orderId,
+                        amount: price,
+                        type,
+                        currency: 'INR',
+                    });
+                    utils.invalidateQueries(['user.allDetails']);
+                    console.log('Payment done');
+                    toast({
+                        title: 'Payment done',
+                        status: 'success',
+                        duration: 3000,
+                        isClosable: true,
+                    });
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
+                }
             };
 
-            await showRazorpay({ amount: price, window, onFinish });
+            const onFinish = async (paymentDetails: RazorpayResponseType) => {
+                console.log({ paymentDetails });
+                const { verified } = await verifySignature(paymentDetails);
+                isPaymentDone = verified;
+                paymentId = paymentDetails.razorpay_payment_id;
+                orderId = paymentDetails.razorpay_order_id;
+                updateDB();
+            };
+
+            await showRazorpay({ paymentData, window, onFinish });
         } catch (error) {
             console.log({ error });
         } finally {

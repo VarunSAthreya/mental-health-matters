@@ -8,11 +8,11 @@ import {
     useColorModeValue,
     useToast,
 } from '@chakra-ui/react';
+import type { FC } from 'react';
 import { useState } from 'react';
-// import { setAppointment } from "../function";
-// import { useAuth } from "../hooks/auth";
+import { trpc } from '../utils/trpc';
 
-const ScheduleAppointment = () => {
+const ScheduleAppointment: FC = () => {
     const timings = [
         '10:00 AM - 11:00 AM',
         '11:00 AM - 12:00 PM',
@@ -27,30 +27,27 @@ const ScheduleAppointment = () => {
     const secondaryBG = useColorModeValue('white', '#242526');
     const toast = useToast();
 
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+    const [date, setDate] = useState<Date>(new Date());
+    const [time, setTime] = useState<string>('');
 
-    // const { user } = useAuth();
-
-    const handleSubmit = async (e: any) => {
-        e.preventDefault();
-
-        try {
-            setIsLoading(true);
-            // await setAppointment({ userId: user.uid, date, time });
+    const { mutate, isLoading } = trpc.useMutation('appointment.create', {
+        onSuccess: () => {
             toast({
                 title: 'Appointment scheduled successfully',
                 status: 'success',
                 duration: 3000,
                 isClosable: true,
             });
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+        },
+        onError: (err) => {
+            toast({
+                title: err.message,
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+            });
+        },
+    });
 
     return (
         <Box
@@ -73,8 +70,8 @@ const ScheduleAppointment = () => {
             <Box display={'flex'} justifyContent="center" px="5px" my={4}>
                 <Input
                     type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
+                    value={date.toISOString().slice(0, 10)}
+                    onChange={(e) => setDate(new Date(e.target.value))}
                 />
             </Box>
             <Box display={'flex'} justifyContent="center" px="5px">
@@ -93,7 +90,10 @@ const ScheduleAppointment = () => {
             </Box>
 
             <Box display={'flex'} justifyContent="center" px="5px" my={4}>
-                <Button disabled={isLoading} onClick={handleSubmit}>
+                <Button
+                    disabled={isLoading}
+                    onClick={() => mutate({ date, time })}
+                >
                     SET APPOINTMENT{' '}
                     {isLoading && <Spinner ml={2} color="white" />}
                 </Button>

@@ -1,4 +1,8 @@
-// import axios from "axios";
+import { env } from '../env/client.mjs';
+import type {
+    PaymentDataType,
+    RazorpayResponseType,
+} from '../server/schema/user.schema';
 
 export const loadScript = async () => {
     const script = document.createElement('script');
@@ -6,63 +10,30 @@ export const loadScript = async () => {
     document.body.appendChild(script);
 };
 export const showRazorpay = async ({
-    amount,
+    paymentData,
     window,
     onFinish,
 }: {
-    amount: number;
+    paymentData: PaymentDataType;
     window: Window;
-    onFinish: (payment_id: string) => void;
+    onFinish: (responseData: RazorpayResponseType) => void;
 }) => {
     try {
         await loadScript();
         if ((window as any).Razorpay) {
             console.log('YES');
 
-            // const { data } = await axios.post("/api/razorpay", {
-            //     price: amount,
-            // });
-            const data = {
-                amount: amount,
-                currency: 'INR',
-                id: '12345',
-            };
-
             const options = {
-                key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-                key_secret: process.env.NEXT_PUBLIC_RAZORPAY_KEY_SECRET,
-                amount: data.amount,
-                currency: data.currency,
+                key_id: env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+                key_secret: env.NEXT_PUBLIC_RAZORPAY_KEY_SECRET,
+                amount: paymentData.amount,
+                currency: paymentData.currency,
                 name: 'Mental Health Matters',
                 description: `Monthly Plan`,
                 image: 'http://localhost:3000/assets/images/logo.png',
-                order_id: data.id,
-                handler: async (response: any) => {
-                    // const onSuccess = await axios.post('/api/validate', {
-                    //     order_id: data.id,
-                    //     payment_id: response.razorpay_payment_id,
-                    //     signature: response.razorpay_signature,
-                    // });
-
-                    // const isVerified = onSuccess.data.value;
-                    const isVerified = true;
-                    console.log(isVerified);
-
-                    if (isVerified) {
-                        // const paymentResult = {
-                        //     payment_id: response.razorpay_payment_id,
-                        //     order_id: response.razorpay_order_id,
-                        //     update_time: Date.now(),
-                        //     status: 'paid',
-                        // };
-
-                        onFinish(response.razorpay_payment_id);
-
-                        alert('Payment Successful');
-                        // TODO: Update the order status in backend
-                    } else {
-                        console.log('Payment not verified!');
-                    }
+                order_id: paymentData.id,
+                handler: async (response: RazorpayResponseType) => {
+                    onFinish(response);
                 },
                 handlePaymentSuccess(response: any) {
                     console.log(response);

@@ -1,4 +1,5 @@
-import { IconType } from "react-icons/lib";
+import { Prisma } from '@prisma/client';
+import { IconType } from 'react-icons/lib';
 
 interface IBlog {
     url: string;
@@ -53,3 +54,14 @@ interface ISurvey {
     question: string;
     options: string[];
 }
+
+export type UserFullData = Prisma.UserGetPayload<{
+    include: {
+        appointments: true;
+        SurveyResults: {
+            include: {
+                Survey: true;
+            };
+        };
+    };
+}>;

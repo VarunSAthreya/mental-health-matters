@@ -4,34 +4,18 @@ import {
     Flex,
     Grid,
     GridItem,
+    Image,
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
-import { FC, useState } from 'react';
-import type { IAppointment } from '../../../@types';
+import { FC } from 'react';
+import { UserFullData } from '../../../@types';
 
 type Props = {
-    User: {
-        firstname: string;
-        lastname: string;
-        email: string;
-        phone: string;
-        age: number;
-        id: string;
-    };
+    user: UserFullData;
 };
 
-const UserProfileCard: FC<Props> = ({ User }) => {
-    const router = useRouter();
-    const [appointments, setAppointments] = useState<IAppointment[]>([]);
-
-    // useEffect(() => {
-    //     getAppointments(User.id).then((res) => {
-    //         setAppointments(res as any);
-    //     });
-    // }, [User.id]);
-
+const UserProfileCard: FC<Props> = ({ user }) => {
     return (
         <Grid
             templateColumns={{ base: '1fr', md: 'repeat(4, 1fr)' }}
@@ -49,22 +33,35 @@ const UserProfileCard: FC<Props> = ({ User }) => {
                     alignItems={'center'}
                     p={8}
                 >
-                    <Avatar
-                        color={'white'}
-                        fontSize="2rem !important"
-                        bg={'linear-gradient(310deg,#FF4331,#D31A50)'}
-                        w="150px"
-                        h="150px"
-                        borderRadius={'100%'}
-                    />
+                    {user.image ? (
+                        <Image
+                            fontSize="2rem !important"
+                            bg={'linear-gradient(310deg,#FF4331,#D31A50)'}
+                            w="150px"
+                            h="150px"
+                            borderRadius={'100%'}
+                            src={user.image}
+                            alt={"User's profile picture"}
+                        />
+                    ) : (
+                        <Avatar
+                            color={'white'}
+                            fontSize="2rem !important"
+                            bg={'linear-gradient(310deg,#FF4331,#D31A50)'}
+                            w="150px"
+                            h="150px"
+                            borderRadius={'100%'}
+                        />
+                    )}
                     <Flex direction="column" my={{ sm: '14px' }}>
                         <Text
                             fontSize={{ sm: 'lg', lg: '2.3rem' }}
                             color={useColorModeValue('black', 'white')}
                             fontWeight="bold"
                             ms={{ sm: '8px', md: '0px' }}
+                            textAlign="center"
                         >
-                            {User.firstname} {User.lastname}
+                            {user.name}
                         </Text>
                     </Flex>
                 </Box>
@@ -92,8 +89,7 @@ const UserProfileCard: FC<Props> = ({ User }) => {
                             color={'gray.500'}
                             mt={3}
                         >
-                            This Quiz is conducted in order to understand your
-                            metal health status. So we can treat you better!
+                            This is general information about you.
                         </Text>
                     </Box>
                     <Flex
@@ -110,38 +106,14 @@ const UserProfileCard: FC<Props> = ({ User }) => {
                             me="10px"
                             fontWeight={'semibold'}
                         >
-                            First Name
+                            Name
                         </Text>
                         <Text
                             fontSize="md"
                             color="black"
                             fontWeight={'semibold'}
                         >
-                            {User.firstname}
-                        </Text>
-                    </Flex>
-                    <Flex
-                        align="center"
-                        justifyContent="space-between"
-                        mb="12px"
-                        borderRadius={8}
-                        bg={'#f8f9fa'}
-                        p={3}
-                    >
-                        <Text
-                            fontSize="md"
-                            color={'gray.500'}
-                            me="10px"
-                            fontWeight={'semibold'}
-                        >
-                            Last Name
-                        </Text>
-                        <Text
-                            fontSize="md"
-                            color="black"
-                            fontWeight={'semibold'}
-                        >
-                            {User.lastname}
+                            {user.name}
                         </Text>
                     </Flex>
                     <Flex
@@ -165,7 +137,7 @@ const UserProfileCard: FC<Props> = ({ User }) => {
                             color="black"
                             fontWeight={'semibold'}
                         >
-                            {User.email}
+                            {user.email}
                         </Text>
                     </Flex>
                     <Flex
@@ -189,7 +161,31 @@ const UserProfileCard: FC<Props> = ({ User }) => {
                             color="black"
                             fontWeight={'semibold'}
                         >
-                            {User.age}
+                            {user.age}
+                        </Text>
+                    </Flex>
+                    <Flex
+                        align="center"
+                        justifyContent="space-between"
+                        mb="12px"
+                        borderRadius={8}
+                        bg={'#f8f9fa'}
+                        p={3}
+                    >
+                        <Text
+                            fontSize="md"
+                            color={'gray.500'}
+                            me="10px"
+                            fontWeight={'semibold'}
+                        >
+                            Gender
+                        </Text>
+                        <Text
+                            fontSize="md"
+                            color="black"
+                            fontWeight={'semibold'}
+                        >
+                            {user.gender}
                         </Text>
                     </Flex>
                 </Box>
@@ -222,6 +218,35 @@ const UserProfileCard: FC<Props> = ({ User }) => {
                             This Quiz is conducted in order to understand your
                             metal health status. So we can treat you better!
                         </Text>
+                        <Box>
+                            {user.SurveyResults.map((survey) => (
+                                <Flex
+                                    key={survey.id}
+                                    align="center"
+                                    justifyContent="space-between"
+                                    mb="12px"
+                                    borderRadius={8}
+                                    bg={'#f8f9fa'}
+                                    p={3}
+                                >
+                                    <Text
+                                        fontSize="md"
+                                        color="black"
+                                        fontWeight={'semibold'}
+                                    >
+                                        Type: {survey.Survey.name}
+                                    </Text>
+                                    <Text
+                                        fontSize="md"
+                                        color={'gray.500'}
+                                        me="10px"
+                                        fontWeight={'semibold'}
+                                    >
+                                        Date: {survey.createdAt.toISOString()}
+                                    </Text>
+                                </Flex>
+                            ))}
+                        </Box>
                     </Box>
                 </Box>
             </GridItem>
@@ -252,33 +277,35 @@ const UserProfileCard: FC<Props> = ({ User }) => {
                         >
                             List of Scheduled Appointments
                         </Text>
-                        {appointments.map((appointment) => (
-                            <Flex
-                                key={appointment.createdAt}
-                                align="center"
-                                justifyContent="space-between"
-                                mb="12px"
-                                borderRadius={8}
-                                bg={'#f8f9fa'}
-                                p={3}
-                            >
-                                <Text
-                                    fontSize="md"
-                                    color={'gray.500'}
-                                    me="10px"
-                                    fontWeight={'semibold'}
+                        <Box>
+                            {user.appointments.map((appointment) => (
+                                <Flex
+                                    key={appointment.id}
+                                    align="center"
+                                    justifyContent="space-between"
+                                    mb="12px"
+                                    borderRadius={8}
+                                    bg={'#f8f9fa'}
+                                    p={3}
                                 >
-                                    Date: {appointment.date}
-                                </Text>
-                                <Text
-                                    fontSize="md"
-                                    color="black"
-                                    fontWeight={'semibold'}
-                                >
-                                    Time: {appointment.time}
-                                </Text>
-                            </Flex>
-                        ))}
+                                    <Text
+                                        fontSize="md"
+                                        color={'gray.500'}
+                                        me="10px"
+                                        fontWeight={'semibold'}
+                                    >
+                                        Date: {appointment.date.toISOString()}
+                                    </Text>
+                                    <Text
+                                        fontSize="md"
+                                        color="black"
+                                        fontWeight={'semibold'}
+                                    >
+                                        Time: {appointment.time}
+                                    </Text>
+                                </Flex>
+                            ))}
+                        </Box>
                     </Box>
                 </Box>
             </GridItem>

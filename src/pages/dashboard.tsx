@@ -10,68 +10,52 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import TotalPricing from '../components/Card/TotalPricing';
 import { Loader } from '../components/Loader';
 import ScheduleAppointment from '../components/ScheduleAppointment';
 import SideBar from '../components/Sidebar/Sidebar';
-// import { getSurvey, getUserDetails, isPaymentDone } from "../function";
-// import { useAuth } from "../hooks/auth";
+import { trpc } from '../utils/trpc';
 
 const Dashboard = () => {
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
     const textHeight = useBreakpointValue({ base: '20%', md: '30%' });
-    const [isLoading, setIsLoading] = useState(false);
-    const [paymentDone, setPaymentDone] = useState(false);
 
-    // const { user } = useAuth();
     const router = useRouter();
 
-    const [userDetails, setUserDetails] = useState({
-        firstname: '',
-        lastname: '',
-        email: '',
-        phone: '',
-        age: 0,
-        id: '',
-    });
-    const [survey, setSurvey] = useState<
-        {
-            createdAt: string;
-            userId: string;
-            survey: any[];
-        }[]
-    >([]);
+    const {
+        data: userData,
+        isLoading,
+        error,
+        isError,
+    } = trpc.useQuery(['user.allDetails']);
 
-    // useEffect(() => {
-    //     getData();
-    // }, [user.uid]);
-
-    const getData = async () => {
-        try {
-            setIsLoading(true);
-            // getUserDetails(user.uid).then((res) => {
-            //     return setUserDetails(res as any);
-            // });
-
-            // isPaymentDone(user.uid).then((res) => {
-            //     return setPaymentDone(res as any);
-            // });
-
-            // getSurvey(user.uid).then((res) => {
-            //     return setSurvey(res as any);
-            // });
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
+    if (error || isError) {
+        return <div>{error.message}</div>;
+    }
     if (isLoading) {
         return <Loader />;
     }
+
+    const isPaymentDone = (): boolean => {
+        if (
+            userData == null ||
+            userData == undefined ||
+            userData.payments.length == 0
+        ) {
+            return false;
+        }
+
+        const latest = userData.payments[0];
+        if (!latest) return false;
+        const exp = new Date(
+            latest.createdAt.setMonth(latest.createdAt.getMonth() + 1)
+        );
+
+        if (exp < new Date()) return false;
+
+        return true;
+    };
 
     return (
         <Flex flexDirection={{ base: 'column', lg: 'row' }} bg={primaryBG}>
@@ -118,7 +102,7 @@ const Dashboard = () => {
                                 fontWeight="extrabold"
                                 textTransform={'uppercase'}
                             >
-                                {userDetails.firstname} {userDetails.lastname}
+                                {userData?.name}
                             </Text>{' '}
                         </Heading>
                         <Text
@@ -148,7 +132,7 @@ const Dashboard = () => {
           />
         </SimpleGrid> */}
                 <Grid templateColumns={{ sm: '1fr' }} gap="22px" mt={8}>
-                    {paymentDone && <ScheduleAppointment />}
+                    {isPaymentDone() && <ScheduleAppointment />}
                     <Box
                         p="16px"
                         my={{ sm: '24px', xl: '0px' }}
@@ -175,17 +159,36 @@ const Dashboard = () => {
                                 better!
                             </Text>
                         </Box>
-                        <Box display={'flex'} justifyContent="center" px="5px">
+                        <Box display={'block'} justifyContent="center" px="5px">
                             <Box>
-                                {survey.map((item) => (
-                                    <Text key={item.createdAt}>
-                                        {item.createdAt}
-                                    </Text>
-                                ))}
+                                {userData?.SurveyResults &&
+                                userData?.SurveyResults.length > 0
+                                    ? userData?.SurveyResults.map(
+                                          (survey, index) => (
+                                              <Text
+                                                  display="block"
+                                                  key={index}
+                                                  mb="4"
+                                              >
+                                                  Previous Survey taken at:{' '}
+                                                  {survey.createdAt.toISOString()}
+                                              </Text>
+                                          )
+                                      )
+                                    : null}
                             </Box>
-                            <Button onClick={() => router.push('/survey')}>
-                                CLICK HERE
-                            </Button>
+                            <Box
+                                display={'flex'}
+                                justifyContent="center"
+                                px="5px"
+                            >
+                                <Button
+                                    display="block"
+                                    onClick={() => router.push('/survey')}
+                                >
+                                    CLICK HERE
+                                </Button>
+                            </Box>
                         </Box>
                     </Box>
                     <Box
@@ -213,7 +216,7 @@ const Dashboard = () => {
                                 needed. Cancel at anytime.
                             </Text>
                         </Box>
-                        {paymentDone ? (
+                        {isPaymentDone() ? (
                             <Text
                                 fontSize={{ base: 'md', lg: 'lg' }}
                                 color={'gray.500'}
