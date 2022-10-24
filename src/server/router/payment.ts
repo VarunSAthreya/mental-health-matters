@@ -72,7 +72,9 @@ export const paymentRouter = createProtectedRouter()
                 'sha256',
                 process.env.NEXT_PUBLIC_RAZORPAY_KEY_SECRET ?? ''
             )
-                .update(`${input.razorpay_order_id}|${input.razorpay_order_id}`)
+                .update(
+                    `${input.razorpay_order_id}|${input.razorpay_payment_id}`
+                )
                 .digest('hex');
 
             return {

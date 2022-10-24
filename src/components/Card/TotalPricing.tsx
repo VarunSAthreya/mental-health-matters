@@ -10,6 +10,7 @@ import {
     Stack,
     Text,
     useColorModeValue,
+    useToast,
     VStack,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
@@ -22,6 +23,7 @@ import PriceCard from './PriceCard';
 
 const TotalPricing = () => {
     const [isLoading, setIsLoading] = useState(false);
+    const toast = useToast();
 
     const { mutateAsync: generateOrderId } = trpc.useMutation([
         'payment.generateOrderID',
@@ -32,15 +34,20 @@ const TotalPricing = () => {
     const { mutateAsync: finalizePayment } = trpc.useMutation(
         ['payment.finalize'],
         {
-            onSuccess: () => {
-                const utils = trpc.useContext();
-                utils.invalidateQueries(['user.allDetails']);
-                console.log('Payment done');
+            onError: (err) => {
+                console.log(err);
+                toast({
+                    title: err.message,
+                    status: 'error',
+                    duration: 3000,
+                    isClosable: true,
+                });
             },
         }
     );
 
     const color = useColorModeValue('red.50', '#78393978');
+    const utils = trpc.useContext();
 
     useEffect(() => {
         loadScript();
@@ -56,6 +63,10 @@ const TotalPricing = () => {
         type: string;
     }) => {
         console.log({ price });
+        let isPaymentDone = false;
+        let paymentId = '';
+        let orderId = '';
+
         try {
             setIsLoading(true);
 
@@ -63,9 +74,29 @@ const TotalPricing = () => {
                 amount: price,
             });
 
-            let isPaymentDone = false;
-            let paymentId = '';
-            let orderId = '';
+            const updateDB = async () => {
+                if (isPaymentDone && paymentId && orderId) {
+                    console.log('payment verified');
+                    await finalizePayment({
+                        paymentId: paymentId,
+                        orderId: orderId,
+                        amount: price,
+                        type,
+                        currency: 'INR',
+                    });
+                    utils.invalidateQueries(['user.allDetails']);
+                    console.log('Payment done');
+                    toast({
+                        title: 'Payment done',
+                        status: 'success',
+                        duration: 3000,
+                        isClosable: true,
+                    });
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
+                }
+            };
 
             const onFinish = async (paymentDetails: RazorpayResponseType) => {
                 console.log({ paymentDetails });
@@ -73,18 +104,9 @@ const TotalPricing = () => {
                 isPaymentDone = verified;
                 paymentId = paymentDetails.razorpay_payment_id;
                 orderId = paymentDetails.razorpay_order_id;
+                updateDB();
             };
 
-            if (isPaymentDone && paymentId && orderId) {
-                console.log('payment verified');
-                finalizePayment({
-                    paymentId: paymentId,
-                    orderId: orderId,
-                    amount: price,
-                    type,
-                    currency: paymentData.currency,
-                });
-            }
             await showRazorpay({ paymentData, window, onFinish });
         } catch (error) {
             console.log({ error });
