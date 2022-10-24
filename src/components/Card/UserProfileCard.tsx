@@ -8,23 +8,14 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
-import type { User } from '@prisma/client';
-import { FC, useState } from 'react';
-import type { IAppointment } from '../../../@types';
+import { FC } from 'react';
+import { UserFullData } from '../../../@types';
 
 type Props = {
-    user: User;
+    user: UserFullData;
 };
 
 const UserProfileCard: FC<Props> = ({ user }) => {
-    const [appointments, setAppointments] = useState<IAppointment[]>([]);
-
-    // useEffect(() => {
-    //     getAppointments(User.id).then((res) => {
-    //         setAppointments(res as any);
-    //     });
-    // }, [User.id]);
-
     return (
         <Grid
             templateColumns={{ base: '1fr', md: 'repeat(4, 1fr)' }}
@@ -227,6 +218,35 @@ const UserProfileCard: FC<Props> = ({ user }) => {
                             This Quiz is conducted in order to understand your
                             metal health status. So we can treat you better!
                         </Text>
+                        <Box>
+                            {user.SurveyResults.map((survey) => (
+                                <Flex
+                                    key={survey.id}
+                                    align="center"
+                                    justifyContent="space-between"
+                                    mb="12px"
+                                    borderRadius={8}
+                                    bg={'#f8f9fa'}
+                                    p={3}
+                                >
+                                    <Text
+                                        fontSize="md"
+                                        color="black"
+                                        fontWeight={'semibold'}
+                                    >
+                                        Type: {survey.Survey.name}
+                                    </Text>
+                                    <Text
+                                        fontSize="md"
+                                        color={'gray.500'}
+                                        me="10px"
+                                        fontWeight={'semibold'}
+                                    >
+                                        Date: {survey.createdAt.toISOString()}
+                                    </Text>
+                                </Flex>
+                            ))}
+                        </Box>
                     </Box>
                 </Box>
             </GridItem>
@@ -257,33 +277,35 @@ const UserProfileCard: FC<Props> = ({ user }) => {
                         >
                             List of Scheduled Appointments
                         </Text>
-                        {appointments.map((appointment) => (
-                            <Flex
-                                key={appointment.createdAt}
-                                align="center"
-                                justifyContent="space-between"
-                                mb="12px"
-                                borderRadius={8}
-                                bg={'#f8f9fa'}
-                                p={3}
-                            >
-                                <Text
-                                    fontSize="md"
-                                    color={'gray.500'}
-                                    me="10px"
-                                    fontWeight={'semibold'}
+                        <Box>
+                            {user.appointments.map((appointment) => (
+                                <Flex
+                                    key={appointment.id}
+                                    align="center"
+                                    justifyContent="space-between"
+                                    mb="12px"
+                                    borderRadius={8}
+                                    bg={'#f8f9fa'}
+                                    p={3}
                                 >
-                                    Date: {appointment.date}
-                                </Text>
-                                <Text
-                                    fontSize="md"
-                                    color="black"
-                                    fontWeight={'semibold'}
-                                >
-                                    Time: {appointment.time}
-                                </Text>
-                            </Flex>
-                        ))}
+                                    <Text
+                                        fontSize="md"
+                                        color={'gray.500'}
+                                        me="10px"
+                                        fontWeight={'semibold'}
+                                    >
+                                        Date: {appointment.date.toISOString()}
+                                    </Text>
+                                    <Text
+                                        fontSize="md"
+                                        color="black"
+                                        fontWeight={'semibold'}
+                                    >
+                                        Time: {appointment.time}
+                                    </Text>
+                                </Flex>
+                            ))}
+                        </Box>
                     </Box>
                 </Box>
             </GridItem>

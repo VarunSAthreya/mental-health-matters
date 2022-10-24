@@ -29,6 +29,9 @@ export const userRouter = createProtectedRouter()
                         orderBy: {
                             createdAt: 'desc',
                         },
+                        include: {
+                            Survey: true,
+                        },
                     },
                     appointments: true,
                 },

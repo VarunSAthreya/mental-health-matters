@@ -17,7 +17,7 @@ const UserDetails: NextPage = () => {
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
 
-    const { data, isLoading } = trpc.useQuery(['user.details']);
+    const { data, isLoading } = trpc.useQuery(['user.allDetails']);
     if (isLoading || data == undefined || data == null) return null;
 
     return (
