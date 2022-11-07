@@ -8,6 +8,7 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { format } from 'date-fns';
 import { FC } from 'react';
 import { UserFullData } from '../../../@types';
 
@@ -200,7 +201,7 @@ const UserProfileCard: FC<Props> = ({ user }) => {
                     alignItems={'center'}
                     p={8}
                 >
-                    <Box p="12px 5px" mb="12px">
+                    <Box p="12px 5px" mb="12px" w={'80%'}>
                         <Text
                             bgGradient="linear-gradient(310deg,#FF4331,#D31A50)"
                             bgClip="text"
@@ -242,7 +243,11 @@ const UserProfileCard: FC<Props> = ({ user }) => {
                                         me="10px"
                                         fontWeight={'semibold'}
                                     >
-                                        Date: {survey.createdAt.toISOString()}
+                                        Date:{' '}
+                                        {format(
+                                            survey.createdAt,
+                                            'dd MMM yyyy'
+                                        )}
                                     </Text>
                                 </Flex>
                             ))}
@@ -260,7 +265,7 @@ const UserProfileCard: FC<Props> = ({ user }) => {
                     alignItems={'center'}
                     p={8}
                 >
-                    <Box p="12px 5px" mb="12px">
+                    <Box p="12px 5px" mb="12px" w={'80%'}>
                         <Text
                             bgGradient="linear-gradient(310deg,#FF4331,#D31A50)"
                             bgClip="text"
@@ -294,7 +299,11 @@ const UserProfileCard: FC<Props> = ({ user }) => {
                                         me="10px"
                                         fontWeight={'semibold'}
                                     >
-                                        Date: {appointment.date.toISOString()}
+                                        Date:{' '}
+                                        {format(
+                                            appointment.date,
+                                            'dd MMMM yyyy'
+                                        )}
                                     </Text>
                                     <Text
                                         fontSize="md"

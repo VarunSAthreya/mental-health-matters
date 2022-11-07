@@ -9,6 +9,7 @@ import {
     useBreakpointValue,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { format } from 'date-fns';
 import { useRouter } from 'next/router';
 import TotalPricing from '../components/Card/TotalPricing';
 import { Loader } from '../components/Loader';
@@ -48,6 +49,7 @@ const Dashboard = () => {
 
         const latest = userData.payments[0];
         if (!latest) return false;
+
         const exp = new Date(
             latest.createdAt.setMonth(latest.createdAt.getMonth() + 1)
         );
@@ -162,20 +164,33 @@ const Dashboard = () => {
                         <Box display={'block'} justifyContent="center" px="5px">
                             <Box>
                                 {userData?.SurveyResults &&
-                                userData?.SurveyResults.length > 0
-                                    ? userData?.SurveyResults.map(
-                                          (survey, index) => (
-                                              <Text
-                                                  display="block"
-                                                  key={index}
-                                                  mb="4"
-                                              >
-                                                  Previous Survey taken at:{' '}
-                                                  {survey.createdAt.toISOString()}
-                                              </Text>
-                                          )
-                                      )
-                                    : null}
+                                    userData?.SurveyResults.length > 0 &&
+                                    userData?.SurveyResults[0] && (
+                                        <Flex
+                                            align="center"
+                                            justifyContent="center"
+                                            mb="12px"
+                                            borderRadius={8}
+                                            bg={'#f8f9fa'}
+                                            p={3}
+                                        >
+                                            <Text
+                                                display="block"
+                                                fontSize={{
+                                                    base: 'md',
+                                                    lg: 'lg',
+                                                }}
+                                                color={'gray.500'}
+                                            >
+                                                Previous Survey taken at:{' '}
+                                                {format(
+                                                    userData?.SurveyResults[0]
+                                                        .createdAt,
+                                                    'dd MMMM yyyy'
+                                                )}
+                                            </Text>
+                                        </Flex>
+                                    )}
                             </Box>
                             <Box
                                 display={'flex'}
@@ -222,7 +237,31 @@ const Dashboard = () => {
                                 color={'gray.500'}
                                 mt={3}
                             >
-                                Payment Done
+                                {userData && userData.payments[0]?.updatedAt && (
+                                    <Flex
+                                        align="center"
+                                        justifyContent="center"
+                                        mb="12px"
+                                        borderRadius={8}
+                                        bg={'#f8f9fa'}
+                                        p={3}
+                                    >
+                                        <Text
+                                            display="block"
+                                            fontSize={{
+                                                base: 'md',
+                                                lg: 'lg',
+                                            }}
+                                            color={'gray.500'}
+                                        >
+                                            Payment Done at:{' '}
+                                            {format(
+                                                userData.payments[0].updatedAt,
+                                                'dd MMMM yyyy'
+                                            )}
+                                        </Text>
+                                    </Flex>
+                                )}
                             </Text>
                         ) : (
                             <TotalPricing />
