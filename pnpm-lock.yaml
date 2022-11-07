@@ -17,6 +17,7 @@ specifiers:
   '@types/react-dom': 18.0.6
   '@typescript-eslint/eslint-plugin': ^5.36.2
   '@typescript-eslint/parser': ^5.36.2
+  date-fns: ^2.29.3
   eslint: 8.23.0
   eslint-config-next: 12.3.0
   framer-motion: ^7.3.2
@@ -45,6 +46,7 @@ dependencies:
   '@trpc/next': 9.27.2_uxi3fykuxaglbetcrbfd4dokya
   '@trpc/react': 9.27.2_e7pohnznr4qdgpqc5x4q3pmfcu
   '@trpc/server': 9.27.2
+  date-fns: 2.29.3
   framer-motion: 7.3.2_biqbaboplfbrettd7655fr4n2y
   lottie-react: 2.3.1_biqbaboplfbrettd7655fr4n2y
   next: 12.3.0_biqbaboplfbrettd7655fr4n2y
@@ -2166,6 +2168,11 @@ packages:
     engines: {node: '>=0.10'}
     dependencies:
       assert-plus: 1.0.0
+    dev: false
+
+  /date-fns/2.29.3:
+    resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
+    engines: {node: '>=0.11'}
     dev: false
 
   /debug/2.6.9:
