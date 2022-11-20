@@ -12,8 +12,8 @@ const Feature: FC<Props> = ({ data }: Props) => {
     return (
         <Stack direction={"row"} align={"center"}>
             <Flex
-                w={8}
-                h={8}
+                w={10}
+                h={10}
                 align={"center"}
                 justify={"center"}
                 rounded={"full"}
@@ -21,7 +21,7 @@ const Feature: FC<Props> = ({ data }: Props) => {
             >
                 <Icon as={icon} boxSize={8} m={{ base: 2 }} color={color} />
             </Flex>
-            <Text fontWeight={600}>{text}</Text>
+            <Text fontWeight={600} color={'gray.500'}>{text}</Text>
         </Stack>
     );
 };

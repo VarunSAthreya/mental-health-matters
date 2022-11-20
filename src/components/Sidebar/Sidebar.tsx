@@ -61,11 +61,12 @@ const SidebarContent = ({ onClose, ...rest }) => {
     return (
         <Box
             bg={useColorModeValue("white", "#242526")}
-            w={{ base: "full", md: 72 }}
+            w={{ base: "full", md: 20 }}
             pos={{ base: "static", md: "fixed" }}
             borderRadius={{ base: 0, md: 8 }}
             left={2}
             flexDirection={"column"}
+            justifyContent={'space-between'}
             top={6}
             h={{ base: "100%", lg: "95%" }}
             {...rest}
@@ -73,23 +74,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
             <Flex
                 h="20"
                 alignItems="center"
-                mx="6"
                 justifyContent="space-between"
             >
-                <Box pt={"25px"} mb="12px">
-                    <Text
-                        fontSize="1.2rem"
-                        mt="3px"
-                        bgGradient="linear(310deg,#FF4331,#D31A50)"
-                        bgClip="text"
-                        fontWeight="bold"
-                        textTransform={"uppercase"}
-                        onClick={() => router.push(`/`)}
-                        cursor={"pointer"}
-                    >
-                        MENTAL HEALTH PORTAL
-                    </Text>
-                    <Separator></Separator>
+                <Box display={'flex'} alignItems={'center'}>
+                   <Logo width={"75px"}/>
                 </Box>
                 <CloseButton
                     display={{ base: "flex", md: "none" }}
@@ -108,15 +96,24 @@ const SidebarContent = ({ onClose, ...rest }) => {
                     onClick={toggleColorMode}
                     _focus={{ outline: "none" }}
                     variant="no-hover"
-                    rightIcon={
-                        colorMode === "light" ? <MoonIcon /> : <SunIcon />
-                    }
+                    my={4}
                 >
-                    {colorMode === "light" ? (
-                        <Text mr={4}>DARK MODE</Text>
-                    ) : (
-                        <Text mr={4}>LIGHT MODE</Text>
-                    )}
+                    <IconBox
+                        bg={
+                            colorMode === "light"
+                                ? "transparent"
+                                : "white"
+                        }
+                        border={colorMode === "light" ? "1px solid black" : "transparent"}
+                        h="40px"
+                        w="40px"
+                        color={"black"}
+                    >
+                        <Icon
+                            fontSize="16"
+                            as={colorMode === "light" ? MoonIcon : SunIcon}
+                        />
+                    </IconBox>
                 </Button>
             </Flex>
         </Box>
@@ -127,13 +124,18 @@ const NavItem = ({ icon, link, children, ...rest }) => {
     const router = useRouter();
     const defaultColor = useColorModeValue("white", "#242526");
     const textColor = useColorModeValue("#242526", "white");
+    const navItemBg = useColorModeValue('transparent', 'white');
+    const navItemBorder = useColorModeValue(
+        '1px solid black',
+        'transparent'
+    )
     // console.log(router.asPath);
     // console.log({ link });
 
     return (
         <Link
-            style={{ textDecoration: "none" }}
-            _focus={{ outline: "none" }}
+            style={{ textDecoration: 'none' }}
+            _focus={{ outline: 'none' }}
             href={link}
         >
             <Flex
@@ -141,55 +143,35 @@ const NavItem = ({ icon, link, children, ...rest }) => {
                 p="2"
                 mx="2"
                 borderRadius="lg"
-                role="group"
-                cursor="pointer"
-                bg={
-                    router.asPath === link
-                        ? "linear-gradient(310deg,#FF4331,#D31A50)"
-                        : defaultColor
-                }
+                justifyContent={'center'}
                 my={2}
-                _hover={{
-                    bg: "linear-gradient(310deg,#FF4331,#D31A50)",
-                    color: "white",
-                }}
                 {...rest}
             >
                 {icon && (
                     <IconBox
                         bg={
                             router.asPath === link
-                                ? "white"
-                                : "linear-gradient(310deg,#FF4331,#D31A50)"
+                                ? 'linear-gradient(310deg,#09C6F9,#045DE9)'
+                                : navItemBg
+                        }
+                        border={
+                            router.asPath === link
+                                ? 'transparent'
+                                : navItemBorder
                         }
                         h="40px"
                         w="40px"
-                        color={router.asPath === link ? "black" : "white"}
-                        me="12px"
-                        _groupHover={{
-                            bg: "white",
+                        color={router.asPath === link ? 'white' : 'black'}
+                        _hover={{
+                            bg: 'linear-gradient(310deg,#09C6F9,#045DE9)',
+                            color: 'white',
+                            border:"none"
                         }}
-                        transition="0.2s linear"
+                        transition="0.1s linear"
                     >
-                        <Icon
-                            fontSize="16"
-                            _groupHover={{
-                                color: "black",
-                            }}
-                            as={icon}
-                        />
+                        <Icon fontSize="16" as={icon} />
                     </IconBox>
                 )}
-                <Text
-                    color={router.asPath === link ? "white" : textColor}
-                    my="auto"
-                    fontSize="sm"
-                    _groupHover={{
-                        color: "white",
-                    }}
-                >
-                    {children}
-                </Text>
             </Flex>
         </Link>
     );

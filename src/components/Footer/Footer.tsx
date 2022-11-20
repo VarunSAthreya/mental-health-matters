@@ -18,7 +18,7 @@ import {
     BsTwitter,
     BsYoutube,
 } from "react-icons/bs";
-import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md";
+import { MdEmail, MdPhone } from "react-icons/md";
 import { ISocialMedia } from "../../@types";
 import Logo from "../Logo/Logo";
 import SocialMedia from "../UI/SocialMedia";
@@ -51,217 +51,185 @@ const Footer: FunctionComponent = () => {
 
     return (
         <Box
-            bg={useColorModeValue("gray.50", "#242526")}
-            color={useColorModeValue("gray.700", "gray.200")}
+            bg={useColorModeValue('gray.50', '#242526')}
+            color={useColorModeValue('gray.700', 'gray.200')}
         >
-            <Container as={Stack} maxW={"6xl"} py={10}>
-                <Box py={10}>
+            <Container as={Stack} maxW={'6xl'} py={6}>
+                <Box py={6}>
                     <Flex
-                        align={"center"}
+                        align={'center'}
                         _before={{
                             content: '""',
-                            borderBottom: "1px solid",
-                            borderColor: useColorModeValue(
-                                "gray.200",
-                                "gray.700"
-                            ),
+                            borderBottom: '3px solid',
+                            borderColor: '#045DE9',
                             flexGrow: 1,
                             mr: 8,
                         }}
                         _after={{
                             content: '""',
-                            borderBottom: "1px solid",
-                            borderColor: useColorModeValue(
-                                "gray.200",
-                                "gray.700"
-                            ),
+                            borderBottom: '3px solid',
+                            borderColor: '#045DE9',
                             flexGrow: 1,
                             ml: 8,
                         }}
                     >
-                        <Logo />
+                        <Logo  width={'150px'}/>
                     </Flex>
                 </Box>
-                <SimpleGrid columns={{ base: 2, md: 4 }} spacing={8}>
-                    <Stack align={"flex-start"}>
-                        <Text fontWeight={"500"} fontSize={"lg"} mb={2}>
+                <SimpleGrid columns={{ base: 2, md: 3 }} spacing={8}>
+                    <Stack align={'flex-start'} alignItems={'flex-start'}>
+                        <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
                             Services
                         </Text>
                         <Text>Depression therapy</Text>
                         <Text>Individual therapy</Text>
                         <Text>Couples therapy</Text>
                         <Text>Children therapy</Text>
-                        <Text>Anti-Stress therapy</Text>
                     </Stack>
-                    <Stack align={"flex-start"}>
-                        <Text fontWeight={"500"} fontSize={"lg"} mb={2}>
-                            Contact Us
-                        </Text>
-                        <Text
-                            fontSize="md"
-                            display="flex"
-                            alignItems="center"
-                            _hover={{
-                                color: "#FF4331",
-                            }}
-                        >
-                            <Icon boxSize={5} m={{ base: 2 }} as={MdPhone} />
-                            <Link
-                                href="tel:+918088611802"
-                                target="_blank"
-                                rel="noreferrer"
-                                _hover={{
-                                    textDecoration: "none",
-                                }}
-                                _focus={{ outline: "none" }}
-                            >
-                                +91 80 8861 1802
-                            </Link>
-                        </Text>
-                        <Text
-                            fontSize="md"
-                            display="flex"
-                            alignItems="center"
-                            _hover={{
-                                color: "#FF4331",
-                            }}
-                        >
-                            <Icon boxSize={5} m={{ base: 2 }} as={MdEmail} />
-                            <Link
-                                href="mailto:HmH@gmail.com"
-                                target="_blank"
-                                rel="noreferrer"
-                                _hover={{
-                                    textDecoration: "none",
-                                }}
-                                _focus={{ outline: "none" }}
-                            >
-                                HmH@gmail.com
-                            </Link>
-                        </Text>
-                        <Text
-                            fontSize="md"
-                            display="flex"
-                            alignItems="flex-start"
-                        >
-                            <Icon
-                                boxSize={5}
-                                m={{ base: 1 }}
-                                as={MdLocationOn}
-                            />
-                            2231 Sycamore Lake Road Green Bay, WI 54304
-                        </Text>
-                    </Stack>
-                    <Stack align={"flex-start"}>
-                        <Text fontWeight={"500"} fontSize={"lg"} mb={2}>
+                    <Stack align={'flex-start'} alignItems={'center'}>
+                        <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
                             Follow Us
                         </Text>
-                        <Text
-                            fontSize="md"
-                            display="flex"
-                            alignItems="center"
-                            _hover={{
-                                color: "#FF4331",
-                                textDecoration: "none",
-                            }}
-                        >
-                            <Icon boxSize={5} m={{ base: 2 }} as={BsFacebook} />
-                            <Link
-                                href="https://www.facebook.com/"
-                                target="_blank"
-                                rel="noreferrer"
+                        <Box display={'flex'}>
+                        <Box mr={3}>
+                            <Text
+                                fontSize="md"
+                                display="flex"
+                                alignItems="center"
                                 _hover={{
-                                    textDecoration: "none",
+                                    color: '#045DE9',
+                                    textDecoration: 'none',
                                 }}
-                                _focus={{ outline: "none" }}
                             >
-                                FaceBook
-                            </Link>
-                        </Text>
-                        <Text
-                            fontSize="md"
-                            display="flex"
-                            alignItems="center"
-                            _hover={{
-                                color: "#FF4331",
-                            }}
-                        >
-                            <Icon
-                                boxSize={5}
-                                m={{ base: 2 }}
-                                as={BsInstagram}
-                            />
-                            <Link
-                                href="https://www.instagram.com/"
-                                target="_blank"
-                                rel="noreferrer"
+                                <Icon
+                                    boxSize={5}
+                                    m={{ base: 2 }}
+                                    as={BsFacebook}
+                                />
+                                <Link
+                                    href="https://www.facebook.com/"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    _hover={{
+                                        textDecoration: 'none',
+                                    }}
+                                    _focus={{ outline: 'none' }}
+                                >
+                                    FaceBook
+                                </Link>
+                            </Text>
+                            <Text
+                                fontSize="md"
+                                display="flex"
+                                alignItems="center"
                                 _hover={{
-                                    textDecoration: "none",
+                                    color: '#045DE9',
                                 }}
-                                _focus={{ outline: "none" }}
                             >
-                                Instagram
-                            </Link>
-                        </Text>
-                        <Text
-                            fontSize="md"
-                            display="flex"
-                            alignItems="center"
-                            _hover={{
-                                color: "#FF4331",
-                            }}
-                        >
-                            <Icon boxSize={5} m={{ base: 2 }} as={BsTwitter} />
-                            <Link
-                                href="https://twitter.com/?lang=en"
-                                target="_blank"
-                                rel="noreferrer"
+                                <Icon
+                                    boxSize={5}
+                                    m={{ base: 2 }}
+                                    as={BsInstagram}
+                                />
+                                <Link
+                                    href="https://www.instagram.com/"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    _hover={{
+                                        textDecoration: 'none',
+                                    }}
+                                    _focus={{ outline: 'none' }}
+                                >
+                                    Instagram
+                                </Link>
+                            </Text>
+                        </Box>
+                        <Box ml={3}>
+                            <Text
+                                fontSize="md"
+                                display="flex"
+                                alignItems="center"
                                 _hover={{
-                                    textDecoration: "none",
+                                    color: '#045DE9',
                                 }}
-                                _focus={{ outline: "none" }}
                             >
-                                Twitter
-                            </Link>
-                        </Text>
-                        <Text
-                            fontSize="md"
-                            display="flex"
-                            alignItems="center"
-                            _hover={{
-                                color: "#FF4331",
-                            }}
-                        >
-                            <Icon boxSize={5} m={{ base: 2 }} as={BsYoutube} />
-                            <Link
-                                href="https://www.youtube.com/"
-                                target="_blank"
-                                rel="noreferrer"
+                                <Icon
+                                    boxSize={5}
+                                    m={{ base: 2 }}
+                                    as={BsTwitter}
+                                />
+                                <Link
+                                    href="https://twitter.com/?lang=en"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    _hover={{
+                                        textDecoration: 'none',
+                                    }}
+                                    _focus={{ outline: 'none' }}
+                                >
+                                    Twitter
+                                </Link>
+                            </Text>
+                            <Text
+                                fontSize="md"
+                                display="flex"
+                                alignItems="center"
                                 _hover={{
-                                    textDecoration: "none",
+                                    color: '#045DE9',
                                 }}
-                                _focus={{ outline: "none" }}
                             >
-                                Youtube
-                            </Link>
-                        </Text>
+                                <Icon
+                                    boxSize={5}
+                                    m={{ base: 2 }}
+                                    as={BsYoutube}
+                                />
+                                <Link
+                                    href="https://www.youtube.com/"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    _hover={{
+                                        textDecoration: 'none',
+                                    }}
+                                    _focus={{ outline: 'none' }}
+                                >
+                                    Youtube
+                                </Link>
+                            </Text>
+                        </Box>
+                        </Box>
                     </Stack>
-                    <Stack align={"flex-start"}>
-                        <Text fontWeight={"500"} fontSize={"lg"} mb={2}>
+                    <Stack align={'flex-start'} alignItems={'flex-end'}>
+                        <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
                             Designed And Developed By:
                         </Text>
-                        <Text fontWeight={"500"} fontSize={"md"} mb={2}>
-                            Varun S Athreya
-                        </Text>
-                        {varun.map((data, index) => (
-                            <SocialMedia data={data} key={index} />
-                        ))}
-                        <Text fontWeight={"500"} fontSize={"md"} mb={2}>
-                            Sandeep M
-                        </Text>
-                        {sandeep.map((data, index) => (
-                            <SocialMedia data={data} key={index} />
-                        ))}
+                        <Box display={'flex'}>
+                            <Box
+                                mr={3}
+                                display={'flex'}
+                                flexDir={'column'}
+                                alignItems={'center'}
+                            >
+                                <Text fontWeight={'500'} fontSize={'md'} mb={2}>
+                                    Varun S Athreya
+                                </Text>
+                                {varun.map((data, index) => (
+                                    <SocialMedia data={data} key={index} />
+                                ))}
+                            </Box>
+                            <Box
+                                ml={3}
+                                display={'flex'}
+                                flexDir={'column'}
+                                alignItems={'center'}
+                            >
+                                <Text fontWeight={'500'} fontSize={'md'} mb={2}>
+                                    Sandeep M
+                                </Text>
+                                {sandeep.map((data, index) => (
+                                    <SocialMedia data={data} key={index} />
+                                ))}
+                            </Box>
+                        </Box>
                     </Stack>
                 </SimpleGrid>
             </Container>

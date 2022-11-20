@@ -1,6 +1,7 @@
 import {
     Box,
     Button,
+    Icon,
     Input,
     Select,
     Spinner,
@@ -11,6 +12,11 @@ import {
 import type { FC } from 'react';
 import { useState } from 'react';
 import { trpc } from '../utils/trpc';
+import { BsCalendar2CheckFill } from 'react-icons/bs';
+import { ArrowForwardIcon } from '@chakra-ui/icons';
+import {MdArrowDropDown} from 'react-icons/md';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 const ScheduleAppointment: FC = () => {
     const timings = [
@@ -26,7 +32,6 @@ const ScheduleAppointment: FC = () => {
     ];
     const secondaryBG = useColorModeValue('white', '#242526');
     const toast = useToast();
-
     const [date, setDate] = useState<Date>(new Date());
     const [time, setTime] = useState<string>('');
 
@@ -55,48 +60,102 @@ const ScheduleAppointment: FC = () => {
             my={{ sm: '24px', xl: '0px' }}
             bg={secondaryBG}
             borderRadius={8}
+            display={'flex'}
+            border={'3px solid #045DE9'}
         >
-            <Box p="12px 5px" mb="12px">
+            <Box
+                p="12px 5px"
+                mb="12px"
+                display={'flex'}
+                flexDir={'column'}
+                alignItems={'center'}
+                justifyContent={'center'}
+                color={'#045DE9'}
+            >
+                <Icon as={BsCalendar2CheckFill} w={16} h={16} />
                 <Text
-                    bgGradient="linear(310deg,#FF4331,#D31A50)"
+                    bgGradient="linear(310deg,#09C6F9,#045DE9)"
                     bgClip="text"
                     fontSize="2xl"
                     fontWeight="extrabold"
                     textTransform={'uppercase'}
+                    textAlign={'center'}
+                    mt={2}
                 >
                     Schedule an Appointment
                 </Text>
-            </Box>
-            <Box display={'flex'} justifyContent="center" px="5px" my={4}>
-                <Input
-                    type="date"
-                    value={date.toISOString().slice(0, 10)}
-                    onChange={(e) => setDate(new Date(e.target.value))}
-                />
-            </Box>
-            <Box display={'flex'} justifyContent="center" px="5px">
-                <Select
-                    placeholder="Select time"
-                    variant="filled"
-                    mr={2}
-                    onChange={(e) => setTime(e.target.value)}
+                <Text
+                    fontSize={{ base: 'md' }}
+                    color={'gray.500'}
+                    textAlign={'center'}
+                    mt={3}
                 >
-                    {timings.map((time) => (
-                        <option key={time} value={time}>
-                            {time}
-                        </option>
-                    ))}
-                </Select>
+                    Select the date and time of ur convience to set up
+                    appointment with us and get consulted by the finest mental
+                    health expert out there
+                </Text>
+                <Box display={'flex'} justifyContent="center" px="5px" my={4}>
+                    <Button
+                        disabled={isLoading}
+                        onClick={() => mutate({ date, time })}
+                        bg={'linear-gradient(310deg,#09C6F9,#045DE9)'}
+                        color={'white'}
+                        variant={'solid'}
+                        _focus={{ outline: 'none' }}
+                        _active={{
+                            bg: 'linear-gradient(310deg, #079bc3, #0349b8);',
+                        }}
+                        _hover={{
+                            bg: 'linear-gradient(310deg, #079bc3, #0349b8);',
+                        }}
+                        rightIcon={<ArrowForwardIcon />}
+                    >
+                        SET APPOINTMENT{' '}
+                        {isLoading && <Spinner ml={2} color="white" />}
+                    </Button>
+                </Box>
             </Box>
-
-            <Box display={'flex'} justifyContent="center" px="5px" my={4}>
-                <Button
-                    disabled={isLoading}
-                    onClick={() => mutate({ date, time })}
-                >
-                    SET APPOINTMENT{' '}
-                    {isLoading && <Spinner ml={2} color="white" />}
-                </Button>
+            <Box display={'flex'} flexDir={'column'}>
+                <Box display={'flex'} justifyContent="center" px="5px" my={4}>
+                    <Calendar
+                        value={date}
+                        onChange={setDate}
+                        prev2Label={null}
+                        next2Label={null}
+                    />
+                </Box>
+                <Box display={'flex'} justifyContent="center" px="5px">
+                    <Select
+                        placeholder="Select time"
+                        variant="filled"
+                        w={'90%'}
+                        onChange={(e) => setTime(e.target.value)}
+                        bgColor={'white'}
+                        color={'black'}
+                        borderRadius={8}
+                        icon={<MdArrowDropDown />}
+                        _hover={{
+                            bgColor: 'white',
+                        }}
+                        _focus={{
+                            bgColor: 'white',
+                            border: 'none',
+                        }}
+                        _active={{
+                            bgColor: 'white',
+                        }}
+                    >
+                        {timings.map((time) => (
+                            <option
+                                key={time}
+                                value={time}
+                                style={{ backgroundColor: 'white' }}
+                            >
+                                {time}
+                            </option>
+                        ))}
+                    </Select>
+                </Box>
             </Box>
         </Box>
     );

@@ -14,7 +14,7 @@ const SocialMedia: FunctionComponent<Props> = ({ data }: Props) => {
             display="flex"
             alignItems="center"
             _hover={{
-                color: "#FF4331",
+                color: "#045DE9",
                 textDecoration: "none",
             }}
         >
