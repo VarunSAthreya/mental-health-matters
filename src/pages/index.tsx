@@ -1,24 +1,18 @@
 import {
     Box,
     Heading,
-    Hide,
     SimpleGrid,
     Stack,
-    Image,
     Text,
     useBreakpointValue,
-    useColorModeValue,
-    useColorMode
+    useColorMode,
 } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
 import type { NextPage } from 'next';
 import { AiFillHeart } from 'react-icons/ai';
 import { FaPeopleCarry, FaRunning } from 'react-icons/fa';
-import type { IBasicCard, IService } from '../../@types';
-import animationData from '../../public/lotte/brain.json';
+import type { IBasicCard, IService } from '../../types';
 import BasicCard from '../components/Card/BasicCard';
 import ServiceCard from '../components/Card/ServiceCard';
-import LottieView from '../components/Lotte/LotteView';
 import Layout from '../components/UI/Layout';
 
 const basicCardData: IBasicCard[] = [
@@ -70,7 +64,7 @@ const serviceData: IService[] = [
 ];
 
 const Home: NextPage = () => {
-    const {colorMode} = useColorMode();
+    const { colorMode } = useColorMode();
     return (
         <Layout title="MHM">
             {/*Poster*/}
@@ -103,7 +97,7 @@ const Home: NextPage = () => {
                             Make your mental Health a Priority.
                         </Text>
                         <Text
-                        my={4}
+                            my={4}
                             color={'#bcd9e1'}
                             lineHeight={1.2}
                             textAlign={{ base: 'center', md: 'start' }}

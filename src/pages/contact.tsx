@@ -1,10 +1,18 @@
-import { Box, Center, Container, Heading, Stack, Text,Flex,useColorMode } from "@chakra-ui/react";
-import { NextPage } from "next";
-import ContactCard from "../components/Card/ContactCard";
-import Layout from "../components/UI/Layout";
+import {
+    Box,
+    Center,
+    Flex,
+    Heading,
+    Stack,
+    Text,
+    useColorMode,
+} from '@chakra-ui/react';
+import { NextPage } from 'next';
+import ContactCard from '../components/Card/ContactCard';
+import Layout from '../components/UI/Layout';
 
 const Contact: NextPage = () => {
-    const {colorMode} = useColorMode();
+    const { colorMode } = useColorMode();
     return (
         <Layout title="MHM | Contact">
             <Flex

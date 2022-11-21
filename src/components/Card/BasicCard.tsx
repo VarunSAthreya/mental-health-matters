@@ -6,9 +6,9 @@ import {
     Icon,
     Text,
     useColorModeValue,
-} from "@chakra-ui/react";
-import { FunctionComponent } from "react";
-import { IBasicCard } from "../../@types";
+} from '@chakra-ui/react';
+import { FunctionComponent } from 'react';
+import { IBasicCard } from '../../../types';
 
 type Props = {
     data: IBasicCard;

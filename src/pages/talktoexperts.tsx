@@ -1,7 +1,7 @@
+import { ArrowForwardIcon } from '@chakra-ui/icons';
 import {
     Box,
     Button,
-    Container,
     Flex,
     Heading,
     Image,
@@ -13,11 +13,9 @@ import {
 } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { MdChildCare, MdEmojiPeople, MdFamilyRestroom } from 'react-icons/md';
-import {ArrowForwardIcon} from '@chakra-ui/icons';
-import type { IFeature } from '../../@types';
+import type { IFeature } from '../../types';
 import Feature from '../components/UI/Feature';
 import Layout from '../components/UI/Layout';
-import ContactCard from '../components/Card/ContactCard';
 
 const TalkToExperts: NextPage = () => {
     const featureData1: IFeature[] = [

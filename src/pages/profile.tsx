@@ -9,10 +9,10 @@ import {
 } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
+import { FaUserEdit } from 'react-icons/fa';
 import UserProfileCard from '../components/Card/UserProfileCard';
 import SideBar from '../components/Sidebar/Sidebar';
 import { trpc } from '../utils/trpc';
-import {FaUserEdit} from 'react-icons/fa';
 
 const UserDetails: NextPage = () => {
     const router = useRouter();
@@ -45,8 +45,16 @@ const UserDetails: NextPage = () => {
                             <Avatar
                                 m={3}
                                 size="lg"
-                                name={userData?.name}
-                                src={userData?.image}
+                                name={
+                                    userData && userData.name
+                                        ? userData.name
+                                        : undefined
+                                }
+                                src={
+                                    userData && userData.image
+                                        ? userData.image
+                                        : undefined
+                                }
                             />
                             <Box>
                                 <Text

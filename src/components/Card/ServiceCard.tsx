@@ -1,13 +1,13 @@
-import { Box, Heading, Image, Text, useColorModeValue } from "@chakra-ui/react";
-import { FunctionComponent } from "react";
-import { IService } from "../../@types";
+import { Box, Heading, Image, Text, useColorModeValue } from '@chakra-ui/react';
+import { FunctionComponent } from 'react';
+import { IService } from '../../../types';
 
 type Props = {
     data: IService;
 };
 
 const ServiceCard: FunctionComponent<Props> = ({ data }: Props) => {
-    const { imageUrl, title, description, direction } = data;
+    const { imageUrl, title, description } = data;
 
     return (
         <Box

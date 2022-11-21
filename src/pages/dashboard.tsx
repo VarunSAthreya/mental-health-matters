@@ -1,3 +1,4 @@
+import { ArrowForwardIcon } from '@chakra-ui/icons';
 import {
     Avatar,
     Box,
@@ -8,14 +9,13 @@ import {
     Highlight,
     Image,
     Stack,
-    Text,
     Tag,
     TagLabel,
-    useBreakpointValue,
+    Text,
     useColorModeValue,
 } from '@chakra-ui/react';
-import {ArrowForwardIcon} from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
+import { formatDate } from '../../utils/helper';
 import TotalPricing from '../components/Card/TotalPricing';
 import { Loader } from '../components/Loader';
 import ScheduleAppointment from '../components/ScheduleAppointment';
@@ -25,7 +25,6 @@ import { trpc } from '../utils/trpc';
 const Dashboard = () => {
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
-    const textHeight = useBreakpointValue({ base: '20%', md: '30%' });
 
     const router = useRouter();
 
@@ -63,29 +62,6 @@ const Dashboard = () => {
         return true;
     };
 
-    const formatDate = (date) => {
-        const monthNames = [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec',
-        ];
-
-        const day = date.getDate();
-        const monthIndex = date.getMonth();
-        const year = date.getFullYear();
-
-        return day + ' ' + monthNames[monthIndex] + ' ' + year;
-    };
-
     return (
         <Flex flexDirection={{ base: 'column', lg: 'row' }} bg={primaryBG}>
             <SideBar />
@@ -112,8 +88,16 @@ const Dashboard = () => {
                         <Avatar
                             my={2}
                             size="md"
-                            name={userData?.name}
-                            src={userData?.image}
+                            name={
+                                userData && userData.name
+                                    ? userData.name
+                                    : undefined
+                            }
+                            src={
+                                userData && userData.image
+                                    ? userData.image
+                                    : undefined
+                            }
                         />
                         <Heading
                             fontSize={{ base: '3xl' }}
@@ -262,9 +246,19 @@ const Dashboard = () => {
                                                       m={1}
                                                   >
                                                       <Avatar
-                                                          src={userData?.image}
+                                                          src={
+                                                              userData &&
+                                                              userData.image
+                                                                  ? userData.image
+                                                                  : undefined
+                                                          }
                                                           size="xs"
-                                                          name={userData?.name}
+                                                          name={
+                                                              userData &&
+                                                              userData.name
+                                                                  ? userData.name
+                                                                  : undefined
+                                                          }
                                                           ml={-1}
                                                           mr={2}
                                                       />
@@ -288,11 +282,15 @@ const Dashboard = () => {
                                 >
                                     <Button
                                         onClick={() => router.push('/survey')}
-                                        bg={"linear-gradient(310deg, #09C6F9, #045DE9)"}
-                                        color={"white"}
-                                        variant={"solid"}
+                                        bg={
+                                            'linear-gradient(310deg, #09C6F9, #045DE9)'
+                                        }
+                                        color={'white'}
+                                        variant={'solid'}
                                         _focus={{ outline: 'none' }}
-                                        _active={{ bg: 'linear-gradient(310deg, #079bc3, #0349b8)' }}
+                                        _active={{
+                                            bg: 'linear-gradient(310deg, #079bc3, #0349b8)',
+                                        }}
                                         _hover={{
                                             bg: 'linear-gradient(310deg, #079bc3, #0349b8)',
                                         }}

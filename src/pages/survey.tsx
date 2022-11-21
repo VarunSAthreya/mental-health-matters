@@ -1,38 +1,38 @@
 import {
+    ArrowBackIcon,
+    ArrowForwardIcon,
+    ChevronRightIcon,
+} from '@chakra-ui/icons';
+import {
     Box,
-    Button,
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
+    Button,
     Flex,
     Grid,
     Heading,
+    Icon,
     Radio,
     RadioGroup,
-    Icon,
     Spinner,
     Stack,
     Text,
-    useBreakpointValue,
     useColorModeValue,
     useToast,
 } from '@chakra-ui/react';
+import { Step, Steps, useSteps } from 'chakra-ui-steps';
 import { useRouter } from 'next/router';
-import React from 'react';
-import type { ISurvey } from '../../@types';
-import SideBar from '../components/Sidebar/Sidebar';
-import { trpc } from '../utils/trpc';
-import { ChevronRightIcon } from '@chakra-ui/icons';
-import { ArrowForwardIcon, ArrowBackIcon } from '@chakra-ui/icons';
 import { AiOutlineFileDone } from 'react-icons/ai';
 import { IoCheckmarkDoneSharp } from 'react-icons/io5';
-import { Step, Steps, useSteps } from 'chakra-ui-steps';
+import type { ISurvey } from '../../types';
 import { Separator } from '../components/Separator';
+import SideBar from '../components/Sidebar/Sidebar';
+import { trpc } from '../utils/trpc';
 
 const Survey = () => {
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
-    const textHeight = useBreakpointValue({ base: '20%', md: '30%' });
 
     const { nextStep, prevStep, activeStep } = useSteps({
         initialStep: 0,
@@ -214,7 +214,6 @@ const Survey = () => {
                                                                     value={
                                                                         option
                                                                     }
-                                                                    
                                                                 >
                                                                     {option}
                                                                 </Radio>
@@ -272,11 +271,15 @@ const Survey = () => {
                                     <Button
                                         disabled={isLoading}
                                         onClick={handleSubmit}
-                                        bg={"linear-gradient(310deg, #09C6F9, #045DE9)"}
-                                        color={"white"}
-                                        variant={"solid"}
+                                        bg={
+                                            'linear-gradient(310deg, #09C6F9, #045DE9)'
+                                        }
+                                        color={'white'}
+                                        variant={'solid'}
                                         _focus={{ outline: 'none' }}
-                                        _active={{ bg: 'linear-gradient(310deg, #079bc3, #0349b8)' }}
+                                        _active={{
+                                            bg: 'linear-gradient(310deg, #079bc3, #0349b8)',
+                                        }}
                                         _hover={{
                                             bg: 'linear-gradient(310deg, #079bc3, #0349b8)',
                                         }}
@@ -294,11 +297,15 @@ const Survey = () => {
                                         isDisabled={activeStep === 0}
                                         mr={8}
                                         onClick={prevStep}
-                                        bg={"linear-gradient(310deg, #09C6F9, #045DE9)"}
-                                        color={"white"}
-                                        variant={"solid"}
+                                        bg={
+                                            'linear-gradient(310deg, #09C6F9, #045DE9)'
+                                        }
+                                        color={'white'}
+                                        variant={'solid'}
                                         _focus={{ outline: 'none' }}
-                                        _active={{ bg: 'linear-gradient(310deg, #079bc3, #0349b8)' }}
+                                        _active={{
+                                            bg: 'linear-gradient(310deg, #079bc3, #0349b8)',
+                                        }}
                                         _hover={{
                                             bg: 'linear-gradient(310deg, #079bc3, #0349b8)',
                                         }}
@@ -308,11 +315,15 @@ const Survey = () => {
                                     </Button>
                                     <Button
                                         onClick={nextStep}
-                                        bg={"linear-gradient(310deg, #09C6F9, #045DE9)"}
-                                        color={"white"}
-                                        variant={"solid"}
+                                        bg={
+                                            'linear-gradient(310deg, #09C6F9, #045DE9)'
+                                        }
+                                        color={'white'}
+                                        variant={'solid'}
                                         _focus={{ outline: 'none' }}
-                                        _active={{ bg: 'linear-gradient(310deg, #079bc3, #0349b8)' }}
+                                        _active={{
+                                            bg: 'linear-gradient(310deg, #079bc3, #0349b8)',
+                                        }}
                                         _hover={{
                                             bg: 'linear-gradient(310deg, #079bc3, #0349b8)',
                                         }}

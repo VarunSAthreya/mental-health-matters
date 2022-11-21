@@ -1,32 +1,29 @@
-/* eslint-disable react/no-children-prop */
 import {
     Box,
     Button,
-    FormControl,
     Flex,
+    FormControl,
     FormLabel,
+    Grid,
+    GridItem,
+    Heading,
+    Icon,
     Input,
     InputGroup,
     InputLeftElement,
-    Heading,
-    Text,
     Spinner,
+    Stack,
+    Text,
     Textarea,
+    useColorModeValue,
     useToast,
     VStack,
     WrapItem,
-    Icon,
-    Grid,
-    Stack,
-    GridItem,
-    useColorModeValue
 } from '@chakra-ui/react';
 import { FunctionComponent, useState } from 'react';
-import { AiFillRead } from 'react-icons/ai';
-import { MdEmail, MdPhone } from "react-icons/md";
-import {HiLocationMarker} from 'react-icons/hi';
 import { BsPerson } from 'react-icons/bs';
-import { MdOutlineEmail } from 'react-icons/md';
+import { HiLocationMarker } from 'react-icons/hi';
+import { MdEmail, MdOutlineEmail, MdPhone } from 'react-icons/md';
 
 const ContactCard: FunctionComponent = () => {
     const toast = useToast();
@@ -54,7 +51,6 @@ const ContactCard: FunctionComponent = () => {
         try {
             setIsLoading(true);
             console.log(data);
-            // await addDoc(collection(db, "contact"), data);
             toast({
                 title: 'Message sent successfully',
                 status: 'success',
@@ -77,9 +73,9 @@ const ContactCard: FunctionComponent = () => {
     return (
         <Box display={'flex'} alignItems={'center'}>
             <Box
-            position={'relative'}
-            left={'90px'}
-            w={'350px'}
+                position={'relative'}
+                left={'90px'}
+                w={'350px'}
                 h={'60vh'}
                 bg={'linear-gradient(310deg, #09C6F9, #045DE9)'}
                 display={'flex'}
@@ -108,7 +104,12 @@ const ContactCard: FunctionComponent = () => {
                             >
                                 <Icon as={HiLocationMarker} w={6} h={6} />
                             </Flex>
-                            <Text fontWeight={600} color={useColorModeValue('#E9EFF2', '#0D120E')}>Our Main Office</Text>
+                            <Text
+                                fontWeight={600}
+                                color={useColorModeValue('#E9EFF2', '#0D120E')}
+                            >
+                                Our Main Office
+                            </Text>
                             <Text color={'gray.500'} textAlign={'center'}>
                                 2231 Sycamore Lake Road
                             </Text>
@@ -134,7 +135,12 @@ const ContactCard: FunctionComponent = () => {
                             >
                                 <Icon as={MdPhone} w={6} h={6} />
                             </Flex>
-                            <Text fontWeight={600} color={useColorModeValue('#E9EFF2', '#0D120E')}>Phone Number</Text>
+                            <Text
+                                fontWeight={600}
+                                color={useColorModeValue('#E9EFF2', '#0D120E')}
+                            >
+                                Phone Number
+                            </Text>
                             <Text color={'gray.500'} textAlign={'center'}>
                                 +91 80 8861 1802
                             </Text>
@@ -160,7 +166,12 @@ const ContactCard: FunctionComponent = () => {
                             >
                                 <Icon as={MdEmail} w={6} h={6} />
                             </Flex>
-                            <Text fontWeight={600} color={useColorModeValue('#E9EFF2', '#0D120E')}>Email</Text>
+                            <Text
+                                fontWeight={600}
+                                color={useColorModeValue('#E9EFF2', '#0D120E')}
+                            >
+                                Email
+                            </Text>
                             <Text color={'gray.500'} textAlign={'center'}>
                                 HmH@gmail.com
                             </Text>
@@ -206,10 +217,9 @@ const ContactCard: FunctionComponent = () => {
                             <FormControl id="name" width={'70%'}>
                                 <FormLabel>Your Name</FormLabel>
                                 <InputGroup borderColor="#E0E1E7">
-                                    <InputLeftElement
-                                        pointerEvents="none"
-                                        children={<BsPerson color="gray.800" />}
-                                    />
+                                    <InputLeftElement pointerEvents="none">
+                                        <BsPerson color="gray.800" />
+                                    </InputLeftElement>
                                     <Input
                                         type="text"
                                         value={data.name}
@@ -223,15 +233,12 @@ const ContactCard: FunctionComponent = () => {
                                     />
                                 </InputGroup>
                             </FormControl>
-                            <FormControl id="email"  width={'70%'}>
+                            <FormControl id="email" width={'70%'}>
                                 <FormLabel>Mail</FormLabel>
                                 <InputGroup borderColor="#E0E1E7">
-                                    <InputLeftElement
-                                        pointerEvents="none"
-                                        children={
-                                            <MdOutlineEmail color="gray.800" />
-                                        }
-                                    />
+                                    <InputLeftElement pointerEvents="none">
+                                        <MdOutlineEmail color="gray.800" />
+                                    </InputLeftElement>
                                     <Input
                                         type="text"
                                         size="lg"
@@ -245,7 +252,7 @@ const ContactCard: FunctionComponent = () => {
                                     />
                                 </InputGroup>
                             </FormControl>
-                            <FormControl id="message"  width={'70%'}>
+                            <FormControl id="message" width={'70%'}>
                                 <FormLabel>Message</FormLabel>
                                 <Textarea
                                     borderColor="gray.300"
@@ -262,7 +269,11 @@ const ContactCard: FunctionComponent = () => {
                                     }
                                 />
                             </FormControl>
-                            <FormControl id="name" display={'flex'} justifyContent={'center'}>
+                            <FormControl
+                                id="name"
+                                display={'flex'}
+                                justifyContent={'center'}
+                            >
                                 <Button
                                     bg={
                                         'linear-gradient(310deg, #09C6F9, #045DE9)'

@@ -4,49 +4,26 @@ import {
     Grid,
     GridItem,
     Icon,
-    Text,
-    Tabs,
-    TabList,
-    TabPanels,
-    TabPanel,
     Tab,
+    TabList,
+    TabPanel,
+    TabPanels,
+    Tabs,
+    Text,
     useColorModeValue,
 } from '@chakra-ui/react';
 import { FC } from 'react';
-import { UserFullData } from '../../../@types';
-import { RiSurveyFill,RiTimeFill } from 'react-icons/ri';
-import { BsFillCalendarDateFill } from 'react-icons/bs';
 import { AiFillSchedule } from 'react-icons/ai';
+import { BsFillCalendarDateFill } from 'react-icons/bs';
+import { RiSurveyFill, RiTimeFill } from 'react-icons/ri';
+import { UserFullData } from '../../../types';
+import { formatDate } from '../../../utils/helper';
 
 type Props = {
     user: UserFullData;
 };
 
 const UserProfileCard: FC<Props> = ({ user }) => {
-    
-    const formatDate = (date) => {
-        const monthNames = [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec',
-        ];
-
-        const day = date.getDate();
-        const monthIndex = date.getMonth();
-        const year = date.getFullYear();
-
-        return day + ' ' + monthNames[monthIndex] + ' ' + year;
-    };
-
     return (
         <Grid
             templateColumns={{ base: '1fr', md: 'repeat(4, 1fr)' }}

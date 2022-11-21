@@ -1,8 +1,8 @@
+import { ArrowForwardIcon } from '@chakra-ui/icons';
 import {
     Box,
     Button,
     Icon,
-    Input,
     Select,
     Spinner,
     Text,
@@ -11,12 +11,11 @@ import {
 } from '@chakra-ui/react';
 import type { FC } from 'react';
 import { useState } from 'react';
-import { trpc } from '../utils/trpc';
-import { BsCalendar2CheckFill } from 'react-icons/bs';
-import { ArrowForwardIcon } from '@chakra-ui/icons';
-import {MdArrowDropDown} from 'react-icons/md';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import { BsCalendar2CheckFill } from 'react-icons/bs';
+import { MdArrowDropDown } from 'react-icons/md';
+import { trpc } from '../utils/trpc';
 
 const ScheduleAppointment: FC = () => {
     const timings = [
