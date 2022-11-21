@@ -1,22 +1,17 @@
 import {
     Box,
-    Container,
     Flex,
     Heading,
-    Icon,
     Image,
     SimpleGrid,
     Stack,
     Text,
-    VStack,
-    useBreakpointValue,
-    Button
 } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { AiFillRead } from 'react-icons/ai';
-import { BsFillPeopleFill } from 'react-icons/bs';
 import { FaBrain } from 'react-icons/fa';
 import { MdHearing } from 'react-icons/md';
+import { CredentialsCard } from '../components/Card/CredentialsCard';
 import Layout from '../components/UI/Layout';
 
 const About: NextPage = () => {
@@ -109,30 +104,30 @@ const About: NextPage = () => {
             </SimpleGrid>
             <Box py={16} bg={'linear-gradient(310deg, #09C6F9, #045DE9)'}>
                 <Heading
-                        textAlign={'center'}
-                        mb={4}
-                        p={2}
+                    textAlign={'center'}
+                    mb={4}
+                    p={2}
+                    color={'white'}
+                    fontWeight={800}
+                    textTransform={'uppercase'}
+                >
+                    <Text
+                        as={'span'}
+                        position={'relative'}
                         color={'white'}
-                        fontWeight={800}
-                        textTransform={'uppercase'}
+                        _after={{
+                            content: "''",
+                            width: 'full',
+                            height: '2%',
+                            position: 'absolute',
+                            bottom: 1,
+                            left: 0,
+                            bg: 'white',
+                        }}
                     >
-                        <Text
-                            as={'span'}
-                            position={'relative'}
-                            color={'white'}
-                            _after={{
-                                content: "''",
-                                width: 'full',
-                                height: '2%',
-                                position: 'absolute',
-                                bottom: 1,
-                                left: 0,
-                                bg: 'white',
-                            }}
-                        >
-                            Credentials.
-                        </Text>
-                    </Heading>
+                        Credentials.
+                    </Text>
+                </Heading>
                 <Text p={3} color={'bcd9e1'} textAlign={'center'}>
                     Donec et odio pellentesque diam volutpat. Quis vel eros
                     donec ac odio. Adipiscing elit duis tristique sollicitudin
@@ -145,106 +140,30 @@ const About: NextPage = () => {
                     py={5}
                     px={8}
                 >
-                    <Stack
-                        alignItems={'center'}
-                        my={4}
-                        backgroundColor={'white'}
-                        p={8}
-                        borderRadius={8}
-                    >
-                        <Flex
-                            w={16}
-                            h={16}
-                            align={'center'}
-                            justify={'center'}
-                            color={'#045DE9'}
-                            rounded={'full'}
-                            bg={'#c6dcffe8'}
-                            mb={1}
-                        >
-                            <Icon as={AiFillRead} w={10} h={10} />
-                        </Flex>
-                        <Text fontWeight={700}>Higher degrees</Text>
-                        <Text color={'gray.600'} textAlign={'center'}>
-                            Maecenas nec mi in est maximus fermentum.
-                            Suspendisse tempus.
-                        </Text>
-                    </Stack>
-                    <Stack
-                        alignItems={'center'}
-                        my={4}
-                        backgroundColor={'white'}
-                        p={8}
-                        borderRadius={8}
-                    >
-                        <Flex
-                            w={16}
-                            h={16}
-                            align={'center'}
-                            justify={'center'}
-                            color={'#045DE9'}
-                            rounded={'full'}
-                            bg={'#c6dcffe8'}
-                            mb={1}
-                        >
-                            <Icon as={FaBrain} w={10} h={10} />
-                        </Flex>
-                        <Text fontWeight={700}>Methodology</Text>
-                        <Text color={'gray.600'} textAlign={'center'}>
-                            Maecenas nec mi in est maximus fermentum.
-                            Suspendisse tempus.
-                        </Text>
-                    </Stack>
-                    <Stack
-                        alignItems={'center'}
-                        my={4}
-                        backgroundColor={'white'}
-                        p={8}
-                        borderRadius={8}
-                    >
-                        <Flex
-                            w={16}
-                            h={16}
-                            align={'center'}
-                            justify={'center'}
-                            color={'#045DE9'}
-                            rounded={'full'}
-                            bg={'#c6dcffe8'}
-                            mb={1}
-                        >
-                            <Icon as={BsFillPeopleFill} w={10} h={10} />
-                        </Flex>
-                        <Text fontWeight={700}>Professionals</Text>
-                        <Text color={'gray.600'} textAlign={'center'}>
-                            Maecenas nec mi in est maximus fermentum.
-                            Suspendisse tempus.
-                        </Text>
-                    </Stack>
-                    <Stack
-                        alignItems={'center'}
-                        my={4}
-                        backgroundColor={'white'}
-                        p={8}
-                        borderRadius={8}
-                    >
-                        <Flex
-                            w={16}
-                            h={16}
-                            align={'center'}
-                            justify={'center'}
-                            color={'#045DE9'}
-                            rounded={'full'}
-                            bg={'#c6dcffe8'}
-                            mb={1}
-                        >
-                            <Icon as={MdHearing} w={10} h={10} />
-                        </Flex>
-                        <Text fontWeight={700}>Therapy</Text>
-                        <Text color={'gray.600'} textAlign={'center'}>
-                            Maecenas nec mi in est maximus fermentum.
-                            Suspendisse tempus.
-                        </Text>
-                    </Stack>
+                    <CredentialsCard
+                        icon={AiFillRead}
+                        title="Higher Degree"
+                        description="Maecenas nec mi in est maximus fermentum.
+                            Suspendisse tempus."
+                    />
+                    <CredentialsCard
+                        icon={FaBrain}
+                        title="Methodology"
+                        description="Maecenas nec mi in est maximus fermentum.
+                        Suspendisse tempus."
+                    />
+                    <CredentialsCard
+                        icon={MdHearing}
+                        title="Professionals"
+                        description="Maecenas nec mi in est maximus fermentum.
+                    Suspendisse tempus."
+                    />
+                    <CredentialsCard
+                        icon={AiFillRead}
+                        title="Therapy"
+                        description="Maecenas nec mi in est maximus fermentum.
+                Suspendisse tempus."
+                    />
                 </SimpleGrid>
             </Box>
         </Layout>
