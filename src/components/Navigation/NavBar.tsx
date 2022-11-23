@@ -15,13 +15,13 @@ import { FunctionComponent } from 'react';
 import Logo from '../Logo/Logo';
 import NavLink from './NavLink';
 
-const Links = ['About', 'Blogs', 'TalkToExperts', 'Contact'];
+const Links = ['About', 'TalkToExperts','Contact'];
 
 const NavBar: FunctionComponent = () => {
     const { colorMode, toggleColorMode } = useColorMode();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { status } = useSession();
-    const bg = useColorModeValue('gray.100', '#242526');
+    const bg = useColorModeValue('#fdfdfdad', '#242526');
 
     if (status === 'loading') return null;
     if (status === 'unauthenticated') {
@@ -37,7 +37,7 @@ const NavBar: FunctionComponent = () => {
 
     return (
         <>
-            <Box bg={bg} px={4}>
+            <Box px={4} py={2} position={'absolute'} zIndex={50} w={'100%'} bg={bg}>
                 <Flex
                     h={16}
                     alignItems={'center'}
@@ -56,7 +56,7 @@ const NavBar: FunctionComponent = () => {
                             onClick={isOpen ? onClose : onOpen}
                         />
                         <HStack spacing={8} alignItems={'center'}>
-                            <Logo />
+                            <Logo width={'100px'} />
                         </HStack>
                     </Flex>
                     <HStack spacing={8} alignItems={'center'}>

@@ -1,15 +1,21 @@
+import { ArrowForwardIcon } from '@chakra-ui/icons';
 import {
+    Avatar,
     Box,
     Button,
     Flex,
     Grid,
     Heading,
+    Highlight,
+    Image,
     Stack,
+    Tag,
+    TagLabel,
     Text,
-    useBreakpointValue,
     useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import { formatDate } from '../../utils/helper';
 import TotalPricing from '../components/Card/TotalPricing';
 import { Loader } from '../components/Loader';
 import ScheduleAppointment from '../components/ScheduleAppointment';
@@ -19,7 +25,6 @@ import { trpc } from '../utils/trpc';
 const Dashboard = () => {
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
-    const textHeight = useBreakpointValue({ base: '20%', md: '30%' });
 
     const router = useRouter();
 
@@ -63,56 +68,80 @@ const Dashboard = () => {
             <Flex
                 flexDirection="column"
                 pt={{ base: '120px', md: '25px' }}
-                marginLeft={{ base: 0, lg: '295px' }}
+                marginLeft={{ base: 0, lg: '100px' }}
                 width={'100%'}
                 p={4}
             >
                 <Stack
                     direction={{ base: 'column', md: 'row' }}
                     bg={secondaryBG}
+                    justifyContent={'center'}
+                    borderTop={'5px solid #045DE9'}
                     borderRadius={8}
                 >
                     <Flex
-                        p={6}
+                        p={12}
                         flexDir={'column'}
-                        justifyContent={'flex-start'}
+                        justifyContent={'center'}
+                        alignItems={'center'}
                     >
-                        <Heading fontSize={{ base: '3xl' }}>
+                        <Avatar
+                            my={2}
+                            size="md"
+                            name={
+                                userData && userData.name
+                                    ? userData.name
+                                    : undefined
+                            }
+                            src={
+                                userData && userData.image
+                                    ? userData.image
+                                    : undefined
+                            }
+                        />
+                        <Heading
+                            fontSize={{ base: '3xl' }}
+                            textAlign={'center'}
+                        >
                             <Text
                                 as={'span'}
                                 position={'relative'}
+                                fontSize="4xl"
                                 mr={2}
-                                _after={{
-                                    content: "''",
-                                    width: 'full',
-                                    height: textHeight,
-                                    position: 'absolute',
-                                    bottom: 0,
-                                    left: 0,
-                                    zIndex: -1,
-                                }}
                             >
-                                WELCOME
+                                WELCOME,
                             </Text>
                             <Text
                                 as={'span'}
-                                bgGradient="linear(310deg,#FF4331,#D31A50)"
+                                bgGradient="linear(310deg,#09C6F9,#045DE9)"
                                 bgClip="text"
                                 fontSize="4xl"
                                 fontWeight="extrabold"
                                 textTransform={'uppercase'}
                             >
-                                {userData?.name}
+                                {userData?.name}.
                             </Text>{' '}
                         </Heading>
                         <Text
                             fontSize={{ base: 'md', lg: 'lg' }}
                             color={'gray.500'}
+                            textAlign={'center'}
                             mt={3}
                         >
-                            Here You get all the details about the doctor&apos;
-                            Schedule,Meeting schedule and all the payment plans
-                            and other important details.
+                            <Highlight
+                                query={[
+                                    'Meeting schedule',
+                                    'payment plans',
+                                    'doctor Schedule',
+                                ]}
+                                styles={{
+                                    color: '#045DE9',
+                                }}
+                            >
+                                Here You get all the details about the doctor
+                                Schedule,Meeting schedule and all the payment
+                                plans and other important details.
+                            </Highlight>
                         </Text>
                     </Flex>
                 </Stack>
@@ -136,58 +165,140 @@ const Dashboard = () => {
                     <Box
                         p="16px"
                         my={{ sm: '24px', xl: '0px' }}
-                        bg={secondaryBG}
-                        borderRadius={8}
+                        bg={'linear-gradient(310deg, #09C6F9, #045DE9)'}
                     >
-                        <Box p="12px 5px" mb="12px">
+                        <Box
+                            p="12px 5px"
+                            mb="12px"
+                            display={'flex'}
+                            justifyContent={'center'}
+                        >
                             <Text
-                                bgGradient="linear(310deg,#FF4331,#D31A50)"
-                                bgClip="text"
-                                fontSize="2xl"
+                                color={'white'}
+                                fontSize="4xl"
                                 fontWeight="extrabold"
                                 textTransform={'uppercase'}
                             >
                                 Take a Survey
                             </Text>
-                            <Text
-                                fontSize={{ base: 'md', lg: 'lg' }}
-                                color={'gray.500'}
-                                mt={3}
-                            >
-                                This Survey is conducted in order to understand
-                                your metal health status. So we can treat you
-                                better!
-                            </Text>
                         </Box>
-                        <Box display={'block'} justifyContent="center" px="5px">
+                        <Box
+                            display={'flex'}
+                            flexDir={'row'}
+                            justifyContent={'space-evenly'}
+                        >
                             <Box>
-                                {userData?.SurveyResults &&
-                                userData?.SurveyResults.length > 0
-                                    ? userData?.SurveyResults.map(
-                                          (survey, index) => (
-                                              <Text
-                                                  display="block"
-                                                  key={index}
-                                                  mb="4"
-                                              >
-                                                  Previous Survey taken at:{' '}
-                                                  {survey.createdAt.toISOString()}
-                                              </Text>
-                                          )
-                                      )
-                                    : null}
+                                <Image
+                                    boxSize="350px"
+                                    objectFit="cover"
+                                    src={'/assets/illustrations/survey.svg'}
+                                    alt={'survey-image'}
+                                />
                             </Box>
                             <Box
                                 display={'flex'}
-                                justifyContent="center"
-                                px="5px"
+                                flexDir={'column'}
+                                justifyContent={'space-between'}
+                                p={4}
+                                bg={'white'}
+                                borderRadius={8}
+                                color={'black'}
                             >
-                                <Button
-                                    display="block"
-                                    onClick={() => router.push('/survey')}
+                                <Box>
+                                    <Text
+                                        textAlign={'center'}
+                                        color={'black'}
+                                        fontSize={{ base: 'md', lg: '1.3rem' }}
+                                        fontWeight="light"
+                                        textTransform={'uppercase'}
+                                    >
+                                        This Survey is conducted in order to
+                                        understand your metal health status.
+                                    </Text>
+                                    <Text
+                                        textAlign={'center'}
+                                        bgGradient="linear(310deg,#09C6F9,#045DE9)"
+                                        bgClip="text"
+                                        fontSize={{ base: 'md', lg: '1.3rem' }}
+                                        fontWeight="extrabold"
+                                        textTransform={'uppercase'}
+                                    >
+                                        So we can treat you better!
+                                    </Text>
+                                </Box>
+                                <Box
+                                    display={'flex'}
+                                    justifyContent={'center'}
+                                    flexDir={'column'}
+                                    flexWrap={'wrap'}
+                                    alignItems={'center'}
                                 >
-                                    CLICK HERE
-                                </Button>
+                                    {userData?.SurveyResults &&
+                                    userData?.SurveyResults.length > 0
+                                        ? userData?.SurveyResults.map(
+                                              (survey, index) => (
+                                                  <Tag
+                                                      size="lg"
+                                                      colorScheme="blue"
+                                                      variant="solid"
+                                                      borderRadius="full"
+                                                      key={index}
+                                                      m={1}
+                                                  >
+                                                      <Avatar
+                                                          src={
+                                                              userData &&
+                                                              userData.image
+                                                                  ? userData.image
+                                                                  : undefined
+                                                          }
+                                                          size="xs"
+                                                          name={
+                                                              userData &&
+                                                              userData.name
+                                                                  ? userData.name
+                                                                  : undefined
+                                                          }
+                                                          ml={-1}
+                                                          mr={2}
+                                                      />
+
+                                                      <TagLabel>
+                                                          Previous Survey taken
+                                                          at:{' '}
+                                                          {formatDate(
+                                                              survey.createdAt
+                                                          )}
+                                                      </TagLabel>
+                                                  </Tag>
+                                              )
+                                          )
+                                        : null}
+                                </Box>
+                                <Box
+                                    display={'flex'}
+                                    justifyContent="center"
+                                    px="5px"
+                                >
+                                    <Button
+                                        onClick={() => router.push('/survey')}
+                                        bg={
+                                            'linear-gradient(310deg, #09C6F9, #045DE9)'
+                                        }
+                                        color={'white'}
+                                        variant={'solid'}
+                                        _focus={{ outline: 'none' }}
+                                        _active={{
+                                            bg: 'linear-gradient(310deg, #079bc3, #0349b8)',
+                                        }}
+                                        _hover={{
+                                            bg: 'linear-gradient(310deg, #079bc3, #0349b8)',
+                                        }}
+                                        rightIcon={<ArrowForwardIcon />}
+                                    >
+                                        CLICK HERE
+                                    </Button>
+                                </Box>
                             </Box>
                         </Box>
                     </Box>
@@ -195,11 +306,10 @@ const Dashboard = () => {
                         p="16px"
                         my={{ sm: '24px', xl: '0px' }}
                         bg={secondaryBG}
-                        borderRadius={8}
                     >
                         <Box p="12px 5px" my="12px">
                             <Text
-                                bgGradient="linear(310deg,#FF4331,#D31A50)"
+                                bgGradient="linear(310deg,#09C6F9,#045DE9)"
                                 bgClip="text"
                                 fontSize="2xl"
                                 fontWeight="extrabold"

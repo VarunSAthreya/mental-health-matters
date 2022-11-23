@@ -1,48 +1,69 @@
-import { Box, Center, Container, Heading, Stack, Text } from "@chakra-ui/react";
-import { NextPage } from "next";
-import ContactCard from "../components/Card/ContactCard";
-import Layout from "../components/UI/Layout";
+import {
+    Box,
+    Center,
+    Flex,
+    Heading,
+    Stack,
+    Text,
+    useColorMode,
+} from '@chakra-ui/react';
+import { NextPage } from 'next';
+import ContactCard from '../components/Card/ContactCard';
+import Layout from '../components/UI/Layout';
 
 const Contact: NextPage = () => {
+    const { colorMode } = useColorMode();
     return (
         <Layout title="MHM | Contact">
-            <Container maxW={"7xl"} p="8">
+            <Flex
+                w={'full'}
+                h={'80vh'}
+                backgroundImage={'url(/assets/Background-Images/contact.jpg)'}
+                backgroundSize={'cover'}
+                backgroundPosition={'top'}
+            >
                 <Stack
                     as={Box}
-                    rounded={"lg"}
+                    rounded={'lg'}
+                    display={'flex'}
+                    justifyContent={'center'}
                     spacing={{ base: 2 }}
-                    py={{ base: 14 }}
-                    bg={"#242526"}
+                    py={{ base: 10 }}
+                    bg={'linear-gradient(310deg, #09c6f982, #045de99e)'}
                 >
                     <Heading
                         p={3}
-                        pl={5}
-                        fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
-                        lineHeight={"110%"}
-                        bgGradient="linear(310deg, #FF4331 0%, #D31A50 100%)"
-                        bgClip="text"
+                        mb={3}
+                        textAlign={'center'}
+                        color={'white'}
                         fontWeight="extrabold"
-                        textTransform={"uppercase"}
+                        textTransform={'uppercase'}
+                        fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
+                        lineHeight={'110%'}
                     >
-                        Contact
+                        Contact Us.
                     </Heading>
-                    <Text p={5} color="white">
+                    <Text p={3} color={'#bcd9e1'} textAlign={'center'}>
                         Our mission to make quality healthcare affordable and
-                        accessible for over a billion+ Indians. We believe in
-                        empowering our users with the most accurate,
-                        comprehensive, and curated information and care,
-                        enabling them to make better healthcare decisions Our
-                        mission to make quality healthcare affordable and
                         accessible for over a billion+ Indians. We believe in
                         empowering our users with the most accurate,
                         comprehensive, and curated information and care,
                         enabling them to make better healthcare decisions
                     </Text>
-                    <Center>
-                        <ContactCard />
-                    </Center>
                 </Stack>
-            </Container>
+            </Flex>
+            <Center
+                p={12}
+                backgroundImage={
+                    colorMode === 'light'
+                        ? 'url(/assets/Background-Images/blob-light.svg)'
+                        : 'url(/assets/Background-Images/blob-dark.svg)'
+                }
+                backgroundSize={'cover'}
+                backgroundPosition={'top'}
+            >
+                <ContactCard />
+            </Center>
         </Layout>
     );
 };

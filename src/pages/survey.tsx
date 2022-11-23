@@ -1,27 +1,42 @@
 import {
+    ArrowBackIcon,
+    ArrowForwardIcon,
+    ChevronRightIcon,
+} from '@chakra-ui/icons';
+import {
     Box,
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
     Button,
     Flex,
     Grid,
     Heading,
-    Select,
+    Icon,
+    Radio,
+    RadioGroup,
     Spinner,
     Stack,
     Text,
-    useBreakpointValue,
     useColorModeValue,
     useToast,
 } from '@chakra-ui/react';
+import { Step, Steps, useSteps } from 'chakra-ui-steps';
 import { useRouter } from 'next/router';
-import React from 'react';
-import type { ISurvey } from '../../@types';
+import { AiOutlineFileDone } from 'react-icons/ai';
+import { IoCheckmarkDoneSharp } from 'react-icons/io5';
+import type { ISurvey } from '../../types';
+import { Separator } from '../components/Separator';
 import SideBar from '../components/Sidebar/Sidebar';
 import { trpc } from '../utils/trpc';
 
 const Survey = () => {
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
-    const textHeight = useBreakpointValue({ base: '20%', md: '30%' });
+
+    const { nextStep, prevStep, activeStep } = useSteps({
+        initialStep: 0,
+    });
 
     let answers: { question: string; answer: string }[] = [];
 
@@ -62,17 +77,6 @@ const Survey = () => {
     const questions: ISurvey[] = data ? JSON.parse(data.questions) : [];
 
     const handleSubmit = async () => {
-        console.log(questions.length, ' ', answers.length);
-
-        if (questions.length !== answers.length) {
-            toast({
-                title: 'Please answer all the questions!',
-                status: 'warning',
-                duration: 2000,
-            });
-            return;
-        }
-
         submitSurvey({
             result: JSON.stringify(answers),
             name: data ? data.name : '',
@@ -95,13 +99,14 @@ const Survey = () => {
             <Flex
                 flexDirection="column"
                 pt={{ base: '120px', md: '25px' }}
-                marginLeft={{ base: 0, lg: '295px' }}
+                marginLeft={{ base: 0, lg: '100px' }}
                 width={'100%'}
                 p={4}
             >
                 <Stack
                     direction={{ base: 'column', md: 'row' }}
                     bg={secondaryBG}
+                    borderTop={'5px solid #045DE9'}
                     borderRadius={8}
                 >
                     <Flex
@@ -112,23 +117,7 @@ const Survey = () => {
                         <Heading fontSize={{ base: '3xl' }}>
                             <Text
                                 as={'span'}
-                                position={'relative'}
-                                _after={{
-                                    content: "''",
-                                    width: 'full',
-                                    height: textHeight,
-                                    position: 'absolute',
-                                    bottom: 0,
-                                    left: 0,
-                                    zIndex: -1,
-                                }}
-                            >
-                                WELCOME TO
-                            </Text>
-                            <br />{' '}
-                            <Text
-                                as={'span'}
-                                bgGradient="linear(310deg,#FF4331,#D31A50)"
+                                bgGradient="linear(310deg,#09C6F9,#045DE9)"
                                 bgClip="text"
                                 fontSize="4xl"
                                 fontWeight="extrabold"
@@ -137,14 +126,38 @@ const Survey = () => {
                                 SURVEY PANEL
                             </Text>{' '}
                         </Heading>
-                        <Text
-                            fontSize={{ base: 'md', lg: 'lg' }}
-                            color={'gray.500'}
+                        <Breadcrumb
                             mt={3}
+                            separator={<ChevronRightIcon color="gray.500" />}
                         >
-                            This Survey is conducted in order to understand your
-                            metal health status. So we can treat you better!
-                        </Text>
+                            <BreadcrumbItem>
+                                <BreadcrumbLink
+                                    href="/dashboard"
+                                    color="gray.500"
+                                    _hover={{
+                                        textDecoration: 'none',
+                                        color: '#09C6F9',
+                                    }}
+                                    _focus={{ outline: 'none' }}
+                                >
+                                    Dashboard
+                                </BreadcrumbLink>
+                            </BreadcrumbItem>
+
+                            <BreadcrumbItem isCurrentPage>
+                                <BreadcrumbLink
+                                    href="/survey"
+                                    color="gray.500"
+                                    _hover={{
+                                        textDecoration: 'none',
+                                        color: '#09C6F9',
+                                    }}
+                                    _focus={{ outline: 'none' }}
+                                >
+                                    Survey Panel
+                                </BreadcrumbLink>
+                            </BreadcrumbItem>
+                        </Breadcrumb>
                     </Flex>
                 </Stack>
                 <Grid templateColumns={{ sm: '1fr' }} gap="22px" mt={8}>
@@ -154,69 +167,175 @@ const Survey = () => {
                         bg={secondaryBG}
                         borderRadius={8}
                     >
-                        <Box p="12px 5px" mb="12px">
-                            <Text
-                                bgGradient="linear(310deg,#FF4331,#D31A50)"
-                                bgClip="text"
-                                fontSize="2xl"
-                                fontWeight="extrabold"
-                                textTransform={'uppercase'}
-                            >
-                                Survey
-                            </Text>
-                        </Box>
-                        <Box px="5px" my={4} borderRadius={5}>
-                            {questions.map((question) => (
-                                <React.Fragment key={question.question}>
-                                    <Box my={8} borderRadius={'5px'}>
-                                        <Text
-                                            fontSize={{ base: 'lg', md: 'xl' }}
-                                            px={2}
-                                            bg={'white'}
-                                            color="black"
-                                            borderTopRightRadius={'5px'}
-                                            borderTopLeftRadius={'5px'}
-                                        >
-                                            {question.question}
-                                        </Text>
-                                        <Select
-                                            borderTopLeftRadius={0}
-                                            borderTopRightRadius={0}
-                                            placeholder="Select an option"
-                                            variant="filled"
-                                            _focus={{ outline: 'none' }}
-                                            mr={2}
-                                            onChange={(e) =>
-                                                onChange(
-                                                    question.question,
-                                                    e.target.value
-                                                )
-                                            }
-                                        >
-                                            {question.options.map(
-                                                (option: string) => (
-                                                    <option
-                                                        key={option}
-                                                        value={option}
-                                                        style={{
-                                                            backgroundColor:
-                                                                'white',
-                                                            color: 'black',
-                                                        }}
+                        <Flex flexDir="column" width="100%">
+                            <Steps activeStep={activeStep} colorScheme="blue">
+                                {questions.map((q, i) => {
+                                    return (
+                                        <Step key={i}>
+                                            <Box
+                                                display={'flex'}
+                                                flexDir={'column'}
+                                                my={6}
+                                                mx={2}
+                                                px={3}
+                                                py={6}
+                                                borderRadius={8}
+                                            >
+                                                <Heading
+                                                    mb={4}
+                                                    bgGradient="linear(310deg,#09C6F9,#045DE9)"
+                                                    bgClip="text"
+                                                    fontSize="2xl"
+                                                    fontWeight="extrabold"
+                                                    textTransform={'uppercase'}
+                                                >
+                                                    {q.question}
+                                                </Heading>
+                                                <Separator />
+                                                <RadioGroup
+                                                    defaultValue={q.options[0]}
+                                                    onChange={(e) =>
+                                                        onChange(q.question, e)
+                                                    }
+                                                >
+                                                    <Stack
+                                                        direction="column"
+                                                        my={7}
+                                                        color={'gray.500'}
                                                     >
-                                                        {option}
-                                                    </option>
-                                                )
-                                            )}
-                                        </Select>
+                                                        {q.options.map(
+                                                            (
+                                                                option: string
+                                                            ) => (
+                                                                <Radio
+                                                                    size="lg"
+                                                                    name="1"
+                                                                    key={option}
+                                                                    value={
+                                                                        option
+                                                                    }
+                                                                >
+                                                                    {option}
+                                                                </Radio>
+                                                            )
+                                                        )}
+                                                    </Stack>
+                                                </RadioGroup>
+                                            </Box>
+                                        </Step>
+                                    );
+                                })}
+                            </Steps>
+                            {activeStep === questions.length ? (
+                                <Flex
+                                    p={4}
+                                    justifyContent={'center'}
+                                    my={4}
+                                    flexDir={'column'}
+                                    alignItems={'center'}
+                                >
+                                    <Box
+                                        display={'flex'}
+                                        flexDirection={'column'}
+                                        justifyContent={'center'}
+                                        alignItems={'center'}
+                                        m={6}
+                                    >
+                                        <Icon
+                                            as={AiOutlineFileDone}
+                                            w={12}
+                                            h={12}
+                                            color={'#D31A50'}
+                                        />
+                                        <Heading
+                                            mb={1}
+                                            bgGradient="linear(310deg,#09C6F9,#045DE9)"
+                                            bgClip="text"
+                                            fontSize="3xl"
+                                            fontWeight="extrabold"
+                                            textTransform={'uppercase'}
+                                        >
+                                            Survey Compeleted
+                                        </Heading>
+                                        <Text
+                                            fontSize={{ base: 'md', lg: 'lg' }}
+                                            color={'gray.500'}
+                                            textAlign={'center'}
+                                        >
+                                            Once the survey as been evaluated,
+                                            You will be notified and Contacted
+                                            by our Experts ! Till Then have a
+                                            nice Day.
+                                        </Text>
                                     </Box>
-                                </React.Fragment>
-                            ))}
-                        </Box>
-                        <Button disabled={isLoading} onClick={handleSubmit}>
-                            Submit Answers{' '}
-                            {isLoading && <Spinner ml={2} color="white" />}
-                        </Button>
+                                    <Button
+                                        disabled={isLoading}
+                                        onClick={handleSubmit}
+                                        bg={
+                                            'linear-gradient(310deg, #09C6F9, #045DE9)'
+                                        }
+                                        color={'white'}
+                                        variant={'solid'}
+                                        _focus={{ outline: 'none' }}
+                                        _active={{
+                                            bg: 'linear-gradient(310deg, #079bc3, #0349b8)',
+                                        }}
+                                        _hover={{
+                                            bg: 'linear-gradient(310deg, #079bc3, #0349b8)',
+                                        }}
+                                        rightIcon={<IoCheckmarkDoneSharp />}
+                                    >
+                                        Submit Answers{' '}
+                                        {isLoading && (
+                                            <Spinner ml={2} color="white" />
+                                        )}
+                                    </Button>
+                                </Flex>
+                            ) : (
+                                <Flex width="100%" justify="flex-end">
+                                    <Button
+                                        isDisabled={activeStep === 0}
+                                        mr={8}
+                                        onClick={prevStep}
+                                        bg={
+                                            'linear-gradient(310deg, #09C6F9, #045DE9)'
+                                        }
+                                        color={'white'}
+                                        variant={'solid'}
+                                        _focus={{ outline: 'none' }}
+                                        _active={{
+                                            bg: 'linear-gradient(310deg, #079bc3, #0349b8)',
+                                        }}
+                                        _hover={{
+                                            bg: 'linear-gradient(310deg, #079bc3, #0349b8)',
+                                        }}
+                                        leftIcon={<ArrowBackIcon />}
+                                    >
+                                        Prev
+                                    </Button>
+                                    <Button
+                                        onClick={nextStep}
+                                        bg={
+                                            'linear-gradient(310deg, #09C6F9, #045DE9)'
+                                        }
+                                        color={'white'}
+                                        variant={'solid'}
+                                        _focus={{ outline: 'none' }}
+                                        _active={{
+                                            bg: 'linear-gradient(310deg, #079bc3, #0349b8)',
+                                        }}
+                                        _hover={{
+                                            bg: 'linear-gradient(310deg, #079bc3, #0349b8)',
+                                        }}
+                                        rightIcon={<ArrowForwardIcon />}
+                                    >
+                                        {activeStep === questions.length - 1
+                                            ? 'Finish'
+                                            : 'Next'}
+                                    </Button>
+                                </Flex>
+                            )}
+                        </Flex>
                     </Box>
                 </Grid>
             </Flex>

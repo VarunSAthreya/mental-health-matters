@@ -11,7 +11,7 @@ const Separator: FC<Props> = (props) => {
         <Flex
             h="4px"
             w="100%"
-            bg="linear-gradient(310deg,#FF4331,#D31A50)"
+            bg="linear-gradient(310deg,#09C6F9,#045DE9)"
             {...rest}
         >
             {children}

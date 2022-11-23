@@ -1,15 +1,23 @@
 import {
-    Avatar,
     Box,
     Flex,
     Grid,
     GridItem,
-    Image,
+    Icon,
+    Tab,
+    TabList,
+    TabPanel,
+    TabPanels,
+    Tabs,
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
 import { FC } from 'react';
-import { UserFullData } from '../../../@types';
+import { AiFillSchedule } from 'react-icons/ai';
+import { BsFillCalendarDateFill } from 'react-icons/bs';
+import { RiSurveyFill, RiTimeFill } from 'react-icons/ri';
+import { UserFullData } from '../../../types';
+import { formatDate } from '../../../utils/helper';
 
 type Props = {
     user: UserFullData;
@@ -22,292 +30,204 @@ const UserProfileCard: FC<Props> = ({ user }) => {
             gap="22px"
             mt={8}
         >
-            <GridItem colSpan={1}>
-                <Box
-                    display={'flex'}
-                    h={'100%'}
-                    flexDirection={'column'}
-                    bg={useColorModeValue('white', '#242526')}
-                    borderRadius={8}
-                    justifyContent="center"
-                    alignItems={'center'}
-                    p={8}
-                >
-                    {user.image ? (
-                        <Image
-                            fontSize="2rem !important"
-                            bg={'linear-gradient(310deg,#FF4331,#D31A50)'}
-                            w="150px"
-                            h="150px"
-                            borderRadius={'100%'}
-                            src={user.image}
-                            alt={"User's profile picture"}
-                        />
-                    ) : (
-                        <Avatar
-                            color={'white'}
-                            fontSize="2rem !important"
-                            bg={'linear-gradient(310deg,#FF4331,#D31A50)'}
-                            w="150px"
-                            h="150px"
-                            borderRadius={'100%'}
-                        />
-                    )}
-                    <Flex direction="column" my={{ sm: '14px' }}>
-                        <Text
-                            fontSize={{ sm: 'lg', lg: '2.3rem' }}
-                            color={useColorModeValue('black', 'white')}
-                            fontWeight="bold"
-                            ms={{ sm: '8px', md: '0px' }}
-                            textAlign="center"
-                        >
-                            {user.name}
-                        </Text>
-                    </Flex>
-                </Box>
-            </GridItem>
-            <GridItem colSpan={{ base: 1, md: 3 }}>
-                <Box
-                    display={'flex'}
-                    flexDirection={'column'}
-                    p={8}
-                    borderRadius={8}
-                    bg={useColorModeValue('white', '#242526')}
-                >
-                    <Box p="12px 5px" mb="12px">
-                        <Text
-                            bgGradient="linear-gradient(310deg,#FF4331,#D31A50)"
-                            bgClip="text"
-                            fontSize="2xl"
-                            fontWeight="extrabold"
-                            textTransform={'uppercase'}
-                        >
-                            GENERAL INFORMATION
-                        </Text>
-                        <Text
-                            fontSize={{ base: 'md', lg: 'lg' }}
-                            color={'gray.500'}
-                            mt={3}
-                        >
-                            This is general information about you.
-                        </Text>
-                    </Box>
-                    <Flex
-                        align="center"
-                        justifyContent="space-between"
-                        mb="12px"
-                        borderRadius={8}
-                        bg={'#f8f9fa'}
-                        p={3}
-                    >
-                        <Text
-                            fontSize="md"
-                            color={'gray.500'}
-                            me="10px"
-                            fontWeight={'semibold'}
-                        >
-                            Name
-                        </Text>
-                        <Text
-                            fontSize="md"
-                            color="black"
-                            fontWeight={'semibold'}
-                        >
-                            {user.name}
-                        </Text>
-                    </Flex>
-                    <Flex
-                        align="center"
-                        justifyContent="space-between"
-                        mb="12px"
-                        borderRadius={8}
-                        bg={'#f8f9fa'}
-                        p={3}
-                    >
-                        <Text
-                            fontSize="md"
-                            color={'gray.500'}
-                            me="10px"
-                            fontWeight={'semibold'}
-                        >
-                            Email
-                        </Text>
-                        <Text
-                            fontSize="md"
-                            color="black"
-                            fontWeight={'semibold'}
-                        >
-                            {user.email}
-                        </Text>
-                    </Flex>
-                    <Flex
-                        align="center"
-                        justifyContent="space-between"
-                        mb="12px"
-                        borderRadius={8}
-                        bg={'#f8f9fa'}
-                        p={3}
-                    >
-                        <Text
-                            fontSize="md"
-                            color={'gray.500'}
-                            me="10px"
-                            fontWeight={'semibold'}
-                        >
-                            Age
-                        </Text>
-                        <Text
-                            fontSize="md"
-                            color="black"
-                            fontWeight={'semibold'}
-                        >
-                            {user.age}
-                        </Text>
-                    </Flex>
-                    <Flex
-                        align="center"
-                        justifyContent="space-between"
-                        mb="12px"
-                        borderRadius={8}
-                        bg={'#f8f9fa'}
-                        p={3}
-                    >
-                        <Text
-                            fontSize="md"
-                            color={'gray.500'}
-                            me="10px"
-                            fontWeight={'semibold'}
-                        >
-                            Gender
-                        </Text>
-                        <Text
-                            fontSize="md"
-                            color="black"
-                            fontWeight={'semibold'}
-                        >
-                            {user.gender}
-                        </Text>
-                    </Flex>
-                </Box>
-            </GridItem>
-            <GridItem colSpan={{ base: 1, md: 4 }} rowSpan={1}>
-                <Box
-                    display={'flex'}
-                    flexDirection={'column'}
-                    bg={useColorModeValue('white', '#242526')}
-                    borderRadius={8}
-                    justifyContent="center"
-                    alignItems={'center'}
-                    p={8}
-                >
-                    <Box p="12px 5px" mb="12px">
-                        <Text
-                            bgGradient="linear-gradient(310deg,#FF4331,#D31A50)"
-                            bgClip="text"
-                            fontSize="2xl"
-                            fontWeight="extrabold"
-                            textTransform={'uppercase'}
-                        >
-                            OTHER INFORMATION
-                        </Text>
-                        <Text
-                            fontSize={{ base: 'md', lg: 'lg' }}
-                            color={'gray.500'}
-                            mt={3}
-                        >
-                            This Quiz is conducted in order to understand your
-                            metal health status. So we can treat you better!
-                        </Text>
-                        <Box>
-                            {user.SurveyResults.map((survey) => (
-                                <Flex
-                                    key={survey.id}
-                                    align="center"
-                                    justifyContent="space-between"
-                                    mb="12px"
-                                    borderRadius={8}
-                                    bg={'#f8f9fa'}
-                                    p={3}
-                                >
-                                    <Text
-                                        fontSize="md"
-                                        color="black"
-                                        fontWeight={'semibold'}
+            <GridItem
+                colSpan={{ base: 1, md: 4 }}
+                rowSpan={1}
+                borderRadius={8}
+                borderTop={'5px solid #045DE9'}
+                bg={useColorModeValue('white', '#242526')}
+            >
+                <Tabs isFitted variant="enclosed">
+                    <TabList mb="1em">
+                        <Tab>
+                            <Text
+                                bgGradient="linear-gradient(310deg,#09C6F9,#045DE9)"
+                                bgClip="text"
+                                fontSize="2xl"
+                                fontWeight="extrabold"
+                                textTransform={'uppercase'}
+                            >
+                                Survey Results
+                            </Text>
+                        </Tab>
+                        <Tab>
+                            <Text
+                                bgGradient="linear-gradient(310deg,#09C6F9,#045DE9)"
+                                bgClip="text"
+                                fontSize="2xl"
+                                fontWeight="extrabold"
+                                textTransform={'uppercase'}
+                            >
+                                Appointments
+                            </Text>
+                        </Tab>
+                    </TabList>
+                    <TabPanels>
+                        <TabPanel>
+                            <Box>
+                                {user.SurveyResults.map((survey) => (
+                                    <Flex
+                                        key={survey.id}
+                                        flexDir={'column'}
+                                        mb="12px"
+                                        borderRadius={8}
+                                        bg={'white'}
+                                        shadow={
+                                            'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px'
+                                        }
                                     >
-                                        Type: {survey.Survey.name}
-                                    </Text>
-                                    <Text
-                                        fontSize="md"
-                                        color={'gray.500'}
-                                        me="10px"
-                                        fontWeight={'semibold'}
+                                        <Text
+                                            fontSize="2xl"
+                                            p={2}
+                                            bg={
+                                                'linear-gradient(310deg,#09C6F9,#045DE9)'
+                                            }
+                                            color={'white'}
+                                            borderTopRadius={8}
+                                            fontWeight={'bold'}
+                                            textTransform={'uppercase'}
+                                        >
+                                            {survey.Survey.name}
+                                        </Text>
+                                        <Box
+                                            display={'flex'}
+                                            justifyContent={'space-between'}
+                                            alignItems={'center'}
+                                        >
+                                            <Box
+                                                display={'flex'}
+                                                alignItems={'center'}
+                                            >
+                                                <Icon
+                                                    as={BsFillCalendarDateFill}
+                                                    w={6}
+                                                    h={6}
+                                                    m={2}
+                                                    color={'gray.500'}
+                                                />
+                                                <Text
+                                                    fontSize="lg"
+                                                    color={'gray.500'}
+                                                    me="10px"
+                                                    fontWeight={'semibold'}
+                                                    textTransform={'uppercase'}
+                                                >
+                                                    {formatDate(
+                                                        survey.createdAt
+                                                    )}
+                                                </Text>
+                                            </Box>
+                                            <Icon
+                                                as={RiSurveyFill}
+                                                w={12}
+                                                h={12}
+                                                m={2}
+                                                color={'#09C6F9'}
+                                            />
+                                        </Box>
+                                    </Flex>
+                                ))}
+                            </Box>
+                        </TabPanel>
+                        <TabPanel>
+                            <Box display={'flex'} flexDirection={'column'}>
+                                {user.appointments.map((appointment) => (
+                                    <Flex
+                                        key={appointment.id}
+                                        flexDir={'column'}
+                                        mb="12px"
+                                        borderRadius={8}
+                                        bg={'white'}
+                                        shadow={
+                                            'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px'
+                                        }
                                     >
-                                        Date: {survey.createdAt.toISOString()}
-                                    </Text>
-                                </Flex>
-                            ))}
-                        </Box>
-                    </Box>
-                </Box>
-            </GridItem>
-            <GridItem colSpan={{ base: 1, md: 4 }}>
-                <Box
-                    display={'flex'}
-                    flexDirection={'column'}
-                    bg={useColorModeValue('white', '#242526')}
-                    borderRadius={8}
-                    justifyContent="center"
-                    alignItems={'center'}
-                    p={8}
-                >
-                    <Box p="12px 5px" mb="12px">
-                        <Text
-                            bgGradient="linear-gradient(310deg,#FF4331,#D31A50)"
-                            bgClip="text"
-                            fontSize="2xl"
-                            fontWeight="extrabold"
-                            textTransform={'uppercase'}
-                        >
-                            Appointments
-                        </Text>
-                        <Text
-                            fontSize={{ base: 'md', lg: 'lg' }}
-                            color={'gray.500'}
-                            mt={3}
-                        >
-                            List of Scheduled Appointments
-                        </Text>
-                        <Box>
-                            {user.appointments.map((appointment) => (
-                                <Flex
-                                    key={appointment.id}
-                                    align="center"
-                                    justifyContent="space-between"
-                                    mb="12px"
-                                    borderRadius={8}
-                                    bg={'#f8f9fa'}
-                                    p={3}
-                                >
-                                    <Text
-                                        fontSize="md"
-                                        color={'gray.500'}
-                                        me="10px"
-                                        fontWeight={'semibold'}
-                                    >
-                                        Date: {appointment.date.toISOString()}
-                                    </Text>
-                                    <Text
-                                        fontSize="md"
-                                        color="black"
-                                        fontWeight={'semibold'}
-                                    >
-                                        Time: {appointment.time}
-                                    </Text>
-                                </Flex>
-                            ))}
-                        </Box>
-                    </Box>
-                </Box>
+                                        <Text
+                                            fontSize="2xl"
+                                            p={2}
+                                            bg={
+                                                'linear-gradient(310deg,#09C6F9,#045DE9)'
+                                            }
+                                            color={'white'}
+                                            borderTopRadius={8}
+                                            fontWeight={'bold'}
+                                            textTransform={'uppercase'}
+                                        ></Text>
+                                        <Box
+                                            display={'flex'}
+                                            justifyContent={'space-between'}
+                                            alignItems={'center'}
+                                        >
+                                            <Box
+                                                display={'flex'}
+                                                alignItems={'center'}
+                                            >
+                                                <Box
+                                                    display={'flex'}
+                                                    alignItems={'center'}
+                                                >
+                                                    <Icon
+                                                        as={
+                                                            BsFillCalendarDateFill
+                                                        }
+                                                        w={6}
+                                                        h={6}
+                                                        m={2}
+                                                        color={'gray.500'}
+                                                    />
+                                                    <Text
+                                                        fontSize="lg"
+                                                        color={'gray.500'}
+                                                        me="10px"
+                                                        fontWeight={'semibold'}
+                                                        textTransform={
+                                                            'uppercase'
+                                                        }
+                                                    >
+                                                        {formatDate(
+                                                            appointment.date
+                                                        )}
+                                                    </Text>
+                                                </Box>
+                                                <Box
+                                                    display={'flex'}
+                                                    alignItems={'center'}
+                                                >
+                                                    <Icon
+                                                        as={RiTimeFill}
+                                                        w={6}
+                                                        h={6}
+                                                        m={2}
+                                                        color={'gray.500'}
+                                                    />
+                                                    <Text
+                                                        fontSize="lg"
+                                                        color={'gray.500'}
+                                                        me="10px"
+                                                        fontWeight={'semibold'}
+                                                        textTransform={
+                                                            'uppercase'
+                                                        }
+                                                    >
+                                                        {appointment.time}
+                                                    </Text>
+                                                </Box>
+                                            </Box>
+
+                                            <Icon
+                                                as={AiFillSchedule}
+                                                w={12}
+                                                h={12}
+                                                m={2}
+                                                color={'#09C6F9'}
+                                            />
+                                        </Box>
+                                    </Flex>
+                                ))}
+                            </Box>
+                        </TabPanel>
+                    </TabPanels>
+                </Tabs>
             </GridItem>
         </Grid>
     );

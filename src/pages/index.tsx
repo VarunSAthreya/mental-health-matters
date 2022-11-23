@@ -1,28 +1,18 @@
 import {
     Box,
-    BoxProps,
-    Container,
     Heading,
-    Hide,
-    Image,
-    ImageProps,
     SimpleGrid,
-    SimpleGridProps,
     Stack,
-    StackProps,
     Text,
     useBreakpointValue,
-    useColorModeValue,
+    useColorMode,
 } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
 import type { NextPage } from 'next';
 import { AiFillHeart } from 'react-icons/ai';
 import { FaPeopleCarry, FaRunning } from 'react-icons/fa';
-import type { IBasicCard, IService } from '../../@types';
-import animationData from '../../public/lotte/brain.json';
+import type { IBasicCard, IService } from '../../types';
 import BasicCard from '../components/Card/BasicCard';
 import ServiceCard from '../components/Card/ServiceCard';
-import LottieView from '../components/Lotte/LotteView';
 import Layout from '../components/UI/Layout';
 
 const basicCardData: IBasicCard[] = [
@@ -74,177 +64,204 @@ const serviceData: IService[] = [
 ];
 
 const Home: NextPage = () => {
-    const MotionStack = motion<StackProps>(Stack);
-    const MotionImage = motion<ImageProps>(Image);
-    const MotionBox = motion<BoxProps>(Box);
-    const MotionSimpleGrid = motion<SimpleGridProps>(SimpleGrid);
-
+    const { colorMode } = useColorMode();
     return (
         <Layout title="MHM">
-            <Container maxW={'7xl'}>
-                {/*Poster*/}
-                <Box
-                    display={'flex'}
-                    flexDir={{ base: 'column-reverse', md: 'row' }}
-                >
-                    <Stack
-                        as={Box}
-                        textAlign={'start'}
-                        w={{ base: '100%', md: '50%' }}
-                        spacing={{ base: 8 }}
-                        my={4}
-                        pt={{ base: 16, md: 36 }}
-                        pb={{ base: 16, md: 36 }}
-                    >
-                        <Text
-                            bgGradient="linear(310deg, #FF4331 0%, #D31A50 100%)"
-                            bgClip="text"
-                            textAlign={{ base: 'center', md: 'start' }}
-                            fontSize={{ base: 'xl', md: '2xl' }}
-                        >
-                            MENTAL HEALTH MATTERS
-                        </Text>
-                        <Text
-                            // color={"gray.200"}
-                            color={useColorModeValue('gray.900', 'gray.500')}
-                            fontWeight={400}
-                            lineHeight={1.2}
-                            textAlign={{ base: 'center', md: 'start' }}
-                            fontSize={useBreakpointValue({
-                                base: '2xl',
-                            })}
-                        >
-                            Covid 19 has intensified and exaggerated fault lines
-                            in contemporary socities revealing back to us our
-                            ways of dealing with
-                        </Text>
-                        <Text
-                            bgGradient="linear(310deg, #FF4331 0%, #D31A50 100%)"
-                            bgClip="text"
-                            fontWeight={400}
-                            textAlign={{ base: 'center', md: 'start' }}
-                            lineHeight={1.2}
-                            fontSize={useBreakpointValue({
-                                base: '3xl',
-                            })}
-                        >
-                            Mental Health
-                        </Text>
-                        <Stack
-                            direction={'column'}
-                            spacing={3}
-                            align={'start'}
-                            alignSelf={'start'}
-                            position={'relative'}
-                        ></Stack>
-                    </Stack>
-                    <Hide below="md">
-                        <Box
-                            pos={'absolute'}
-                            zIndex={50}
-                            width={{ md: 400, lg: 500 }}
-                            height={385}
-                            top={{ md: '4%', lg: '3%' }}
-                            left={{ md: '51%', lg: '58%' }}
-                        >
-                            <LottieView animationData={animationData} />
-                        </Box>
-                    </Hide>
-                </Box>
-                {/*Welcome*/}
+            {/*Poster*/}
+            <Box
+                display={'flex'}
+                w={'full'}
+                h={'90vh'}
+                flexDir={{ base: 'column-reverse', md: 'row' }}
+                backgroundImage={'url(/assets/Background-Images/main.jpg)'}
+                backgroundSize={'cover'}
+                backgroundPosition={'center'}
+            >
                 <Stack
                     as={Box}
-                    textAlign={'center'}
-                    spacing={{ base: 6 }}
-                    py={{ base: 20, md: 28 }}
+                    p={20}
+                    display={'flex'}
+                    flexDir={'column'}
+                    justifyContent={'center'}
+                    bg={'linear-gradient(310deg, #09c6f982, #045de99e)'}
                 >
-                    <Heading
-                        fontWeight={600}
-                        fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
-                    >
-                        Welcome!
-                    </Heading>
-                    <Text color={'gray.500'}>
-                        The COVID-19 pandemic has likely impacted mental health
-                        in many different ways. The pandemic has created an
-                        environment where many determinants of mental health are
-                        impacted.
-                    </Text>
-                    <Text color={'gray.500'}>
-                        During the COVID-19 pandemic, concerns about mental
-                        health and substance use have grown, including concerns
-                        about suicidal ideation. In January 2021, 41% of adults
-                        reported symptoms of anxiety and/or depressive disorder,
-                        a share that has been largely stable since spring 2020.
-                        In a survey from June 2020, 13% of adults reported new
-                        or increased substance use due to coronavirus-related
-                        stress, and 11% of adults reported thoughts of suicide
-                        in the past 30 days. Suicide rates have long been on the
-                        rise and may worsen due to the pandemic.
-                    </Text>
+                    <Box w={'45%'} mx={4}>
+                        <Text
+                            color={'white'}
+                            textAlign={{ base: 'center', md: 'start' }}
+                            fontSize={{ base: 'xl', md: '7xl' }}
+                            textTransform={'uppercase'}
+                            fontWeight={600}
+                            lineHeight={1.2}
+                        >
+                            Make your mental Health a Priority.
+                        </Text>
+                        <Text
+                            my={4}
+                            color={'#bcd9e1'}
+                            lineHeight={1.2}
+                            textAlign={{ base: 'center', md: 'start' }}
+                            fontSize={useBreakpointValue({
+                                base: 'lg',
+                            })}
+                        >
+                            Just remember, you are not alone, in fact, you are
+                            in a very commonplace with millions of others. We
+                            need to help each other and keep striving to reach
+                            our goals
+                        </Text>
+                    </Box>
                 </Stack>
-                {/*Importance*/}
-                <Box
-                    maxW="6xl"
-                    mx={'auto'}
+            </Box>
+            {/*Welcome*/}
+            <Stack
+                as={Box}
+                textAlign={'center'}
+                spacing={{ base: 6 }}
+                py={{ base: 20, md: 28 }}
+            >
+                <Heading
                     textAlign={'center'}
-                    pt={5}
-                    px={{ base: 2, sm: 12, md: 17 }}
+                    mb={4}
+                    p={2}
+                    fontWeight={700}
+                    textTransform={'uppercase'}
+                    fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
                 >
-                    <Heading
-                        textAlign={'center'}
-                        fontSize={'4xl'}
-                        py={10}
-                        fontWeight={'bold'}
+                    <Text
+                        as={'span'}
+                        position={'relative'}
+                        bgGradient="linear(310deg,#09C6F9,#045DE9)"
+                        bgClip="text"
+                        _after={{
+                            content: "''",
+                            width: 'full',
+                            height: '2%',
+                            position: 'absolute',
+                            bottom: 1,
+                            left: 0,
+                            bg: 'linear-gradient(310deg,#09C6F9,#045DE9)',
+                        }}
+                    >
+                        Welcome !
+                    </Text>
+                </Heading>
+                <Text color={'gray.500'}>
+                    The COVID-19 pandemic has likely impacted mental health in
+                    many different ways. The pandemic has created an environment
+                    where many determinants of mental health are impacted.
+                </Text>
+                <Text color={'gray.500'}>
+                    During the COVID-19 pandemic, concerns about mental health
+                    and substance use have grown, including concerns about
+                    suicidal ideation. In January 2021, 41% of adults reported
+                    symptoms of anxiety and/or depressive disorder, a share that
+                    has been largely stable since spring 2020. In a survey from
+                    June 2020, 13% of adults reported new or increased substance
+                    use due to coronavirus-related stress, and 11% of adults
+                    reported thoughts of suicide in the past 30 days. Suicide
+                    rates have long been on the rise and may worsen due to the
+                    pandemic.
+                </Text>
+            </Stack>
+            {/*Importance*/}
+            <Box
+                bg={'linear-gradient(310deg, #09C6F9, #045DE9)'}
+                textAlign={'center'}
+                pt={5}
+                px={{ base: 2, sm: 12, md: 17 }}
+                py={14}
+            >
+                <Heading
+                    py={10}
+                    lineHeight={1.1}
+                    textAlign={'center'}
+                    fontWeight={600}
+                    fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
+                >
+                    <Text
+                        as={'span'}
+                        position={'relative'}
+                        color={'white'}
+                        _after={{
+                            content: "''",
+                            width: 'full',
+                            height: '2%',
+                            position: 'absolute',
+                            bottom: 1,
+                            left: 0,
+                            bg: 'white',
+                        }}
                     >
                         Why is Mental Health So Important ?
-                    </Heading>
-                    <Text color={'gray.500'}>
-                        Mental health matters. Taking care of our mental health
-                        aids in our resilience and recovery from anything that
-                        happens. Anyone can have a bad day, but it doesn’t mean
-                        that it’s a bad life. How we respond to it and take care
-                        of our mental health are what’s important.
                     </Text>
-                    <SimpleGrid
-                        my={6}
-                        columns={{ base: 1, md: 3 }}
-                        spacing={{ base: 5, lg: 8 }}
-                    >
-                        {basicCardData.map((data, index) => (
-                            <BasicCard data={data} key={index} />
-                        ))}
-                    </SimpleGrid>
-                </Box>
-                {/*Service*/}
-                <Stack
-                    as={Box}
-                    textAlign={'center'}
-                    spacing={{ base: 8 }}
-                    py={{ base: 20, md: 28 }}
+                </Heading>
+                <Text color={'#bcd9e1'}>
+                    Mental health matters. Taking care of our mental health aids
+                    in our resilience and recovery from anything that happens.
+                    Anyone can have a bad day, but it doesn’t mean that it’s a
+                    bad life. How we respond to it and take care of our mental
+                    health are what’s important.
+                </Text>
+                <SimpleGrid
+                    mt={6}
+                    columns={{ base: 1, md: 3 }}
+                    spacing={{ base: 5 }}
                 >
-                    <Heading
-                        fontWeight={600}
-                        fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
-                        lineHeight={'110%'}
+                    {basicCardData.map((data, index) => (
+                        <BasicCard data={data} key={index} />
+                    ))}
+                </SimpleGrid>
+            </Box>
+            {/*Service*/}
+            <Stack
+                as={Box}
+                textAlign={'center'}
+                spacing={{ base: 8 }}
+                p={{ base: 16, md: 20 }}
+                backgroundImage={
+                    colorMode === 'light'
+                        ? 'url(/assets/Background-Images/blob-light.svg)'
+                        : 'url(/assets/Background-Images/blob-dark.svg)'
+                }
+                backgroundSize={'cover'}
+                backgroundPosition={'top'}
+            >
+                <Heading
+                    lineHeight={1.1}
+                    textAlign={'center'}
+                    fontWeight={600}
+                    fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
+                >
+                    <Text
+                        as={'span'}
+                        position={'relative'}
+                        bgGradient="linear(310deg,#09C6F9,#045DE9)"
+                        bgClip="text"
+                        _after={{
+                            content: "''",
+                            width: 'full',
+                            height: '2%',
+                            position: 'absolute',
+                            bottom: 1,
+                            left: 0,
+                            bg: 'linear-gradient(310deg,#09C6F9,#045DE9)',
+                        }}
                     >
-                        What we can Offer
-                    </Heading>
-                    <Text color={'gray.500'}>
-                        We Are Trained and Professional Councellsor,who
-                        understand the issuse faced by our clients and discuss
-                        various/topics to resolve problem.
+                        What we can Offer.
                     </Text>
-                    <SimpleGrid
-                        columns={{ base: 1 }}
-                        spacing={{ base: 5, lg: 10 }}
-                    >
-                        {serviceData.map((data, index) => (
-                            <ServiceCard data={data} key={index} />
-                        ))}
-                    </SimpleGrid>
-                </Stack>
-            </Container>
+                </Heading>
+                <Text color={'gray.500'}>
+                    We Are Trained and Professional Councellsor,who understand
+                    the issuse faced by our clients and discuss various/topics
+                    to resolve problem.
+                </Text>
+                <SimpleGrid columns={{ base: 1 }} spacing={{ base: 5, lg: 10 }}>
+                    {serviceData.map((data, index) => (
+                        <ServiceCard data={data} key={index} />
+                    ))}
+                </SimpleGrid>
+            </Stack>
         </Layout>
     );
 };

@@ -1,4 +1,4 @@
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import {
     Box,
     Button,
@@ -9,31 +9,29 @@ import {
     Icon,
     IconButton,
     Link,
-    Text,
     useColorMode,
     useColorModeValue,
     useDisclosure,
-} from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import { BsPersonCircle } from "react-icons/bs";
-import { FiMenu } from "react-icons/fi";
-import { MdDashboard } from "react-icons/md";
-import IconBox from "../Icons/IconBox";
-import Logo from "../Logo/Logo";
-import Separator from "../Separator/Separator";
+} from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { BsPersonCircle } from 'react-icons/bs';
+import { FiMenu } from 'react-icons/fi';
+import { MdDashboard } from 'react-icons/md';
+import IconBox from '../Icons/IconBox';
+import Logo from '../Logo/Logo';
 
 const routes = [
-    { name: "Dashboard", link: "/dashboard", icon: MdDashboard },
-    { name: "Profile", link: "/profile", icon: BsPersonCircle },
+    { name: 'Dashboard', link: '/dashboard', icon: MdDashboard },
+    { name: 'Profile', link: '/profile', icon: BsPersonCircle },
 ];
 
 const SideBar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
-        <Box minH={{ base: "10vh", lg: "100vh" }}>
+        <Box minH={{ base: '10vh', lg: '100vh' }}>
             <SidebarContent
                 onClose={() => onClose}
-                display={{ base: "none", md: "flex" }}
+                display={{ base: 'none', md: 'flex' }}
             />
             <Drawer
                 autoFocus={false}
@@ -49,91 +47,80 @@ const SideBar = () => {
                 </DrawerContent>
             </Drawer>
             {/* mobilenav */}
-            <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
+            <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
         </Box>
     );
 };
 
-const SidebarContent = ({ onClose, ...rest }) => {
-    const router = useRouter();
-
+const SidebarContent = ({ onClose, ...rest }: any) => {
     const { colorMode, toggleColorMode } = useColorMode();
     return (
         <Box
-            bg={useColorModeValue("white", "#242526")}
-            w={{ base: "full", md: 72 }}
-            pos={{ base: "static", md: "fixed" }}
+            bg={useColorModeValue('white', '#242526')}
+            w={{ base: 'full', md: 20 }}
+            pos={{ base: 'static', md: 'fixed' }}
             borderRadius={{ base: 0, md: 8 }}
             left={2}
-            flexDirection={"column"}
+            flexDirection={'column'}
+            justifyContent={'space-between'}
             top={6}
-            h={{ base: "100%", lg: "95%" }}
+            h={{ base: '100%', lg: '95%' }}
             {...rest}
         >
-            <Flex
-                h="20"
-                alignItems="center"
-                mx="6"
-                justifyContent="space-between"
-            >
-                <Box pt={"25px"} mb="12px">
-                    <Text
-                        fontSize="1.2rem"
-                        mt="3px"
-                        bgGradient="linear(310deg,#FF4331,#D31A50)"
-                        bgClip="text"
-                        fontWeight="bold"
-                        textTransform={"uppercase"}
-                        onClick={() => router.push(`/`)}
-                        cursor={"pointer"}
-                    >
-                        MENTAL HEALTH PORTAL
-                    </Text>
-                    <Separator></Separator>
+            <Flex h="20" alignItems="center" justifyContent="space-between">
+                <Box display={'flex'} alignItems={'center'}>
+                    <Logo width={'75px'} />
                 </Box>
                 <CloseButton
-                    display={{ base: "flex", md: "none" }}
+                    display={{ base: 'flex', md: 'none' }}
                     onClick={onClose}
                 />
             </Flex>
-            <Flex flexDirection={"column"}>
+            <Flex flexDirection={'column'}>
                 {routes.map((link) => (
                     <NavItem key={link.name} icon={link.icon} link={link.link}>
                         {link.name}
                     </NavItem>
                 ))}
             </Flex>
-            <Flex justify={"center"} pos={"relative"} bottom={0}>
+            <Flex justify={'center'} pos={'relative'} bottom={0}>
                 <Button
                     onClick={toggleColorMode}
-                    _focus={{ outline: "none" }}
+                    _focus={{ outline: 'none' }}
                     variant="no-hover"
-                    rightIcon={
-                        colorMode === "light" ? <MoonIcon /> : <SunIcon />
-                    }
+                    my={4}
                 >
-                    {colorMode === "light" ? (
-                        <Text mr={4}>DARK MODE</Text>
-                    ) : (
-                        <Text mr={4}>LIGHT MODE</Text>
-                    )}
+                    <IconBox
+                        bg={colorMode === 'light' ? 'transparent' : 'white'}
+                        border={
+                            colorMode === 'light'
+                                ? '1px solid black'
+                                : 'transparent'
+                        }
+                        h="40px"
+                        w="40px"
+                        color={'black'}
+                    >
+                        <Icon
+                            fontSize="16"
+                            as={colorMode === 'light' ? MoonIcon : SunIcon}
+                        />
+                    </IconBox>
                 </Button>
             </Flex>
         </Box>
     );
 };
 
-const NavItem = ({ icon, link, children, ...rest }) => {
+const NavItem = ({ icon, link, children, ...rest }: any) => {
     const router = useRouter();
-    const defaultColor = useColorModeValue("white", "#242526");
-    const textColor = useColorModeValue("#242526", "white");
-    // console.log(router.asPath);
-    // console.log({ link });
+    const navItemBg = useColorModeValue('transparent', 'white');
+    const navItemBorder = useColorModeValue('1px solid black', 'transparent');
 
     return (
         <Link
-            style={{ textDecoration: "none" }}
-            _focus={{ outline: "none" }}
+            style={{ textDecoration: 'none' }}
+            _focus={{ outline: 'none' }}
             href={link}
         >
             <Flex
@@ -141,70 +128,50 @@ const NavItem = ({ icon, link, children, ...rest }) => {
                 p="2"
                 mx="2"
                 borderRadius="lg"
-                role="group"
-                cursor="pointer"
-                bg={
-                    router.asPath === link
-                        ? "linear-gradient(310deg,#FF4331,#D31A50)"
-                        : defaultColor
-                }
+                justifyContent={'center'}
                 my={2}
-                _hover={{
-                    bg: "linear-gradient(310deg,#FF4331,#D31A50)",
-                    color: "white",
-                }}
                 {...rest}
             >
                 {icon && (
                     <IconBox
                         bg={
                             router.asPath === link
-                                ? "white"
-                                : "linear-gradient(310deg,#FF4331,#D31A50)"
+                                ? 'linear-gradient(310deg,#09C6F9,#045DE9)'
+                                : navItemBg
+                        }
+                        border={
+                            router.asPath === link
+                                ? 'transparent'
+                                : navItemBorder
                         }
                         h="40px"
                         w="40px"
-                        color={router.asPath === link ? "black" : "white"}
-                        me="12px"
-                        _groupHover={{
-                            bg: "white",
+                        color={router.asPath === link ? 'white' : 'black'}
+                        _hover={{
+                            bg: 'linear-gradient(310deg,#09C6F9,#045DE9)',
+                            color: 'white',
+                            border: 'none',
                         }}
-                        transition="0.2s linear"
+                        transition="0.1s linear"
                     >
-                        <Icon
-                            fontSize="16"
-                            _groupHover={{
-                                color: "black",
-                            }}
-                            as={icon}
-                        />
+                        <Icon fontSize="16" as={icon} />
                     </IconBox>
                 )}
-                <Text
-                    color={router.asPath === link ? "white" : textColor}
-                    my="auto"
-                    fontSize="sm"
-                    _groupHover={{
-                        color: "white",
-                    }}
-                >
-                    {children}
-                </Text>
             </Flex>
         </Link>
     );
 };
 
-const MobileNav = ({ onOpen, ...rest }) => {
+const MobileNav = ({ onOpen, ...rest }: any) => {
     return (
         <Flex
             ml={{ base: 0, md: 60 }}
             px={{ base: 4, md: 24 }}
             height="20"
             alignItems="center"
-            bg={useColorModeValue("white", "#242526")}
+            bg={useColorModeValue('white', '#242526')}
             borderBottomWidth="1px"
-            borderBottomColor={useColorModeValue("gray.200", "gray.700")}
+            borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
             justifyContent="space-between"
             {...rest}
         >

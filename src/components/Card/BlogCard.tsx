@@ -7,21 +7,23 @@ import {
     Link,
     Text,
     useColorModeValue,
-} from "@chakra-ui/react";
-import { FC } from "react";
-import { IBlog } from "../../@types";
+} from '@chakra-ui/react';
+import { FC } from 'react';
+import { IBlog } from '../../../types';
 
 type Props = {
     blog: IBlog;
 };
 
 const BlogCard: FC<Props> = ({ blog }: Props) => {
+    const color = useColorModeValue('gray.700', 'gray.200');
+
     if (blog.id % 2 === 0) {
         return (
             <Box
-                marginTop={{ base: "1", sm: "5" }}
+                marginTop={{ base: '1', sm: '5' }}
                 display="flex"
-                flexDirection={{ base: "column", sm: "row" }}
+                flexDirection={{ base: 'column', sm: 'row' }}
                 justifyContent="space-between"
             >
                 <Box
@@ -32,9 +34,9 @@ const BlogCard: FC<Props> = ({ blog }: Props) => {
                     alignItems="center"
                 >
                     <Box
-                        width={{ base: "100%", sm: "85%" }}
+                        width={{ base: '100%', sm: '85%' }}
                         zIndex="2"
-                        marginLeft={{ base: "0", sm: "5%" }}
+                        marginLeft={{ base: '0', sm: '5%' }}
                         marginTop="5%"
                     >
                         <Image
@@ -50,22 +52,17 @@ const BlogCard: FC<Props> = ({ blog }: Props) => {
                     flex="1"
                     flexDirection="column"
                     justifyContent="space-evenly"
-                    marginTop={{ base: "3", sm: "0" }}
+                    marginTop={{ base: '3', sm: '0' }}
                 >
                     <Heading marginTop="1">
                         <Link
                             textDecoration="none"
-                            _hover={{ textDecoration: "none" }}
+                            _hover={{ textDecoration: 'none' }}
                         >
                             {blog.title}
                         </Link>
                     </Heading>
-                    <Text
-                        as="p"
-                        marginTop="2"
-                        color={useColorModeValue("gray.700", "gray.200")}
-                        fontSize="lg"
-                    >
+                    <Text as="p" marginTop="2" color={color} fontSize="lg">
                         {blog.description}
                     </Text>
                     <a
@@ -73,7 +70,7 @@ const BlogCard: FC<Props> = ({ blog }: Props) => {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <Button bgColor={"#FF4331"}>Read More</Button>
+                        <Button bgColor={'#FF4331'}>Read More</Button>
                     </a>
                 </Box>
             </Box>
@@ -81,9 +78,9 @@ const BlogCard: FC<Props> = ({ blog }: Props) => {
     } else {
         return (
             <Box
-                marginTop={{ base: "1", sm: "5" }}
+                marginTop={{ base: '1', sm: '5' }}
                 display="flex"
-                flexDirection={{ base: "column", sm: "row" }}
+                flexDirection={{ base: 'column', sm: 'row' }}
                 justifyContent="space-between"
             >
                 <Box
@@ -91,22 +88,17 @@ const BlogCard: FC<Props> = ({ blog }: Props) => {
                     flex="1"
                     flexDirection="column"
                     justifyContent="space-evenly"
-                    marginTop={{ base: "3", sm: "0" }}
+                    marginTop={{ base: '3', sm: '0' }}
                 >
                     <Heading marginTop="1">
                         <Link
                             textDecoration="none"
-                            _hover={{ textDecoration: "none" }}
+                            _hover={{ textDecoration: 'none' }}
                         >
                             {blog.title}
                         </Link>
                     </Heading>
-                    <Text
-                        as="p"
-                        marginTop="2"
-                        color={useColorModeValue("gray.700", "gray.200")}
-                        fontSize="lg"
-                    >
+                    <Text as="p" marginTop="2" color={color} fontSize="lg">
                         {blog.description}
                     </Text>
                     <a
@@ -114,7 +106,7 @@ const BlogCard: FC<Props> = ({ blog }: Props) => {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <Button colorScheme={"#FF4331"} variant={"outline"}>
+                        <Button colorScheme={'#FF4331'} variant={'outline'}>
                             Read More
                         </Button>
                     </a>
@@ -127,9 +119,9 @@ const BlogCard: FC<Props> = ({ blog }: Props) => {
                     alignItems="center"
                 >
                     <Box
-                        width={{ base: "100%", sm: "85%" }}
+                        width={{ base: '100%', sm: '85%' }}
                         zIndex="2"
-                        marginLeft={{ base: "0", sm: "5%" }}
+                        marginLeft={{ base: '0', sm: '5%' }}
                         marginTop="5%"
                     >
                         <Image
