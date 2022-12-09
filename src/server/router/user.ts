@@ -42,7 +42,7 @@ export const userRouter = createProtectedRouter()
     .mutation('edit', {
         input: z.object({
             age: z.number(),
-            gender: z.enum(['M', 'F']),
+            gender: z.enum(['M', 'F', 'O']),
         }),
 
         async resolve({ ctx, input }) {

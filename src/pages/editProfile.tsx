@@ -5,6 +5,7 @@ import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
+    Button,
     Flex,
     FormControl,
     FormErrorMessage,
@@ -15,19 +16,73 @@ import {
     Input,
     InputGroup,
     InputLeftAddon,
+    Select,
     Stack,
     Text,
     useColorModeValue,
+    useToast,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { FC, useState } from 'react';
 import SideBar from '../components/Sidebar/Sidebar';
 import { trpc } from '../utils/trpc';
 
-const EditProfile = () => {
+const EditProfile: FC = () => {
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
 
-    const { data: userData, isLoading } = trpc.useQuery(['user.allDetails']);
-    if (isLoading || userData == undefined || userData == null) return null;
+    const toast = useToast();
+    const router = useRouter();
+
+    const utils = trpc.useContext();
+
+    const { data: userData, isLoading } = trpc.useQuery(['user.details']);
+
+    const [age, setAge] = useState<number>(userData?.age ?? 0);
+    const [gender, setGender] = useState(userData?.gender ?? '');
+
+    const { mutateAsync: updateUser, isLoading: updLoading } = trpc.useMutation(
+        ['user.edit'],
+        {
+            onError: (err) => {
+                console.log(err);
+                toast({
+                    title: err.message,
+                    status: 'error',
+                    duration: 3000,
+                    isClosable: true,
+                });
+            },
+            onSuccess: () => {
+                toast({
+                    title: 'Updated Successfully!!',
+                    status: 'success',
+                    duration: 3000,
+                    isClosable: true,
+                });
+                utils.invalidateQueries(['user.details']);
+                router.push('/profile');
+            },
+        }
+    );
+
+    if (isLoading || userData == undefined || userData == null || updLoading)
+        return null;
+
+    const onUpdate = () => {
+        if (age == 0 || gender == '') {
+            toast({
+                title: 'Please Enter Age and Gender',
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+            });
+            return;
+        }
+        console.log({ age, gender });
+
+        updateUser({ age: Number(age), gender: gender as any });
+    };
 
     return (
         <Flex flexDirection={{ base: 'column', lg: 'row' }} bg={primaryBG}>
@@ -156,7 +211,7 @@ const EditProfile = () => {
                         >
                             <Box p="12px 5px" mb="12px">
                                 <Text
-                                    bgGradient="linear-gradient(310deg,#FF4331,#D31A50)"
+                                    bgGradient="linear-gradient(310deg,#FF4331,#FF4331)"
                                     bgClip="text"
                                     fontSize="2xl"
                                     fontWeight="extrabold"
@@ -172,56 +227,74 @@ const EditProfile = () => {
                                     This is general information about you.
                                 </Text>
                             </Box>
-                            <form>
-                                {/*General Detail Fields*/}
-                                <Grid templateColumns="repeat(2, 1fr)">
-                                    <GridItem p={4}>
-                                        <FormControl>
-                                            <InputGroup>
-                                                <InputLeftAddon>
-                                                    Name:
-                                                </InputLeftAddon>
-                                                <Input
-                                                    type="text"
-                                                    placeholder="Student Name"
-                                                />
-                                            </InputGroup>
-                                            <FormErrorMessage></FormErrorMessage>
-                                        </FormControl>
-                                    </GridItem>
-                                    <GridItem p={4}>
-                                        <FormControl>
-                                            <InputGroup>
-                                                <InputLeftAddon>
-                                                    USN:
-                                                </InputLeftAddon>
-                                                <Input
-                                                    type="text"
-                                                    disabled
-                                                    placeholder="USN"
-                                                />
-                                            </InputGroup>
+                            {/*General Detail Fields*/}
+                            <Grid templateColumns="repeat(2, 1fr)">
+                                <GridItem p={4} colSpan={2}>
+                                    <FormControl>
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                Name:
+                                            </InputLeftAddon>
+                                            <Input
+                                                type="text"
+                                                placeholder="Student Name"
+                                                value={userData.name ?? ''}
+                                                disabled
+                                            />
+                                        </InputGroup>
+                                        <FormErrorMessage></FormErrorMessage>
+                                    </FormControl>
+                                </GridItem>
+                                <GridItem p={4}>
+                                    <FormControl>
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                Age:
+                                            </InputLeftAddon>
+                                            <Input
+                                                type="number"
+                                                placeholder="Age"
+                                                value={userData.age ?? ''}
+                                                required
+                                                onChange={(e: any) =>
+                                                    setAge(e.target.value)
+                                                }
+                                            />
+                                        </InputGroup>
 
-                                            <FormErrorMessage></FormErrorMessage>
-                                        </FormControl>
-                                    </GridItem>
-                                    <GridItem p={4} colSpan={2}>
-                                        <FormControl>
-                                            <InputGroup>
-                                                <InputLeftAddon>
-                                                    Email:
-                                                </InputLeftAddon>
-                                                <Input
-                                                    type="email"
-                                                    placeholder="Email ID"
-                                                />
-                                            </InputGroup>
+                                        <FormErrorMessage></FormErrorMessage>
+                                    </FormControl>
+                                </GridItem>
+                                <GridItem p={4}>
+                                    <FormControl>
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                Gender:
+                                            </InputLeftAddon>
+                                            <Select
+                                                placeholder="Select Gender"
+                                                onChange={(e: any) =>
+                                                    setGender(e.target.value)
+                                                }
+                                            >
+                                                <option value="M">Male</option>
+                                                <option value="F">
+                                                    Female
+                                                </option>
+                                                <option value="O">
+                                                    Others
+                                                </option>
+                                            </Select>
+                                        </InputGroup>
 
-                                            <FormErrorMessage></FormErrorMessage>
-                                        </FormControl>
-                                    </GridItem>
-                                </Grid>
-                            </form>
+                                        <FormErrorMessage></FormErrorMessage>
+                                    </FormControl>
+                                </GridItem>
+                            </Grid>
+
+                            <Button onClick={onUpdate} bgColor={'#FF4331'}>
+                                Update
+                            </Button>
                         </Box>
                     </GridItem>
                 </Grid>
