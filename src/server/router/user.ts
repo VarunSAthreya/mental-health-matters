@@ -34,7 +34,11 @@ export const userRouter = createProtectedRouter()
                             Survey: true,
                         },
                     },
-                    appointments: true,
+                    appointments: {
+                        orderBy: {
+                            createdAt: 'desc',
+                        },
+                    },
                 },
             });
         },
