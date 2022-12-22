@@ -1,3 +1,4 @@
+import { z } from 'zod';
 import { createProtectedRouter } from './protected-router';
 
 export const userRouter = createProtectedRouter()
@@ -33,7 +34,29 @@ export const userRouter = createProtectedRouter()
                             Survey: true,
                         },
                     },
-                    appointments: true,
+                    appointments: {
+                        orderBy: {
+                            createdAt: 'desc',
+                        },
+                    },
+                },
+            });
+        },
+    })
+    .mutation('edit', {
+        input: z.object({
+            age: z.number(),
+            gender: z.enum(['M', 'F', 'O']),
+        }),
+
+        async resolve({ ctx, input }) {
+            return ctx.prisma.user.update({
+                where: {
+                    id: ctx.session?.user?.id,
+                },
+                data: {
+                    age: input.age,
+                    gender: input.gender,
                 },
             });
         },
