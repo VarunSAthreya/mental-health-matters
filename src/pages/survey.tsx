@@ -123,7 +123,7 @@ const Survey = () => {
                                 fontWeight="extrabold"
                                 textTransform={'uppercase'}
                             >
-                                SURVEY PANEL
+                                {data?.name}
                             </Text>{' '}
                         </Heading>
                         <Breadcrumb

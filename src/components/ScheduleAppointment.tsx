@@ -120,6 +120,7 @@ const ScheduleAppointment: FC = () => {
                     <Calendar
                         value={date}
                         onChange={setDate}
+                        minDate={new Date()}
                         prev2Label={null}
                         next2Label={null}
                     />
