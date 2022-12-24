@@ -37,10 +37,10 @@ const Login = () => {
         <Layout title="MHM | Login">
             <Flex position="relative" justifyContent={'center'}>
                 <Flex
-                    h={{ sm: 'initial', md: '75vh', lg: '90vh' }}
-                    w={{ base: '100%', md: '50%', lg: '40%' }}
-                    mb="30px"
-                    pt={{ sm: '100px', md: '0px' }}
+                    h={{ base: 'initial', md: '75vh', lg: '90vh' }}
+                    w={'40%'}
+                    mb={{ base: '0px', md: '30px' }}
+                    pt={{ base: '70px', md: '0px' }}
                 >
                     <Flex
                         direction="column"

@@ -173,8 +173,8 @@ const EditProfile: FC = () => {
                                     bg={
                                         'linear-gradient(310deg,#FF4331,#D31A50)'
                                     }
-                                    w="150px"
-                                    h="150px"
+                                    w={{ base: '100px', sm: '150px' }}
+                                    h={{ base: '100px', sm: '150px' }}
                                     borderRadius={'100%'}
                                     src={userData.image}
                                     alt={"User's profile picture"}
@@ -211,7 +211,7 @@ const EditProfile: FC = () => {
                         >
                             <Box p="12px 5px" mb="12px">
                                 <Text
-                                    bgGradient="linear-gradient(310deg,#FF4331,#FF4331)"
+                                    bgGradient="linear(310deg,#09C6F9,#045DE9)"
                                     bgClip="text"
                                     fontSize="2xl"
                                     fontWeight="extrabold"
@@ -245,7 +245,7 @@ const EditProfile: FC = () => {
                                         <FormErrorMessage></FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, sm: 1 }}>
                                     <FormControl>
                                         <InputGroup>
                                             <InputLeftAddon>
@@ -265,7 +265,7 @@ const EditProfile: FC = () => {
                                         <FormErrorMessage></FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, sm: 1 }}>
                                     <FormControl>
                                         <InputGroup>
                                             <InputLeftAddon>
@@ -292,7 +292,20 @@ const EditProfile: FC = () => {
                                 </GridItem>
                             </Grid>
 
-                            <Button onClick={onUpdate} bgColor={'#FF4331'}>
+                            <Button
+                                onClick={onUpdate}
+                                mt={3}
+                                bg={'linear-gradient(310deg, #09C6F9, #045DE9)'}
+                                color={'white'}
+                                variant={'solid'}
+                                _focus={{ outline: 'none' }}
+                                _active={{
+                                    bg: 'linear-gradient(310deg, #079bc3, #0349b8)',
+                                }}
+                                _hover={{
+                                    bg: 'linear-gradient(310deg, #079bc3, #0349b8)',
+                                }}
+                            >
                                 Update
                             </Button>
                         </Box>
