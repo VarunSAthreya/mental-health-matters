@@ -1,6 +1,6 @@
 import { Box, Container, Heading, Stack, Text } from '@chakra-ui/react';
 import { NextPage } from 'next';
-import { IBlog } from '../../types';
+import type { IBlog } from '../../types';
 import BlogCard from '../components/Card/BlogCard';
 import Layout from '../components/UI/Layout';
 

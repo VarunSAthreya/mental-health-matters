@@ -19,7 +19,7 @@ import {
     BsTwitter,
     BsYoutube,
 } from 'react-icons/bs';
-import { ISocialMedia } from '../../../types';
+import type { ISocialMedia } from '../../../types';
 import Logo from '../Logo/Logo';
 import SocialMedia from '../UI/SocialMedia';
 
@@ -79,7 +79,7 @@ const Footer: FunctionComponent = () => {
                 <SimpleGrid
                     columns={{ base: 1, sm: 2, md: 3 }}
                     spacing={8}
-                    justifyItems={{ base: 'center',sm:'normal' }}
+                    justifyItems={{ base: 'center', sm: 'normal' }}
                 >
                     <Hide below="md">
                         <Stack align={'flex-start'} alignItems={'flex-start'}>

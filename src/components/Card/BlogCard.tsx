@@ -9,7 +9,7 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 import { FC } from 'react';
-import { IBlog } from '../../../types';
+import type { IBlog } from '../../../types';
 
 type Props = {
     blog: IBlog;
