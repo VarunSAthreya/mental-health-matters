@@ -1,6 +1,6 @@
 import { Box, Heading, Image, Text, useColorModeValue } from '@chakra-ui/react';
 import { FunctionComponent } from 'react';
-import { IService } from '../../../types';
+import type { IService } from '../../../types';
 
 type Props = {
     data: IService;
@@ -13,7 +13,7 @@ const ServiceCard: FunctionComponent<Props> = ({ data }: Props) => {
         <Box
             p={6}
             display={'flex'}
-            flexDir={{ base: "column", md: "row" }}
+            flexDir={{ base: 'column', md: 'row' }}
             w={'full'}
             alignItems={'center'}
             bg={useColorModeValue('white', '#242526')}

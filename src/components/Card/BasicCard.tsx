@@ -8,7 +8,7 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 import { FunctionComponent } from 'react';
-import { IBasicCard } from '../../../types';
+import type { IBasicCard } from '../../../types';
 
 type Props = {
     data: IBasicCard;

@@ -3,8 +3,9 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { httpBatchLink } from '@trpc/client/links/httpBatchLink';
 import { loggerLink } from '@trpc/client/links/loggerLink';
 import { withTRPC } from '@trpc/next';
+import { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
-import type { AppType } from 'next/dist/shared/lib/utils';
+import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import superjson from 'superjson';
 import AuthWrapper from '../components/Auth/AuthWrapper';
@@ -12,7 +13,12 @@ import type { AppRouter } from '../server/router';
 import '../styles/globals.css';
 import theme from '../styles/theme';
 
-const MyApp: AppType = ({ Component, pageProps }) => {
+const MyApp = ({
+    Component,
+    pageProps,
+}: AppProps<{
+    session: Session;
+}>) => {
     return (
         <>
             <Head>

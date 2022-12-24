@@ -16,7 +16,7 @@ import { FC } from 'react';
 import { AiFillSchedule } from 'react-icons/ai';
 import { BsFillCalendarDateFill } from 'react-icons/bs';
 import { RiSurveyFill, RiTimeFill } from 'react-icons/ri';
-import { UserFullData } from '../../../types';
+import type { UserFullData } from '../../../types';
 import { formatDate } from '../../../utils/helper';
 
 type Props = {

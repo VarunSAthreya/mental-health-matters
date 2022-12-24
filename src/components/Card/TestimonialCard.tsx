@@ -8,7 +8,7 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 import { FunctionComponent } from 'react';
-import { ITestimonial } from '../../../types';
+import type { ITestimonial } from '../../../types';
 
 type Props = {
     data: ITestimonial;

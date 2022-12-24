@@ -1,6 +1,6 @@
 import { Flex, Icon, Stack, Text } from '@chakra-ui/react';
 import { FC } from 'react';
-import { IFeature } from '../../../types';
+import type { IFeature } from '../../../types';
 
 type Props = {
     data: IFeature;
