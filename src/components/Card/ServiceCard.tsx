@@ -13,7 +13,7 @@ const ServiceCard: FunctionComponent<Props> = ({ data }: Props) => {
         <Box
             p={6}
             display={'flex'}
-            // flexDir={{ base: "column", md: direction }}
+            flexDir={{ base: "column", md: "row" }}
             w={'full'}
             alignItems={'center'}
             bg={useColorModeValue('white', '#242526')}

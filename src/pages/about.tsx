@@ -19,7 +19,7 @@ const About: NextPage = () => {
         <Layout title="MHM | About">
             <Flex
                 w={'full'}
-                h={'80vh'}
+                h={{ base: '70vh', md: '80vh' }}
                 backgroundImage={'url(/assets/Background-Images/about.jpg)'}
                 backgroundSize={'cover'}
                 backgroundPosition={'center center'}
@@ -31,6 +31,7 @@ const About: NextPage = () => {
                     justifyContent={'center'}
                     spacing={{ base: 2 }}
                     py={{ base: 10 }}
+                    pt={{ base: 20, sm: 0 }}
                     bg={'linear-gradient(310deg, #09c6f982, #045de99e)'}
                 >
                     <Heading
@@ -135,8 +136,8 @@ const About: NextPage = () => {
                     ullamcorper velit sed
                 </Text>
                 <SimpleGrid
-                    columns={{ base: 1, md: 4 }}
-                    spacing={10}
+                    columns={{ base: 1, sm: 2, lg:4 }}
+                    spacing={{ base: 5, md: 10 }}
                     py={5}
                     px={8}
                 >

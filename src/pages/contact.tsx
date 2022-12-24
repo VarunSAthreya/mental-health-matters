@@ -17,7 +17,7 @@ const Contact: NextPage = () => {
         <Layout title="MHM | Contact">
             <Flex
                 w={'full'}
-                h={'80vh'}
+                h={{ base: '70vh', md: '80vh' }}
                 backgroundImage={'url(/assets/Background-Images/contact.jpg)'}
                 backgroundSize={'cover'}
                 backgroundPosition={'top'}
@@ -29,6 +29,7 @@ const Contact: NextPage = () => {
                     justifyContent={'center'}
                     spacing={{ base: 2 }}
                     py={{ base: 10 }}
+                    pt={{ base: 20, sm: 0 }}
                     bg={'linear-gradient(310deg, #09c6f982, #045de99e)'}
                 >
                     <Heading
@@ -53,7 +54,7 @@ const Contact: NextPage = () => {
                 </Stack>
             </Flex>
             <Center
-                p={12}
+                p={{ base: 6, sm: 8, md: 12 }}
                 backgroundImage={
                     colorMode === 'light'
                         ? 'url(/assets/Background-Images/blob-light.svg)'

@@ -2,6 +2,7 @@ import {
     Box,
     Container,
     Flex,
+    Hide,
     Icon,
     Link,
     SimpleGrid,
@@ -75,17 +76,30 @@ const Footer: FunctionComponent = () => {
                         <Logo width={'150px'} />
                     </Flex>
                 </Box>
-                <SimpleGrid columns={{ base: 2, md: 3 }} spacing={8}>
-                    <Stack align={'flex-start'} alignItems={'flex-start'}>
-                        <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
-                            Services
-                        </Text>
-                        <Text>Depression therapy</Text>
-                        <Text>Individual therapy</Text>
-                        <Text>Couples therapy</Text>
-                        <Text>Children therapy</Text>
-                    </Stack>
-                    <Stack align={'flex-start'} alignItems={'center'}>
+                <SimpleGrid
+                    columns={{ base: 1, sm: 2, md: 3 }}
+                    spacing={8}
+                    justifyItems={{ base: 'center',sm:'normal' }}
+                >
+                    <Hide below="md">
+                        <Stack align={'flex-start'} alignItems={'flex-start'}>
+                            <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
+                                Services
+                            </Text>
+                            <Text>Depression therapy</Text>
+                            <Text>Individual therapy</Text>
+                            <Text>Couples therapy</Text>
+                            <Text>Children therapy</Text>
+                        </Stack>
+                    </Hide>
+                    <Stack
+                        align={'flex-start'}
+                        alignItems={{
+                            base: 'center',
+                            sm: 'flex-start',
+                            md: 'center',
+                        }}
+                    >
                         <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
                             Follow Us
                         </Text>

@@ -62,7 +62,7 @@ const TalkToExperts: NextPage = () => {
         <Layout title="MHM | Talk to Experts">
             <Flex
                 w={'full'}
-                h={'80vh'}
+                h={{ base: '70vh', md: '80vh' }}
                 backgroundImage={
                     'url(/assets/Background-Images/talkToExperts.jpg)'
                 }
@@ -76,6 +76,7 @@ const TalkToExperts: NextPage = () => {
                     justifyContent={'center'}
                     spacing={{ base: 2 }}
                     py={{ base: 10 }}
+                    pt={{ base: 20, sm: 0 }}
                     bg={'linear-gradient(310deg, #09c6f982, #045de99e)'}
                 >
                     <Heading
@@ -170,7 +171,7 @@ const TalkToExperts: NextPage = () => {
                 align={'center'}
                 spacing={{ base: 8, md: 10 }}
                 py={{ base: 16, md: 20 }}
-                px={{ base: 12, md: 16 }}
+                px={{ base: 10, md: 16 }}
                 direction={{ base: 'column', md: 'row' }}
                 bg={'linear-gradient(310deg, #09C6F9, #045DE9)'}
             >

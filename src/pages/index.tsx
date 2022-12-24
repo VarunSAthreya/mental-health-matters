@@ -71,25 +71,30 @@ const Home: NextPage = () => {
             <Box
                 display={'flex'}
                 w={'full'}
-                h={'90vh'}
-                flexDir={{ base: 'column-reverse', md: 'row' }}
+                h={{ base: '65vh', md: '90vh' }}
+                flexDir={{ base: 'row', md: 'row' }}
                 backgroundImage={'url(/assets/Background-Images/main.jpg)'}
                 backgroundSize={'cover'}
                 backgroundPosition={'center'}
             >
                 <Stack
                     as={Box}
-                    p={20}
+                    p={{ base: 10, sm: 14, md: 20 }}
                     display={'flex'}
                     flexDir={'column'}
                     justifyContent={'center'}
                     bg={'linear-gradient(310deg, #09c6f982, #045de99e)'}
                 >
-                    <Box w={'45%'} mx={4}>
+                    <Box w={{ base: '100%', md: '45%' }} mx={4}>
                         <Text
                             color={'white'}
                             textAlign={{ base: 'center', md: 'start' }}
-                            fontSize={{ base: 'xl', md: '7xl' }}
+                            fontSize={{
+                                base: '3xl',
+                                sm: '4xl',
+                                md: '5xl',
+                                lg: '7xl',
+                            }}
                             textTransform={'uppercase'}
                             fontWeight={600}
                             lineHeight={1.2}
@@ -106,7 +111,7 @@ const Home: NextPage = () => {
                             })}
                         >
                             Just remember, you are not alone, in fact, you are
-                            in a very commonplace with millions of others. We
+                            in a very common place with millions of others. We
                             need to help each other and keep striving to reach
                             our goals
                         </Text>
@@ -118,7 +123,8 @@ const Home: NextPage = () => {
                 as={Box}
                 textAlign={'center'}
                 spacing={{ base: 6 }}
-                py={{ base: 20, md: 28 }}
+                py={{ base: 14, md: 28 }}
+                px={{ base: 6, md: 10 }}
             >
                 <Heading
                     textAlign={'center'}
@@ -169,7 +175,7 @@ const Home: NextPage = () => {
                 bg={'linear-gradient(310deg, #09C6F9, #045DE9)'}
                 textAlign={'center'}
                 pt={5}
-                px={{ base: 2, sm: 12, md: 17 }}
+                px={{ base: 6, sm: 12, md: 17 }}
                 py={14}
             >
                 <Heading
@@ -218,7 +224,7 @@ const Home: NextPage = () => {
                 as={Box}
                 textAlign={'center'}
                 spacing={{ base: 8 }}
-                p={{ base: 16, md: 20 }}
+                p={{ base: 6, sm: 10, md: 20 }}
                 backgroundImage={
                     colorMode === 'light'
                         ? 'url(/assets/Background-Images/blob-light.svg)'

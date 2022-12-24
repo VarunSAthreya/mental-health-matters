@@ -7,6 +7,7 @@ import {
     Grid,
     GridItem,
     Heading,
+    Hide,
     Icon,
     Input,
     InputGroup,
@@ -72,116 +73,132 @@ const ContactCard: FunctionComponent = () => {
 
     return (
         <Box display={'flex'} alignItems={'center'}>
-            <Box
-                position={'relative'}
-                left={'90px'}
-                w={'350px'}
-                h={'60vh'}
-                bg={'linear-gradient(310deg, #09C6F9, #045DE9)'}
-                display={'flex'}
-                justifyContent={'center'}
-                borderRadius={8}
-                backgroundPosition={'top'}
-            >
-                <Grid templateColumns="repeat(2, 1fr)" gap={4} py={5} px={8}>
-                    <GridItem colSpan={2}>
-                        <Stack
-                            alignItems={'center'}
-                            backgroundColor={'white'}
-                            p={4}
-                            spacing={0}
-                            borderRadius={8}
-                        >
-                            <Flex
-                                w={10}
-                                h={10}
-                                align={'center'}
-                                justify={'center'}
-                                color={'#045DE9'}
-                                rounded={'full'}
-                                bg={'#c6dcffe8'}
-                                mb={1}
+            <Hide below="md">
+                <Box
+                    position={'relative'}
+                    left={'90px'}
+                    w={'350px'}
+                    h={'60vh'}
+                    bg={'linear-gradient(310deg, #09C6F9, #045DE9)'}
+                    display={'flex'}
+                    justifyContent={'center'}
+                    borderRadius={8}
+                    backgroundPosition={'top'}
+                >
+                    <Grid
+                        templateColumns="repeat(2, 1fr)"
+                        gap={4}
+                        py={5}
+                        px={8}
+                    >
+                        <GridItem colSpan={2}>
+                            <Stack
+                                alignItems={'center'}
+                                backgroundColor={'white'}
+                                p={4}
+                                spacing={0}
+                                borderRadius={8}
                             >
-                                <Icon as={HiLocationMarker} w={6} h={6} />
-                            </Flex>
-                            <Text
-                                fontWeight={600}
-                                color={useColorModeValue('#E9EFF2', '#0D120E')}
+                                <Flex
+                                    w={10}
+                                    h={10}
+                                    align={'center'}
+                                    justify={'center'}
+                                    color={'#045DE9'}
+                                    rounded={'full'}
+                                    bg={'#c6dcffe8'}
+                                    mb={1}
+                                >
+                                    <Icon as={HiLocationMarker} w={6} h={6} />
+                                </Flex>
+                                <Text
+                                    fontWeight={600}
+                                    color={useColorModeValue(
+                                        '#E9EFF2',
+                                        '#0D120E'
+                                    )}
+                                >
+                                    Our Main Office
+                                </Text>
+                                <Text color={'gray.500'} textAlign={'center'}>
+                                    2231 Sycamore Lake Road
+                                </Text>
+                            </Stack>
+                        </GridItem>
+                        <GridItem colSpan={2}>
+                            <Stack
+                                alignItems={'center'}
+                                backgroundColor={'white'}
+                                p={4}
+                                borderRadius={8}
+                                spacing={0}
                             >
-                                Our Main Office
-                            </Text>
-                            <Text color={'gray.500'} textAlign={'center'}>
-                                2231 Sycamore Lake Road
-                            </Text>
-                        </Stack>
-                    </GridItem>
-                    <GridItem colSpan={2}>
-                        <Stack
-                            alignItems={'center'}
-                            backgroundColor={'white'}
-                            p={4}
-                            borderRadius={8}
-                            spacing={0}
-                        >
-                            <Flex
-                                w={10}
-                                h={10}
-                                align={'center'}
-                                justify={'center'}
-                                color={'#045DE9'}
-                                rounded={'full'}
-                                bg={'#c6dcffe8'}
-                                mb={1}
+                                <Flex
+                                    w={10}
+                                    h={10}
+                                    align={'center'}
+                                    justify={'center'}
+                                    color={'#045DE9'}
+                                    rounded={'full'}
+                                    bg={'#c6dcffe8'}
+                                    mb={1}
+                                >
+                                    <Icon as={MdPhone} w={6} h={6} />
+                                </Flex>
+                                <Text
+                                    fontWeight={600}
+                                    color={useColorModeValue(
+                                        '#E9EFF2',
+                                        '#0D120E'
+                                    )}
+                                >
+                                    Phone Number
+                                </Text>
+                                <Text color={'gray.500'} textAlign={'center'}>
+                                    +91 80 8861 1802
+                                </Text>
+                            </Stack>
+                        </GridItem>
+                        <GridItem colSpan={2}>
+                            <Stack
+                                alignItems={'center'}
+                                backgroundColor={'white'}
+                                p={4}
+                                borderRadius={8}
+                                spacing={0}
                             >
-                                <Icon as={MdPhone} w={6} h={6} />
-                            </Flex>
-                            <Text
-                                fontWeight={600}
-                                color={useColorModeValue('#E9EFF2', '#0D120E')}
-                            >
-                                Phone Number
-                            </Text>
-                            <Text color={'gray.500'} textAlign={'center'}>
-                                +91 80 8861 1802
-                            </Text>
-                        </Stack>
-                    </GridItem>
-                    <GridItem colSpan={2}>
-                        <Stack
-                            alignItems={'center'}
-                            backgroundColor={'white'}
-                            p={4}
-                            borderRadius={8}
-                            spacing={0}
-                        >
-                            <Flex
-                                w={10}
-                                h={10}
-                                align={'center'}
-                                justify={'center'}
-                                color={'#045DE9'}
-                                rounded={'full'}
-                                bg={'#c6dcffe8'}
-                                mb={1}
-                            >
-                                <Icon as={MdEmail} w={6} h={6} />
-                            </Flex>
-                            <Text
-                                fontWeight={600}
-                                color={useColorModeValue('#E9EFF2', '#0D120E')}
-                            >
-                                Email
-                            </Text>
-                            <Text color={'gray.500'} textAlign={'center'}>
-                                HmH@gmail.com
-                            </Text>
-                        </Stack>
-                    </GridItem>
-                </Grid>
-            </Box>
+                                <Flex
+                                    w={10}
+                                    h={10}
+                                    align={'center'}
+                                    justify={'center'}
+                                    color={'#045DE9'}
+                                    rounded={'full'}
+                                    bg={'#c6dcffe8'}
+                                    mb={1}
+                                >
+                                    <Icon as={MdEmail} w={6} h={6} />
+                                </Flex>
+                                <Text
+                                    fontWeight={600}
+                                    color={useColorModeValue(
+                                        '#E9EFF2',
+                                        '#0D120E'
+                                    )}
+                                >
+                                    Email
+                                </Text>
+                                <Text color={'gray.500'} textAlign={'center'}>
+                                    HmH@gmail.com
+                                </Text>
+                            </Stack>
+                        </GridItem>
+                    </Grid>
+                </Box>
+            </Hide>
             <WrapItem>
                 <Box bg="white" borderRadius={8}>
-                    <Box m={8} color="#0B0E3F" width={'80%'}>
+                    <Box m={8} color="#0B0E3F" width={'75%'}>
                         <VStack
                             spacing={5}
                             width={{ lg: '2xl', md: 'xl', sm: 'xl' }}

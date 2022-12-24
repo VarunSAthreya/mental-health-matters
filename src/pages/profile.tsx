@@ -28,7 +28,7 @@ const UserDetails: NextPage = () => {
             <Flex
                 flexDirection="column"
                 pt={{ base: '20px', md: '25px' }}
-                marginLeft={{ base: 0, lg: '100px' }}
+                marginLeft={{ base: 0, md: '100px' }}
                 width={'100%'}
                 px={4}
             >
@@ -36,6 +36,7 @@ const UserDetails: NextPage = () => {
                     <Box
                         bg={secondaryBG}
                         display={'flex'}
+                        flexDir={{base:'column',md:'row'}}
                         justifyContent={'space-between'}
                         alignItems={'center'}
                         borderRadius={8}

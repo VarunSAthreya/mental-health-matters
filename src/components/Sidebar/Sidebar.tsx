@@ -28,7 +28,7 @@ const routes = [
 const SideBar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
-        <Box minH={{ base: '10vh', lg: '100vh' }}>
+        <Box minH={{ base: 0, lg: '100vh' }}>
             <SidebarContent
                 onClose={() => onClose}
                 display={{ base: 'none', md: 'flex' }}
@@ -182,7 +182,7 @@ const MobileNav = ({ onOpen, ...rest }: any) => {
                 icon={<FiMenu />}
             />
 
-            <Logo />
+            <Logo width={'150px'} />
         </Flex>
     );
 };

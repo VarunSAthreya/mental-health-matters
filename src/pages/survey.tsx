@@ -23,12 +23,18 @@ import {
 } from '@chakra-ui/react';
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { AiOutlineFileDone } from 'react-icons/ai';
 import { IoCheckmarkDoneSharp } from 'react-icons/io5';
 import type { ISurvey } from '../../types';
 import { Separator } from '../components/Separator';
 import SideBar from '../components/Sidebar/Sidebar';
 import { trpc } from '../utils/trpc';
+
+type Question = {
+    question: string;
+    answer: string;
+};
 
 const Survey = () => {
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
@@ -38,7 +44,7 @@ const Survey = () => {
         initialStep: 0,
     });
 
-    let answers: { question: string; answer: string }[] = [];
+    const [result, setResult] = useState<Question[]>([]);
 
     const toast = useToast();
     const router = useRouter();
@@ -78,19 +84,25 @@ const Survey = () => {
 
     const handleSubmit = async () => {
         submitSurvey({
-            result: JSON.stringify(answers),
+            result: JSON.stringify(result),
             name: data ? data.name : '',
         });
     };
 
     const onChange = (question: string, answer: string) => {
-        if (answers.find((answer) => answer.question === question)) {
-            answers = answers.filter((answer) => answer.question !== question);
+        if (result.find((answer) => answer.question === question)) {
+            console.log('THERE');
+            const temp = result.filter(
+                (answer) => answer.question !== question
+            );
+            console.log(temp);
+
+            setResult(temp);
         }
-        answers.push({
-            question,
-            answer: answer,
-        });
+
+        setResult([...result, { question, answer }]);
+
+        console.log({ result });
     };
 
     return (
@@ -99,7 +111,7 @@ const Survey = () => {
             <Flex
                 flexDirection="column"
                 pt={{ base: '120px', md: '25px' }}
-                marginLeft={{ base: 0, lg: '100px' }}
+                marginLeft={{ base: 0, md: '100px' }}
                 width={'100%'}
                 p={4}
             >
@@ -255,7 +267,7 @@ const Survey = () => {
                                             fontWeight="extrabold"
                                             textTransform={'uppercase'}
                                         >
-                                            Survey Compeleted
+                                            Survey Completed
                                         </Heading>
                                         <Text
                                             fontSize={{ base: 'md', lg: 'lg' }}
