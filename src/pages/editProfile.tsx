@@ -254,7 +254,9 @@ const EditProfile: FC = () => {
                                             <Input
                                                 type="number"
                                                 placeholder="Age"
-                                                value={userData.age ?? ''}
+                                                defaultValue={
+                                                    userData.age ?? ''
+                                                }
                                                 required
                                                 onChange={(e: any) =>
                                                     setAge(e.target.value)
