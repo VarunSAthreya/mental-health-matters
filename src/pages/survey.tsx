@@ -99,7 +99,7 @@ const Survey = () => {
             <Flex
                 flexDirection="column"
                 pt={{ base: '120px', md: '25px' }}
-                marginLeft={{ base: 0, lg: '100px' }}
+                marginLeft={{ base: 0, md: '100px' }}
                 width={'100%'}
                 p={4}
             >

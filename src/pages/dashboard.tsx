@@ -68,7 +68,7 @@ const Dashboard = () => {
             <Flex
                 flexDirection="column"
                 pt={{ base: '120px', md: '25px' }}
-                marginLeft={{ base: 0, lg: '100px' }}
+                marginLeft={{ base: 0, md: '100px' }}
                 width={'100%'}
                 p={4}
             >
@@ -87,6 +87,7 @@ const Dashboard = () => {
                     >
                         <Avatar
                             my={2}
+                            colorScheme="blue"
                             size="md"
                             name={
                                 userData && userData.name
@@ -100,13 +101,12 @@ const Dashboard = () => {
                             }
                         />
                         <Heading
-                            fontSize={{ base: '3xl' }}
+                            fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}
                             textAlign={'center'}
                         >
                             <Text
                                 as={'span'}
                                 position={'relative'}
-                                fontSize="4xl"
                                 mr={2}
                             >
                                 WELCOME,
@@ -115,7 +115,6 @@ const Dashboard = () => {
                                 as={'span'}
                                 bgGradient="linear(310deg,#09C6F9,#045DE9)"
                                 bgClip="text"
-                                fontSize="4xl"
                                 fontWeight="extrabold"
                                 textTransform={'uppercase'}
                             >
@@ -184,8 +183,9 @@ const Dashboard = () => {
                         </Box>
                         <Box
                             display={'flex'}
-                            flexDir={'row'}
+                            flexDir={{ base: 'column', md: 'row' }}
                             justifyContent={'space-evenly'}
+                            alignItems={'center'}
                         >
                             <Box>
                                 <Image
@@ -200,6 +200,7 @@ const Dashboard = () => {
                                 flexDir={'column'}
                                 justifyContent={'space-between'}
                                 p={4}
+                                mt={{ base: 6, md: 0 }}
                                 bg={'white'}
                                 borderRadius={8}
                                 color={'black'}
@@ -261,6 +262,7 @@ const Dashboard = () => {
                                                           }
                                                           ml={-1}
                                                           mr={2}
+                                                          colorScheme="blue"
                                                       />
 
                                                       <TagLabel>
@@ -278,6 +280,7 @@ const Dashboard = () => {
                                 <Box
                                     display={'flex'}
                                     justifyContent="center"
+                                    mt={4}
                                     px="5px"
                                 >
                                     <Button
