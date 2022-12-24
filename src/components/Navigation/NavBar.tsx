@@ -4,6 +4,7 @@ import {
     Button,
     Flex,
     HStack,
+    Hide,
     IconButton,
     Stack,
     useColorMode,
@@ -15,7 +16,7 @@ import { FunctionComponent } from 'react';
 import Logo from '../Logo/Logo';
 import NavLink from './NavLink';
 
-const Links = ['About', 'TalkToExperts','Contact'];
+const Links = ['About', 'TalkToExperts', 'Contact'];
 
 const NavBar: FunctionComponent = () => {
     const { colorMode, toggleColorMode } = useColorMode();
@@ -37,39 +38,43 @@ const NavBar: FunctionComponent = () => {
 
     return (
         <>
-            <Box px={4} py={2} position={'absolute'} zIndex={50} w={'100%'} bg={bg}>
+            <Box
+                px={4}
+                py={2}
+                position={'absolute'}
+                zIndex={50}
+                w={'100%'}
+                bg={bg}
+            >
                 <Flex
                     h={16}
                     alignItems={'center'}
                     justifyContent={'space-between'}
                 >
-                    <Flex
-                        h={16}
-                        alignItems={'center'}
-                        justifyContent={'space-between'}
-                    >
-                        <IconButton
-                            size={'md'}
-                            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-                            aria-label={'Open Menu'}
-                            display={{ md: 'none' }}
-                            onClick={isOpen ? onClose : onOpen}
-                        />
-                        <HStack spacing={8} alignItems={'center'}>
-                            <Logo width={'100px'} />
-                        </HStack>
-                    </Flex>
+                    <IconButton
+                        size={'md'}
+                        icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+                        aria-label={'Open Menu'}
+                        display={{ md: 'none' }}
+                        onClick={isOpen ? onClose : onOpen}
+                    />
                     <HStack spacing={8} alignItems={'center'}>
-                        <HStack
-                            as={'nav'}
-                            spacing={4}
-                            display={{ base: 'none', md: 'flex' }}
-                        >
-                            {Links.map((link) => (
-                                <NavLink key={link}>{link}</NavLink>
-                            ))}
-                        </HStack>
+                        <Logo width={'100px'} />
                     </HStack>
+
+                    <Hide below="md">
+                        <HStack spacing={8} alignItems={'center'}>
+                            <HStack
+                                as={'nav'}
+                                spacing={4}
+                                display={{ base: 'none', md: 'flex' }}
+                            >
+                                {Links.map((link) => (
+                                    <NavLink key={link}>{link}</NavLink>
+                                ))}
+                            </HStack>
+                        </HStack>
+                    </Hide>
 
                     <Flex alignItems={'center'}>
                         <Stack direction={'row'} spacing={7}>

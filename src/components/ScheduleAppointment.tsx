@@ -60,6 +60,7 @@ const ScheduleAppointment: FC = () => {
             bg={secondaryBG}
             borderRadius={8}
             display={'flex'}
+            flexDirection={{ base: 'column', md: 'row' }}
             border={'3px solid #045DE9'}
         >
             <Box
